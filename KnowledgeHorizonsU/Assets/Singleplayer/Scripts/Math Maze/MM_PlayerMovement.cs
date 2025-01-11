@@ -8,6 +8,8 @@ public class MM_PlayerMovement : MonoBehaviour
     private Animator animator; // Reference to Animator component
     private Rigidbody2D rb; // Reference to Rigidbody2D component
 
+    private Vector2 lastValidPosition; // Store the player's last valid position
+
     private void Awake()
     {
         // Get references to required components
@@ -24,14 +26,40 @@ public class MM_PlayerMovement : MonoBehaviour
         // Prevent diagonal movement
         if (input.x != 0) input.y = 0;
 
-        // Update the animator with movement data
+        // Update animator
         UpdateAnimator();
     }
 
     private void FixedUpdate()
     {
-        // Apply movement to the Rigidbody2D
-        MovePlayer();
+        // Calculate movement vector
+        Vector2 movement = input.normalized * moveSpeed * Time.fixedDeltaTime;
+
+        // Check if the player is moving
+        if (movement != Vector2.zero)
+        {
+            // Move the player
+            Vector2 newPosition = rb.position + movement;
+
+            // Use a Physics2D check to ensure the target position is not blocked
+            if (!IsBlocked(newPosition))
+            {
+                rb.MovePosition(newPosition);
+                lastValidPosition = rb.position; // Update the last valid position
+            }
+            else
+            {
+                // Reset to the last valid position to avoid getting stuck
+                rb.MovePosition(lastValidPosition);
+            }
+        }
+    }
+
+    private bool IsBlocked(Vector2 targetPosition)
+    {
+        // Use Physics2D.OverlapCircle to check for obstacles at the target position
+        Collider2D hit = Physics2D.OverlapCircle(targetPosition, 0.1f, LayerMask.GetMask("Obstacles"));
+        return hit != null; // Return true if there is an obstacle
     }
 
     private void UpdateAnimator()
@@ -47,14 +75,5 @@ public class MM_PlayerMovement : MonoBehaviour
             animator.SetFloat("moveX", input.x);
             animator.SetFloat("moveY", input.y);
         }
-    }
-
-    private void MovePlayer()
-    {
-        // Normalize input and calculate movement vector
-        Vector2 movement = input.normalized * moveSpeed * Time.fixedDeltaTime;
-
-        // Update the Rigidbody2D position
-        rb.MovePosition(rb.position + movement);
     }
 }
