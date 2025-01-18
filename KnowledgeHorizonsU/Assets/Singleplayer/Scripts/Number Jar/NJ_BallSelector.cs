@@ -30,7 +30,7 @@ public class NJ_BallSelector : MonoBehaviour
         pickNextBall();
     }
 
-    public GameObject PickRandomBall()
+    public GameObject PickStartingRandomBall()
     {
         int randomIndex = Random.Range(0, maxStartingBallIndex + 1);
 

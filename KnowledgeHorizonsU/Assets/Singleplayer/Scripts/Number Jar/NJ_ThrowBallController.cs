@@ -34,7 +34,7 @@ public class NJ_ThrowBallController : MonoBehaviour
     {
         playerController = GetComponent<NJ_PlayerController>();
 
-        SpawnBall(ballSelector.PickRandomBall());
+        SpawnBall(ballSelector.PickStartingRandomBall());
     }
 
     private void Update()
@@ -63,8 +63,9 @@ public class NJ_ThrowBallController : MonoBehaviour
 
         currentBall = gop;
         circleCollider = currentBall.GetComponent<CircleCollider2D>();
+        float ballRadius = circleCollider.radius * currentBall.transform.localScale.x;
+        playerController.UpdateBoundaries(ballRadius);
         bounds = circleCollider.bounds;
 
-        //playerController.ChangeBoundary(extraWidth);
     }
 }

@@ -7,6 +7,7 @@ public class NJ_PlayerController : MonoBehaviour
     [SerializeField] float moveSpeed = 5.0f;
     [SerializeField] BoxCollider2D BoundaryCollider;
     [SerializeField] Transform BallTransformPos;
+    [SerializeField] Transform playerSpriteTransform;
 
     private Bounds bounds;
 
@@ -22,7 +23,7 @@ public class NJ_PlayerController : MonoBehaviour
     {
         bounds = BoundaryCollider.bounds;
 
-        offset = transform.position.x - BallTransformPos.position.x;
+        offset = playerSpriteTransform.position.x - BallTransformPos.position.x;
 
         leftBound = bounds.min.x + offset;
         rightBound = bounds.max.x + offset;
@@ -39,13 +40,11 @@ public class NJ_PlayerController : MonoBehaviour
         transform.position = newPos;
     }
 
-    public void ChangeBoundary(float extraWidth)
+    public void UpdateBoundaries(float ballRadius)
     {
-        leftBound = leftStartingBound;
-        rightBound = rightStartingBound;
-
-        leftBound += NJ_ThrowBallController.Instance.bounds.extents.x + extraWidth;
-        rightBound -= NJ_ThrowBallController.Instance.bounds.extents.x + extraWidth;
+        // Update boundaries with the ball's radius as padding
+        leftBound = bounds.min.x + offset + ballRadius;
+        rightBound = bounds.max.x + offset - ballRadius;
     }
 
 
