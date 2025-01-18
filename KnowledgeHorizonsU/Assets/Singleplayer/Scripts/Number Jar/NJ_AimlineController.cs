@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class NJ_AimlineController : MonoBehaviour
 {
-    [SerializeField] Transform fruitDropTransform;
+    [SerializeField] Transform BallDropTransform;
     [SerializeField] Transform BottomTransform;
 
     float topPos;
@@ -15,9 +15,9 @@ public class NJ_AimlineController : MonoBehaviour
 
     private void Update()
     {
-        x = fruitDropTransform.position.x;
+        x = BallDropTransform.position.x;
 
-        topPos = fruitDropTransform.position.y;
+        topPos = BallDropTransform.position.y;
         bottomPos = BottomTransform.position.y;
 
         lineRenderer.startColor = Color.white;
@@ -29,9 +29,9 @@ public class NJ_AimlineController : MonoBehaviour
 
     private void OnValidate()
     {
-        x = fruitDropTransform.position.x;
+        x = BallDropTransform.position.x;
 
-        topPos = fruitDropTransform.position.y;
+        topPos = BallDropTransform.position.y;
         bottomPos = BottomTransform.position.y;
 
         lineRenderer.startColor = Color.white;
