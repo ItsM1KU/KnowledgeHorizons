@@ -1,11 +1,11 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class MM_DoorInteraction : MonoBehaviour
 {
-    public Button interactButton; // Reference to the interact button
-    public GameObject mathQuestionPanel; // Reference to the math question panel
+    public GameObject mathQuestionPanel; // Shared math question panel
     public TMP_Text questionText; // TMP_Text for displaying the question
     public TMP_InputField answerInputField; // TMP_InputField for user answer
     public Button submitButton; // Button to submit the answer
@@ -14,94 +14,102 @@ public class MM_DoorInteraction : MonoBehaviour
     public GameObject openDoor; // Reference to the open door GameObject
     public GameObject obstacle; // Optional obstacle to deactivate
 
-    public int minRange = 1; // Minimum number range for math question
-    public int maxRange = 10; // Maximum number range for math question
-    public string[] operators = { "+", "-", "*", "/" }; // Operators for math questions
+    [System.Serializable]
+    public class Question
+    {
+        public string questionText; // The question text
+        public int answer; // The correct answer
+    }
+
+    public List<Question> questions = new List<Question>(); // List of questions for this door
 
     private bool isPlayerNearby = false; // Check if player is near the door
     private bool isQuestionAnswered = false; // Check if the question is answered correctly
 
-    private int correctAnswer; // Correct answer for the math question
+    private int currentQuestionIndex = 0; // Tracks the current question index
+    private static MM_DoorInteraction currentDoor; // Tracks the currently active door
 
     private void Start()
     {
-        interactButton.gameObject.SetActive(false); // Hide interact button initially
-        mathQuestionPanel.SetActive(false); // Hide math question panel initially
         if (openDoor != null) openDoor.SetActive(false); // Ensure the open door is initially inactive
-
-        // Add listener to the submit button
-        submitButton.onClick.AddListener(CheckAnswer);
+        if (questions.Count == 0)
+        {
+            Debug.LogError($"No questions assigned to {gameObject.name}! Please add questions.");
+        }
     }
 
     private void Update()
     {
-        // Check if the player presses 'E' near the door
         if (isPlayerNearby && Input.GetKeyDown(KeyCode.E) && !isQuestionAnswered)
         {
-            DisplayMathQuestion();
+            ActivateQuestionPanel();
         }
     }
 
-    private void DisplayMathQuestion()
+    private void ActivateQuestionPanel()
     {
-        // Randomly generate numbers and an operator
-        int num1 = Random.Range(minRange, maxRange + 1);
-        int num2 = Random.Range(minRange, maxRange + 1);
-        string selectedOperator = operators[Random.Range(0, operators.Length)];
-
-        // Avoid division by zero
-        if (selectedOperator == "/" && num2 == 0)
+        if (questions.Count == 0 || currentQuestionIndex >= questions.Count)
         {
-            num2 = 1;
+            Debug.LogError($"No questions available or all questions have been answered for {gameObject.name}!");
+            return;
         }
 
-        // Calculate the correct answer based on the selected operator
-        switch (selectedOperator)
-        {
-            case "+":
-                correctAnswer = num1 + num2;
-                break;
-            case "-":
-                correctAnswer = num1 - num2;
-                break;
-            case "*":
-                correctAnswer = num1 * num2;
-                break;
-            case "/":
-                correctAnswer = num1 / num2; // Integer division
-                break;
-        }
+        // Set the current door
+        currentDoor = this;
 
-        // Display the question
-        questionText.text = $"What is {num1} {selectedOperator} {num2}?";
+        // Update the question text and display the panel
+        Question currentQuestion = questions[currentQuestionIndex];
+        questionText.text = currentQuestion.questionText;
         mathQuestionPanel.SetActive(true);
+
+        // Ensure only one listener for the submit button
+        submitButton.onClick.RemoveAllListeners();
+        submitButton.onClick.AddListener(CheckAnswer);
     }
 
     private void CheckAnswer()
     {
-        // Get the player's input and check if it's correct
+        if (questions.Count == 0 || currentQuestionIndex >= questions.Count)
+        {
+            Debug.LogError($"No questions available or all questions have been answered for {gameObject.name}!");
+            return;
+        }
+
+        // Get the current question and check the answer
+        Question currentQuestion = questions[currentQuestionIndex];
         int playerAnswer;
         if (int.TryParse(answerInputField.text, out playerAnswer))
         {
-            if (playerAnswer == correctAnswer)
+            if (playerAnswer == currentQuestion.answer)
             {
-                isQuestionAnswered = true; // Mark the question as answered
-                mathQuestionPanel.SetActive(false); // Hide the panel
-                OpenDoor(); // Open the door
-                Debug.Log("Correct answer! Door is now open.");
+                Debug.Log($"Correct answer for {gameObject.name}! Proceeding to the next question...");
+                currentQuestionIndex++; // Move to the next question
+
+                if (currentQuestionIndex >= questions.Count)
+                {
+                    // All questions answered, open the door
+                    isQuestionAnswered = true;
+                    mathQuestionPanel.SetActive(false); // Hide the panel
+                    OpenDoor();
+                }
+                else
+                {
+                    // Move to the next question
+                    ActivateQuestionPanel();
+                }
             }
             else
             {
-                // Provide feedback for wrong answer
+                // Provide feedback for a wrong answer
                 questionText.text = "Wrong answer!\nTry again.";
                 answerInputField.text = ""; // Clear the input field
-                Debug.Log("Wrong answer! Door remains closed.");
+                Debug.Log($"Wrong answer for {gameObject.name}! Try again.");
             }
         }
         else
         {
             questionText.text = "Invalid input! Please enter a number.";
-            Debug.Log("Invalid input received.");
+            Debug.Log($"Invalid input received for {gameObject.name}.");
         }
     }
 
@@ -110,6 +118,7 @@ public class MM_DoorInteraction : MonoBehaviour
         if (closedDoor != null) closedDoor.SetActive(false); // Deactivate closed door
         if (openDoor != null) openDoor.SetActive(true); // Activate open door
         if (obstacle != null) obstacle.SetActive(false); // Deactivate optional obstacle
+        Debug.Log($"All questions answered for {gameObject.name}! Door is now open.");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -125,7 +134,10 @@ public class MM_DoorInteraction : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             isPlayerNearby = false; // Player left the door area
-            mathQuestionPanel.SetActive(false); // Hide the panel if active
+            if (currentDoor == this)
+            {
+                mathQuestionPanel.SetActive(false); // Hide the panel if this door is active
+            }
         }
     }
 }
