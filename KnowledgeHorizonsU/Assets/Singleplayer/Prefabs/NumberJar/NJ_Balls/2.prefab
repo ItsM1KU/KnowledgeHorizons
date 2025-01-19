@@ -15,7 +15,8 @@ GameObject:
   - component: {fileID: -7365162377580519002}
   - component: {fileID: -3110039421186186327}
   - component: {fileID: -7691584925416507383}
-  m_Layer: 0
+  - component: {fileID: 2608504550123715540}
+  m_Layer: 8
   m_Name: 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -176,7 +177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BallIndex: 0
-  pointsWhenCombined: 0
+  pointsWhenCombined: 1
   ballMass: 1.28
 --- !u!114 &-7691584925416507383
 MonoBehaviour:
@@ -188,5 +189,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f35602fa57c1f3f4ab5239bf3762f2fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2608504550123715540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8664189198654350065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d039102f26ead4419995456d3fd0ab8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

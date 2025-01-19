@@ -24,6 +24,7 @@ public class NJ_BallCombiner : MonoBehaviour
                     int otherID = collision.gameObject.GetInstanceID();
                     if (thisID > otherID)
                     {
+                        NJ_GameManager.instance.IncreaseScore(_ballInfo.pointsWhenCombined);
                         if(_ballInfo.BallIndex == NJ_BallSelector.Instance.balls.Length - 1)
                         {
                             Destroy(gameObject);
