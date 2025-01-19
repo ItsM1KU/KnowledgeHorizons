@@ -36,6 +36,7 @@ public class NJ_BallCombiner : MonoBehaviour
                         NJ_GameManager.instance.IncreaseScore(_ballInfo.pointsWhenCombined);
                         if (_ballInfo.BallIndex == NJ_BallSelector.Instance.balls.Length - 1)
                         {
+                            NJ_GameManager.instance.popSFX.Play();
                             Destroy(collision.gameObject);
                             Destroy(gameObject);
                         }
@@ -50,6 +51,7 @@ public class NJ_BallCombiner : MonoBehaviour
                             {
                                 collider.wasCombined = true;
                             }
+                            NJ_GameManager.instance.popSFX.Play();
                             Destroy(collision.gameObject);
                             Destroy(gameObject);
                         }

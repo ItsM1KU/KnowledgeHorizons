@@ -42,7 +42,7 @@ public class NJ_PlayerController : MonoBehaviour
 
     public void UpdateBoundaries(float ballRadius)
     {
-        // Update boundaries with the ball's radius as padding
+        // Update boundaries with the ball radius as padding
         leftBound = bounds.min.x + offset + ballRadius;
         rightBound = bounds.max.x + offset - ballRadius;
     }

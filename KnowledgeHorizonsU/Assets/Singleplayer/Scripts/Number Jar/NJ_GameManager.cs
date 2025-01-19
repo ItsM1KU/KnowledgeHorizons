@@ -9,6 +9,8 @@ public class NJ_GameManager : MonoBehaviour
 
     public int currentScore { get; set; }
 
+    public AudioSource popSFX;
+
     public float timeOverLimit = 2f;
 
     public TextMeshProUGUI scoreText;
@@ -18,6 +20,7 @@ public class NJ_GameManager : MonoBehaviour
             instance = this;
         }
         scoreText.text = "0";
+        
     }
 
     public void IncreaseScore(int amount)
@@ -30,4 +33,6 @@ public class NJ_GameManager : MonoBehaviour
     {
         Debug.Log("Game Over");
     }
+
+    
 }
