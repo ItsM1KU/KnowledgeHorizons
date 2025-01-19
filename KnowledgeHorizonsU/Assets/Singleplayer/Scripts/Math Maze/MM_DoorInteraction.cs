@@ -26,7 +26,7 @@ public class MM_DoorInteraction : MonoBehaviour
     private bool isPlayerNearby = false; // Check if player is near the door
     private bool isQuestionAnswered = false; // Check if the question is answered correctly
 
-    private int currentQuestionIndex = 0; // Tracks the current question index
+    private Question selectedQuestion; // The selected question for this door
     private static MM_DoorInteraction currentDoor; // Tracks the currently active door
 
     private void Start()
@@ -48,19 +48,27 @@ public class MM_DoorInteraction : MonoBehaviour
 
     private void ActivateQuestionPanel()
     {
-        if (questions.Count == 0 || currentQuestionIndex >= questions.Count)
+        if (questions.Count == 0)
         {
-            Debug.LogError($"No questions available or all questions have been answered for {gameObject.name}!");
+            Debug.LogError($"No questions available for {gameObject.name}!");
             return;
         }
 
         // Set the current door
         currentDoor = this;
 
+        // Select a random question if not already selected
+        if (selectedQuestion == null)
+        {
+            selectedQuestion = questions[Random.Range(0, questions.Count)];
+        }
+
         // Update the question text and display the panel
-        Question currentQuestion = questions[currentQuestionIndex];
-        questionText.text = currentQuestion.questionText;
+        questionText.text = selectedQuestion.questionText;
         mathQuestionPanel.SetActive(true);
+
+        // Clear the input field for new input
+        answerInputField.text = "";
 
         // Ensure only one listener for the submit button
         submitButton.onClick.RemoveAllListeners();
@@ -69,40 +77,29 @@ public class MM_DoorInteraction : MonoBehaviour
 
     private void CheckAnswer()
     {
-        if (questions.Count == 0 || currentQuestionIndex >= questions.Count)
+        if (selectedQuestion == null)
         {
-            Debug.LogError($"No questions available or all questions have been answered for {gameObject.name}!");
+            Debug.LogError($"No question is currently active for {gameObject.name}!");
             return;
         }
 
-        // Get the current question and check the answer
-        Question currentQuestion = questions[currentQuestionIndex];
+        // Check the answer
         int playerAnswer;
         if (int.TryParse(answerInputField.text, out playerAnswer))
         {
-            if (playerAnswer == currentQuestion.answer)
+            if (playerAnswer == selectedQuestion.answer)
             {
-                Debug.Log($"Correct answer for {gameObject.name}! Proceeding to the next question...");
-                currentQuestionIndex++; // Move to the next question
+                Debug.Log($"Correct answer for {gameObject.name}!");
 
-                if (currentQuestionIndex >= questions.Count)
-                {
-                    // All questions answered, open the door
-                    isQuestionAnswered = true;
-                    mathQuestionPanel.SetActive(false); // Hide the panel
-                    OpenDoor();
-                }
-                else
-                {
-                    // Move to the next question
-                    ActivateQuestionPanel();
-                }
+                // Mark question as answered
+                isQuestionAnswered = true;
+                mathQuestionPanel.SetActive(false); // Hide the panel
+                OpenDoor();
             }
             else
             {
                 // Provide feedback for a wrong answer
                 questionText.text = "Wrong answer!\nTry again.";
-                answerInputField.text = ""; // Clear the input field
                 Debug.Log($"Wrong answer for {gameObject.name}! Try again.");
             }
         }
@@ -111,6 +108,9 @@ public class MM_DoorInteraction : MonoBehaviour
             questionText.text = "Invalid input! Please enter a number.";
             Debug.Log($"Invalid input received for {gameObject.name}.");
         }
+
+        // Clear the input field for the next input
+        answerInputField.text = "";
     }
 
     private void OpenDoor()
@@ -118,7 +118,7 @@ public class MM_DoorInteraction : MonoBehaviour
         if (closedDoor != null) closedDoor.SetActive(false); // Deactivate closed door
         if (openDoor != null) openDoor.SetActive(true); // Activate open door
         if (obstacle != null) obstacle.SetActive(false); // Deactivate optional obstacle
-        Debug.Log($"All questions answered for {gameObject.name}! Door is now open.");
+        Debug.Log($"Door opened for {gameObject.name}!");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
