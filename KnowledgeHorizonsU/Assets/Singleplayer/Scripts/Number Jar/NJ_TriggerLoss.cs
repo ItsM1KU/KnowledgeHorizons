@@ -6,21 +6,23 @@ public class NJ_TriggerLoss : MonoBehaviour
 {
     private float timer;
 
-    private void OnCollisionStay2D(Collision2D collision)
+
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Loss")
+        if (collision.gameObject.layer == 6)
         {
             timer += Time.deltaTime;
-            if(timer > NJ_GameManager.instance.timeOverLimit)
+            if (timer > NJ_GameManager.instance.timeOverLimit)
             {
                 NJ_GameManager.instance.GameOver();
             }
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Loss")
+        if (collision.gameObject.layer == 6)
         {
             timer = 0f;
         }

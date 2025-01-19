@@ -14,11 +14,11 @@ GameObject:
   - component: {fileID: 6986548030711663651}
   - component: {fileID: 6802020336821651483}
   - component: {fileID: -8018442723429284831}
-  - component: {fileID: -6683483900446340191}
   - component: {fileID: -4641016767704063924}
+  - component: {fileID: 1753543963664238811}
   m_Layer: 8
   m_Name: 4
-  m_TagString: Untagged
+  m_TagString: Ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -179,18 +179,6 @@ MonoBehaviour:
   BallIndex: 1
   pointsWhenCombined: 3
   ballMass: 1.26
---- !u!114 &-6683483900446340191
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6971973203830309736}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f35602fa57c1f3f4ab5239bf3762f2fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &-4641016767704063924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,5 +189,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1d039102f26ead4419995456d3fd0ab8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1753543963664238811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6971973203830309736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f35602fa57c1f3f4ab5239bf3762f2fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

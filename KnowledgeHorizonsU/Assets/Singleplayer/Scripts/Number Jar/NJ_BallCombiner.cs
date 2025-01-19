@@ -16,19 +16,28 @@ public class NJ_BallCombiner : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.layer == layerIndex) { 
+        if (collision.gameObject.layer == layerIndex)
+        {
             NJ_BallInfo collidedBallInfo = collision.gameObject.GetComponent<NJ_BallInfo>();
-            if (collidedBallInfo != null) {
-                if (collidedBallInfo.BallIndex == _ballInfo.BallIndex) { 
+
+
+            if (collidedBallInfo != null)
+            {
+                if (collidedBallInfo.BallIndex == _ballInfo.BallIndex)
+                {
                     int thisID = gameObject.GetInstanceID();
                     int otherID = collision.gameObject.GetInstanceID();
+
+                    GameObject thisBall = gameObject;
+                    GameObject otherBall = collision.gameObject;
+
                     if (thisID > otherID)
                     {
                         NJ_GameManager.instance.IncreaseScore(_ballInfo.pointsWhenCombined);
-                        if(_ballInfo.BallIndex == NJ_BallSelector.Instance.balls.Length - 1)
+                        if (_ballInfo.BallIndex == NJ_BallSelector.Instance.balls.Length - 1)
                         {
-                            Destroy(gameObject);
                             Destroy(collision.gameObject);
+                            Destroy(gameObject);
                         }
                         else
                         {
@@ -37,14 +46,15 @@ public class NJ_BallCombiner : MonoBehaviour
                             go.transform.position = middlePos;
 
                             NJ_ColliderInformer collider = go.GetComponent<NJ_ColliderInformer>();
-                            if (collider != null) { 
+                            if (collider != null)
+                            {
                                 collider.wasCombined = true;
                             }
-                            Destroy(gameObject);
                             Destroy(collision.gameObject);
+                            Destroy(gameObject);
                         }
                     }
-                    
+
                 }
             }
         }
