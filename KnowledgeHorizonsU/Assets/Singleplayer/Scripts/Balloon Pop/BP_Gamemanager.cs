@@ -1,69 +1,104 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public Text sequenceText;
     public Text feedbackText;
     public Button[] balloons;
+    public Text timerText; // Reference to display the timer
+    public Text scoreText; // Reference to display the score
+    public Text gameOverText; // Text to display "Game Over"
+    public GameObject pauseMenu; // Reference to the pause menu UI
+
+    private float timer = 15f; // 15 seconds timer
+    private int score = 0; // Player's score
+    private int questionCount = 0; // Number of questions asked
+    private int maxQuestions = 5; // Total questions per game
+    private bool isGameRunning = true; // To control the game state
 
     private List<int> currentSequence = new List<int>();
     private int correctAnswer;
     private int wrongAttempts = 0;
 
+    private HashSet<string> usedQuestions = new HashSet<string>(); // To track unique questions
+
     private void Start()
     {
+        InitializeGame();
+    }
+
+    private void InitializeGame()
+    {
+        // Initialize game values
+        score = 0;
+        questionCount = 0;
+        timer = 15f;
+        isGameRunning = true;
+        gameOverText.text = ""; // Clear game over text
+        usedQuestions.Clear(); // Clear previously used questions
+
         GenerateNewSequence();
         AssignBalloonNumbers();
+
         feedbackText.text = ""; // Clear feedback on start
+        scoreText.text = "Score: " + score; // Initialize score text
+        timerText.text = "Time Left: " + Mathf.Ceil(timer).ToString(); // Initialize timer text
     }
 
     private void GenerateNewSequence()
     {
-        // Clear current sequence
-        currentSequence.Clear();
+        currentSequence.Clear(); // Clear current sequence
 
-        // Randomly choose a sequence type
-        int sequenceType = Random.Range(0, 4); // 0 = Odd, 1 = Even, 2 = Fibonacci, 3 = Squares
-
-        int start = Random.Range(1, 10); // Random starting point
-
-        switch (sequenceType)
+        do
         {
-            case 0: // Odd numbers
-                for (int i = 0; i < 3; i++) currentSequence.Add(start + i * 2);
-                correctAnswer = currentSequence[currentSequence.Count - 1] + 2;
-                break;
+            // Randomly choose a sequence type
+            int sequenceType = Random.Range(0, 4); // 0 = Odd, 1 = Even, 2 = Fibonacci, 3 = Squares
+            int start = Random.Range(1, 10); // Random starting point
 
-            case 1: // Even numbers
-                start = (start % 2 == 0) ? start : start + 1; // Ensure start is even
-                for (int i = 0; i < 3; i++) currentSequence.Add(start + i * 2);
-                correctAnswer = currentSequence[currentSequence.Count - 1] + 2;
-                break;
+            switch (sequenceType)
+            {
+                case 0: // Odd numbers
+                    for (int i = 0; i < 3; i++) currentSequence.Add(start + i * 2);
+                    correctAnswer = currentSequence[currentSequence.Count - 1] + 2;
+                    break;
 
-            case 2: // Fibonacci sequence
-                int a = 1, b = 1;
-                currentSequence.Add(a);
-                currentSequence.Add(b);
-                for (int i = 2; i < 3; i++)
-                {
-                    int next = a + b;
-                    currentSequence.Add(next);
-                    a = b;
-                    b = next;
-                }
-                correctAnswer = a + b;
-                break;
+                case 1: // Even numbers
+                    start = (start % 2 == 0) ? start : start + 1; // Ensure start is even
+                    for (int i = 0; i < 3; i++) currentSequence.Add(start + i * 2);
+                    correctAnswer = currentSequence[currentSequence.Count - 1] + 2;
+                    break;
 
-            case 3: // Squares
-                for (int i = 0; i < 3; i++) currentSequence.Add((start + i) * (start + i));
-                correctAnswer = (start + 3) * (start + 3);
-                break;
-        }
+                case 2: // Fibonacci sequence
+                    int a = 1, b = 1;
+                    currentSequence.Add(a);
+                    currentSequence.Add(b);
+                    for (int i = 2; i < 3; i++)
+                    {
+                        int next = a + b;
+                        currentSequence.Add(next);
+                        a = b;
+                        b = next;
+                    }
+                    correctAnswer = a + b;
+                    break;
 
+                case 3: // Squares
+                    for (int i = 0; i < 3; i++) currentSequence.Add((start + i) * (start + i));
+                    correctAnswer = (start + 3) * (start + 3);
+                    break;
+            }
+        } while (usedQuestions.Contains(SequenceKey())); // Ensure the question is unique
+
+        usedQuestions.Add(SequenceKey()); // Mark the sequence as used
         UpdateSequenceText();
+    }
+
+    private string SequenceKey()
+    {
+        return string.Join(",", currentSequence) + "|" + correctAnswer; // Unique key for the sequence
     }
 
     private void UpdateSequenceText()
@@ -79,7 +114,6 @@ public class GameManager : MonoBehaviour
 
     private void AssignBalloonNumbers()
     {
-        // Create a list of options
         List<int> options = new List<int> { correctAnswer };
 
         // Add 3 incorrect options
@@ -110,23 +144,119 @@ public class GameManager : MonoBehaviour
 
     private void OnBalloonClicked(int selectedNumber)
     {
+        if (!isGameRunning) return;
+
         if (selectedNumber == correctAnswer)
         {
             feedbackText.text = "Correct!";
-            GenerateNewSequence();
-            AssignBalloonNumbers();
+            score += 10; // Increase score
+            scoreText.text = "Score: " + score; // Update the score text
         }
         else
         {
             feedbackText.text = "Wrong!";
             wrongAttempts++;
-            if (wrongAttempts >= 4)
+        }
+
+        if (++questionCount >= maxQuestions)
+        {
+            EndGame();
+        }
+        else
+        {
+            ResetTimer(); // Reset the timer for the next round
+            GenerateNewSequence();
+            AssignBalloonNumbers();
+        }
+    }
+
+    private void Update()
+    {
+        if (!isGameRunning) return;
+
+        // Decrease the timer
+        timer -= Time.deltaTime;
+        timerText.text = "Time Left: " + Mathf.Ceil(timer).ToString(); // Update the timer text
+
+        if (timer <= 0)
+        {
+            feedbackText.text = "Time's up!";
+            if (++questionCount >= maxQuestions)
             {
-                feedbackText.text = "Resetting Sequence...";
-                wrongAttempts = 0;
+                EndGame();
+            }
+            else
+            {
+                ResetTimer();
                 GenerateNewSequence();
                 AssignBalloonNumbers();
             }
         }
+    }
+
+    private void EndGame()
+    {
+        isGameRunning = false;
+
+        // Display final score and game over message
+        gameOverText.text = $"Game Over!\nFinal Score: {score}";
+        gameOverText.gameObject.SetActive(true); // Ensure the text is visible
+
+        // Optionally disable other UI elements to avoid confusion
+        sequenceText.gameObject.SetActive(false);
+        feedbackText.gameObject.SetActive(false);
+        timerText.gameObject.SetActive(false);
+        scoreText.gameObject.SetActive(false);
+
+        // Stop player interactions
+        foreach (Button balloon in balloons)
+        {
+            balloon.interactable = false;
+        }
+
+        // Activate pause menu
+        pauseMenu.SetActive(true); // Show the pause menu
+        Time.timeScale = 0f; // Pause the game
+    }
+
+    public void RestartGame()
+    {
+        Debug.Log("Restarting Game...");
+
+        // Re-enable UI elements
+        sequenceText.gameObject.SetActive(true);
+        feedbackText.gameObject.SetActive(true);
+        timerText.gameObject.SetActive(true);
+        scoreText.gameObject.SetActive(true);
+
+        // Re-enable player interactions
+        foreach (Button balloon in balloons)
+        {
+            balloon.interactable = true;
+        }
+
+        gameOverText.gameObject.SetActive(false); // Hide Game Over text
+        InitializeGame(); // Restart the game logic
+
+        Time.timeScale = 1f; // Ensure the game is not paused
+    }
+
+    public void ResumeGame()
+    {
+        Debug.Log("Resuming Game...");
+
+        Time.timeScale = 1f; // Resume game
+        pauseMenu.SetActive(false); // Hide pause menu
+    }
+
+    public void GoToIslands()
+    {
+        Time.timeScale = 1f; // Resume time if paused
+        SceneManager.LoadScene("IslandsScene"); // Replace with your actual scene name
+    }
+
+    private void ResetTimer()
+    {
+        timer = 15f; // Reset to 15 seconds
     }
 }
