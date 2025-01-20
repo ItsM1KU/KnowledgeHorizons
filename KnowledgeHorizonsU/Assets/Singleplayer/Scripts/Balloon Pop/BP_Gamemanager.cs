@@ -13,7 +13,8 @@ public class GameManager : MonoBehaviour
     public Text gameOverText; // Text to display "Game Over"
     public GameObject pauseMenu; // Reference to the pause menu UI
 
-    private float timer = 15f; // 15 seconds timer
+    private float totalTime = 30f; // Total time for the game
+    private float remainingTime; // Time left for the game
     private int score = 0; // Player's score
     private int questionCount = 0; // Number of questions asked
     private int maxQuestions = 5; // Total questions per game
@@ -21,8 +22,6 @@ public class GameManager : MonoBehaviour
 
     private List<int> currentSequence = new List<int>();
     private int correctAnswer;
-    private int wrongAttempts = 0;
-
     private HashSet<string> usedQuestions = new HashSet<string>(); // To track unique questions
 
     private void Start()
@@ -35,7 +34,7 @@ public class GameManager : MonoBehaviour
         // Initialize game values
         score = 0;
         questionCount = 0;
-        timer = 15f;
+        remainingTime = totalTime;
         isGameRunning = true;
         gameOverText.text = ""; // Clear game over text
         usedQuestions.Clear(); // Clear previously used questions
@@ -45,7 +44,7 @@ public class GameManager : MonoBehaviour
 
         feedbackText.text = ""; // Clear feedback on start
         scoreText.text = "Score: " + score; // Initialize score text
-        timerText.text = "Time Left: " + Mathf.Ceil(timer).ToString(); // Initialize timer text
+        timerText.text = "Time Left: " + Mathf.Ceil(remainingTime).ToString(); // Initialize timer text
     }
 
     private void GenerateNewSequence()
@@ -149,22 +148,23 @@ public class GameManager : MonoBehaviour
         if (selectedNumber == correctAnswer)
         {
             feedbackText.text = "Correct!";
-            score += 10; // Increase score
+            // Score based on remaining time
+            score += Mathf.CeilToInt(remainingTime);
             scoreText.text = "Score: " + score; // Update the score text
         }
         else
         {
             feedbackText.text = "Wrong!";
-            wrongAttempts++;
         }
 
-        if (++questionCount >= maxQuestions)
+        questionCount++;
+
+        if (questionCount >= maxQuestions || remainingTime <= 0)
         {
             EndGame();
         }
         else
         {
-            ResetTimer(); // Reset the timer for the next round
             GenerateNewSequence();
             AssignBalloonNumbers();
         }
@@ -174,23 +174,13 @@ public class GameManager : MonoBehaviour
     {
         if (!isGameRunning) return;
 
-        // Decrease the timer
-        timer -= Time.deltaTime;
-        timerText.text = "Time Left: " + Mathf.Ceil(timer).ToString(); // Update the timer text
+        // Decrease the total game timer
+        remainingTime -= Time.deltaTime;
+        timerText.text = "Time Left: " + Mathf.Ceil(remainingTime).ToString(); // Update the timer text
 
-        if (timer <= 0)
+        if (remainingTime <= 0)
         {
-            feedbackText.text = "Time's up!";
-            if (++questionCount >= maxQuestions)
-            {
-                EndGame();
-            }
-            else
-            {
-                ResetTimer();
-                GenerateNewSequence();
-                AssignBalloonNumbers();
-            }
+            EndGame();
         }
     }
 
@@ -202,7 +192,7 @@ public class GameManager : MonoBehaviour
         gameOverText.text = $"Game Over!\nFinal Score: {score}";
         gameOverText.gameObject.SetActive(true); // Ensure the text is visible
 
-        // Optionally disable other UI elements to avoid confusion
+        // Disable other UI elements to avoid confusion
         sequenceText.gameObject.SetActive(false);
         feedbackText.gameObject.SetActive(false);
         timerText.gameObject.SetActive(false);
@@ -221,30 +211,12 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame()
     {
-        Debug.Log("Restarting Game...");
-
-        // Re-enable UI elements
-        sequenceText.gameObject.SetActive(true);
-        feedbackText.gameObject.SetActive(true);
-        timerText.gameObject.SetActive(true);
-        scoreText.gameObject.SetActive(true);
-
-        // Re-enable player interactions
-        foreach (Button balloon in balloons)
-        {
-            balloon.interactable = true;
-        }
-
-        gameOverText.gameObject.SetActive(false); // Hide Game Over text
-        InitializeGame(); // Restart the game logic
-
         Time.timeScale = 1f; // Ensure the game is not paused
+        InitializeGame(); // Restart the game logic
     }
 
     public void ResumeGame()
     {
-        Debug.Log("Resuming Game...");
-
         Time.timeScale = 1f; // Resume game
         pauseMenu.SetActive(false); // Hide pause menu
     }
@@ -253,10 +225,5 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1f; // Resume time if paused
         SceneManager.LoadScene("IslandsScene"); // Replace with your actual scene name
-    }
-
-    private void ResetTimer()
-    {
-        timer = 15f; // Reset to 15 seconds
     }
 }
