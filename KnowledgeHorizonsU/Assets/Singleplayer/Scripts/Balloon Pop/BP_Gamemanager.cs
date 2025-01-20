@@ -13,6 +13,9 @@ public class GameManager : MonoBehaviour
     public Text gameOverText; // Text to display "Game Over"
     public GameObject pauseMenu; // Reference to the pause menu UI
 
+    [SerializeField] GameObject GameoverPanel;
+    //private bool gameOver;
+
     private float totalTime = 30f; // Total time for the game
     private float remainingTime; // Time left for the game
     private int score = 0; // Player's score
@@ -41,6 +44,9 @@ public class GameManager : MonoBehaviour
 
         GenerateNewSequence();
         AssignBalloonNumbers();
+
+        PauseManager.instance.canPause = true;
+        GameoverPanel.SetActive(false);
 
         feedbackText.text = ""; // Clear feedback on start
         scoreText.text = "Score: " + score; // Initialize score text
@@ -204,15 +210,20 @@ public class GameManager : MonoBehaviour
     {
         isGameRunning = false;
 
+
+        GameoverPanel.SetActive(true);
+
         // Display final score and game over message
-        gameOverText.text = $"Game Over!\nFinal Score: {score}";
+        gameOverText.text = $"Final Score: {score}";
         gameOverText.gameObject.SetActive(true); // Ensure the text is visible
 
-        // Disable other UI elements to avoid confusion
+       /* // Disable other UI elements to avoid confusion
         sequenceText.gameObject.SetActive(false);
         feedbackText.gameObject.SetActive(false);
         timerText.gameObject.SetActive(false);
-        scoreText.gameObject.SetActive(false);
+        scoreText.gameObject.SetActive(false); */
+
+
 
         // Stop player interactions
         foreach (Button balloon in balloons)
@@ -220,26 +231,21 @@ public class GameManager : MonoBehaviour
             balloon.interactable = false;
         }
 
-        // Activate pause menu
-        pauseMenu.SetActive(true); // Show the pause menu
-        Time.timeScale = 0f; // Pause the game
+        PauseManager.instance.canPause = false;
+        Time.timeScale = 0f;
+
     }
 
     public void RestartGame()
     {
         Time.timeScale = 1f; // Ensure the game is not paused
-        InitializeGame(); // Restart the game logic
+        SceneManager.LoadScene("BP_gamescene");// Restart the game logic
     }
 
-    public void ResumeGame()
-    {
-        Time.timeScale = 1f; // Resume game
-        pauseMenu.SetActive(false); // Hide pause menu
-    }
 
     public void GoToIslands()
     {
         Time.timeScale = 1f; // Resume time if paused
-        SceneManager.LoadScene("IslandsScene"); // Replace with your actual scene name
+        SceneManager.LoadScene("islands"); // Replace with your actual scene name
     }
 }
