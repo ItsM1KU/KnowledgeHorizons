@@ -4,46 +4,46 @@ using UnityEngine.SceneManagement;
 
 public class PauseManager : MonoBehaviour
 {
-    public GameObject pausePanel; // Reference to the Pause Panel
-    public GameManager gameManager; // Reference to the GameManager script
 
-    private bool isPaused = false;
+    public static PauseManager instance;
+
+    [SerializeField] GameObject PausePanel;
+    public bool isPaused;
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        isPaused = false;
+        PausePanel.SetActive(false);
+        Time.timeScale = 1f;
+    }
 
     private void Update()
     {
-        // Toggle Pause when Escape is pressed
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (isPaused)
-                ResumeGame();
-            else
-                PauseGame();
+        if (Input.GetKeyUp(KeyCode.Escape) && !isPaused)
+        { 
+            PausePanel.SetActive(true);
+            isPaused = true;
+            Time.timeScale = 0;
         }
     }
 
-    public void PauseGame()
-    {
-        isPaused = true;
-        pausePanel.SetActive(true); // Show the pause panel
-        Time.timeScale = 0; // Freeze game time
-    }
-
-    public void ResumeGame()
+    public void resume()
     {
         isPaused = false;
-        pausePanel.SetActive(false); // Hide the pause panel
-        Time.timeScale = 1; // Resume game time
+        PausePanel.SetActive(false);
+        Time.timeScale = 1f;
     }
 
-    public void RestartGame()
+    public void restart()
     {
-        Time.timeScale = 1; // Ensure game time is running
-        gameManager.RestartGame(); // Restart the game via GameManager
+        SceneManager.LoadScene("BP_gamescene");
     }
 
-    public void GoToIslands()
+    public void islands()
     {
-        Time.timeScale = 1; // Ensure game time is running
-        SceneManager.LoadScene("IslandsScene"); // Replace "IslandsScene" with your scene name
+        SceneManager.LoadScene("islands");
     }
 }

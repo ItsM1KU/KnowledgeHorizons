@@ -182,6 +182,22 @@ public class GameManager : MonoBehaviour
         {
             EndGame();
         }
+
+        if (PauseManager.instance.isPaused)
+        {
+            for(int i = 0; i < balloons.Length; i++)
+            {
+                balloons[i].enabled = false;
+            }
+        }
+        else
+        {
+            for (int i = 0; i < balloons.Length; i++)
+            {
+                balloons[i].enabled = true;
+            }
+        }
+        
     }
 
     private void EndGame()
