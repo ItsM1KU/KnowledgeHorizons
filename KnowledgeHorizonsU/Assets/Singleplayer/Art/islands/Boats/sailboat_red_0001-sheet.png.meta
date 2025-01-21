@@ -1,0 +1,1222 @@
+fileFormatVersion: 2
+guid: 321a184e810ec7d4b86f67f963deb636
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: sailboat_red_0001-sheet_0
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 799
+        width: 30
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37d2d0f3818ac864b9ac346bbf7b1e43
+      internalID: 939938755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sailboat_red_0001-sheet_1
+      rect:
+        serializedVersion: 2
+        x: 174
+        y: 799
+        width: 33
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7bf67adbc7b3a54ab2740fa156a501e
+      internalID: -1567105658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sailboat_red_0001-sheet_2
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 799
+        width: 40
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e09b1d3c67473cf4da81db660faf05c7
+      internalID: 818298617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sailboat_red_0001-sheet_3
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 800
+        width: 47
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9912de7591a6ab489e2f9b729dda5bd
+      internalID: 279470412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sailboat_red_0001-sheet_4
+      rect:
+        serializedVersion: 2
+        x: 550
+        y: 801
+        width: 54
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c773fa1db4ace7c44aa37e9c42fb759a
+      internalID: -159288617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sailboat_red_0001-sheet_5
+      rect:
+        serializedVersion: 2
+        x: 676
+        y: 802
+        width: 58
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33cd97f6cb70e6d43af5267825b1ebe3
+      internalID: -1724563378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sailboat_red_0001-sheet_6
+      rect:
+        serializedVersion: 2
+        x: 802
+        y: 803
+        width: 62
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64b3d70873ccb824c96021b7cebfa3d7
+      internalID: 852211017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sailboat_red_0001-sheet_7
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 676
+        width: 65
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5268f788b032cf46b349d9bbd037336
+      internalID: 1681431986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sailboat_red_0001-sheet_8
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 677
+        width: 68
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b2675f968ea6624fa13e1832fce6195
+      internalID: 473168290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sailboat_red_0001-sheet_9
+      rect:
+        serializedVersion: 2
+        x: 286
+        y: 679
+        width: 72
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ebbffa015eff4c43abf92f5418377c1
+      internalID: 1883938258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sailboat_red_0001-sheet_10
+      rect:
+        serializedVersion: 2
+        x: 413
+        y: 681
+        width: 74
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e9e983adc9e4194ea031bf1267b5b5d
+      internalID: -367909555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sailboat_red_0001-sheet_11
+      rect:
+        serializedVersion: 2
+        x: 541
+        y: 683
+        width: 75
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4bb51404208f194d96693311d6ba2b6
+      internalID: -2066757707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sailboat_red_0001-sheet_12
+      rect:
+        serializedVersion: 2
+        x: 669
+        y: 685
+        width: 74
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88da3303a60a7a043ae7b3dca6368435
+      internalID: -307432177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sailboat_red_0001-sheet_13
+      rect:
+        serializedVersion: 2
+        x: 797
+        y: 685
+        width: 73
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8575a39ccaca16b4883858e42afe1870
+      internalID: -527711618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sailboat_red_0001-sheet_14
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 555
+        width: 71
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0be528b173a1df14b8e44ec11324cabb
+      internalID: 1062345953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sailboat_red_0001-sheet_15
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 552
+        width: 68
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b83b4182f90700439393c9e04616de9
+      internalID: -1135665341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sailboat_red_0001-sheet_16
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 549
+        width: 66
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 222b20f717ac336419e227668b0e0775
+      internalID: -1540398722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sailboat_red_0001-sheet_17
+      rect:
+        serializedVersion: 2
+        x: 417
+        y: 548
+        width: 62
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71de157e02dfc9243b0094c863de0f5b
+      internalID: -1526748102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sailboat_red_0001-sheet_18
+      rect:
+        serializedVersion: 2
+        x: 546
+        y: 547
+        width: 60
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e1e819001c335444a93cfd95a40f1b3
+      internalID: -1442974455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sailboat_red_0001-sheet_19
+      rect:
+        serializedVersion: 2
+        x: 676
+        y: 546
+        width: 56
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d06ba9b9417360c469664a3748228024
+      internalID: -1829273913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sailboat_red_0001-sheet_20
+      rect:
+        serializedVersion: 2
+        x: 805
+        y: 545
+        width: 54
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a51869c309153c4d8e6103b663d5f11
+      internalID: 495161774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sailboat_red_0001-sheet_21
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 416
+        width: 47
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d43ddf81b235b5458f42386b0e620f4
+      internalID: -916652506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sailboat_red_0001-sheet_22
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 415
+        width: 40
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8ff64bb01b50b444b6c38cb24c08f68
+      internalID: -1951076022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sailboat_red_0001-sheet_23
+      rect:
+        serializedVersion: 2
+        x: 302
+        y: 414
+        width: 33
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 132785270093b54449f4eb08a8b1e53f
+      internalID: -871639197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sailboat_red_0001-sheet_24
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 414
+        width: 30
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b3c2bcf732a02647ad424542bf3c1c7
+      internalID: 1326480280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sailboat_red_0001-sheet_25
+      rect:
+        serializedVersion: 2
+        x: 561
+        y: 414
+        width: 33
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b296aa80e7f1b844482ba3e8ed28bf84
+      internalID: 1626337691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sailboat_red_0001-sheet_26
+      rect:
+        serializedVersion: 2
+        x: 685
+        y: 415
+        width: 40
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72305588d3d78384ba2f8669b39c6171
+      internalID: 1492283482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sailboat_red_0001-sheet_27
+      rect:
+        serializedVersion: 2
+        x: 809
+        y: 416
+        width: 47
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 312fa5e36b4a7fc4fa8aa01068702521
+      internalID: -1321445380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sailboat_red_0001-sheet_28
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 289
+        width: 55
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 395757e7d1dda7e46900b440479032a1
+      internalID: -2055696496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sailboat_red_0001-sheet_29
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 290
+        width: 58
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d0a5236b6f6a71409c7b28f51cef8fb
+      internalID: -1310109896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sailboat_red_0001-sheet_30
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 291
+        width: 62
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0cf2f02db3e6d24bb528e98425e5bc3
+      internalID: -759977699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sailboat_red_0001-sheet_31
+      rect:
+        serializedVersion: 2
+        x: 414
+        y: 292
+        width: 65
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0c480a34a7c209468a3039fe8e18f82
+      internalID: 1074357190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sailboat_red_0001-sheet_32
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 293
+        width: 69
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 856ed13a362c4984eba330bfb6e258ba
+      internalID: 449466118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sailboat_red_0001-sheet_33
+      rect:
+        serializedVersion: 2
+        x: 666
+        y: 296
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f5efb75d98c74c48a8b30463af15db0
+      internalID: -506507068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sailboat_red_0001-sheet_34
+      rect:
+        serializedVersion: 2
+        x: 793
+        y: 299
+        width: 74
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 027a362408d0af34cac8fdfcfedd272c
+      internalID: -350002829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sailboat_red_0001-sheet_35
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 173
+        width: 75
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6633985187f51ac4f92f9efad3bddb28
+      internalID: -759896208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sailboat_red_0001-sheet_36
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 173
+        width: 74
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31181dfa6a31fa441a4a55688d53c3ec
+      internalID: -1959298732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sailboat_red_0001-sheet_37
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 171
+        width: 73
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdfd61d8e5c53d9458c8a0f2f8f55f68
+      internalID: 975498508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sailboat_red_0001-sheet_38
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 169
+        width: 71
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5820b4d1a3997d4182640ed75611182
+      internalID: -158606881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sailboat_red_0001-sheet_39
+      rect:
+        serializedVersion: 2
+        x: 542
+        y: 167
+        width: 68
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11db3dcfcc6a0b74983ea60cb8d7fbd1
+      internalID: -399633969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sailboat_red_0001-sheet_40
+      rect:
+        serializedVersion: 2
+        x: 671
+        y: 165
+        width: 65
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 404ec6dfbf199f14889b2f76763b6683
+      internalID: -938958872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sailboat_red_0001-sheet_41
+      rect:
+        serializedVersion: 2
+        x: 801
+        y: 164
+        width: 62
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6cd979df731eb8d42b2c0c80c1e8295c
+      internalID: -1072268681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sailboat_red_0001-sheet_42
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 35
+        width: 60
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36f08b1dfc980124f96c8b5d3918e942
+      internalID: -1924291880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sailboat_red_0001-sheet_43
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 34
+        width: 56
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55b634392751a6243ba072a168e9108c
+      internalID: 1089491554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sailboat_red_0001-sheet_44
+      rect:
+        serializedVersion: 2
+        x: 293
+        y: 33
+        width: 53
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79dc2d35628347c41ac794bf1671bffc
+      internalID: 1695699593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sailboat_red_0001-sheet_45
+      rect:
+        serializedVersion: 2
+        x: 425
+        y: 32
+        width: 47
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62d460e693fce764c8e65c8ca4c83f49
+      internalID: 789441905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sailboat_red_0001-sheet_46
+      rect:
+        serializedVersion: 2
+        x: 557
+        y: 31
+        width: 40
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8dd7a0c29acbbf84ba5c3521b62d7e54
+      internalID: 592431829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sailboat_red_0001-sheet_47
+      rect:
+        serializedVersion: 2
+        x: 689
+        y: 31
+        width: 33
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1f93bb735e340e4eb27598a190153a8
+      internalID: -705469134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      sailboat_red_0001-sheet_0: 939938755
+      sailboat_red_0001-sheet_1: -1567105658
+      sailboat_red_0001-sheet_10: -367909555
+      sailboat_red_0001-sheet_11: -2066757707
+      sailboat_red_0001-sheet_12: -307432177
+      sailboat_red_0001-sheet_13: -527711618
+      sailboat_red_0001-sheet_14: 1062345953
+      sailboat_red_0001-sheet_15: -1135665341
+      sailboat_red_0001-sheet_16: -1540398722
+      sailboat_red_0001-sheet_17: -1526748102
+      sailboat_red_0001-sheet_18: -1442974455
+      sailboat_red_0001-sheet_19: -1829273913
+      sailboat_red_0001-sheet_2: 818298617
+      sailboat_red_0001-sheet_20: 495161774
+      sailboat_red_0001-sheet_21: -916652506
+      sailboat_red_0001-sheet_22: -1951076022
+      sailboat_red_0001-sheet_23: -871639197
+      sailboat_red_0001-sheet_24: 1326480280
+      sailboat_red_0001-sheet_25: 1626337691
+      sailboat_red_0001-sheet_26: 1492283482
+      sailboat_red_0001-sheet_27: -1321445380
+      sailboat_red_0001-sheet_28: -2055696496
+      sailboat_red_0001-sheet_29: -1310109896
+      sailboat_red_0001-sheet_3: 279470412
+      sailboat_red_0001-sheet_30: -759977699
+      sailboat_red_0001-sheet_31: 1074357190
+      sailboat_red_0001-sheet_32: 449466118
+      sailboat_red_0001-sheet_33: -506507068
+      sailboat_red_0001-sheet_34: -350002829
+      sailboat_red_0001-sheet_35: -759896208
+      sailboat_red_0001-sheet_36: -1959298732
+      sailboat_red_0001-sheet_37: 975498508
+      sailboat_red_0001-sheet_38: -158606881
+      sailboat_red_0001-sheet_39: -399633969
+      sailboat_red_0001-sheet_4: -159288617
+      sailboat_red_0001-sheet_40: -938958872
+      sailboat_red_0001-sheet_41: -1072268681
+      sailboat_red_0001-sheet_42: -1924291880
+      sailboat_red_0001-sheet_43: 1089491554
+      sailboat_red_0001-sheet_44: 1695699593
+      sailboat_red_0001-sheet_45: 789441905
+      sailboat_red_0001-sheet_46: 592431829
+      sailboat_red_0001-sheet_47: -705469134
+      sailboat_red_0001-sheet_5: -1724563378
+      sailboat_red_0001-sheet_6: 852211017
+      sailboat_red_0001-sheet_7: 1681431986
+      sailboat_red_0001-sheet_8: 473168290
+      sailboat_red_0001-sheet_9: 1883938258
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
