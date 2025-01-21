@@ -1,10 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using DG;
+using DG.Tweening;
 
 public class islandManager : MonoBehaviour
 {
     public static islandManager instance;
+
+    [SerializeField] Button mathButton;
 
     private void Awake()
     {
@@ -13,9 +18,12 @@ public class islandManager : MonoBehaviour
             instance = this;
         }
     }
+    
 
 
 
+
+    
 
 
 
