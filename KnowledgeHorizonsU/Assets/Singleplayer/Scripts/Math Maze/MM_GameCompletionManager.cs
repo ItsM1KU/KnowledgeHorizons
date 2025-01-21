@@ -54,6 +54,6 @@ public class MM_GameCompletionManager : MonoBehaviour
     public void ReturnToIsland()
     {
         Time.timeScale = 1f; // Resume the game
-        SceneManager.LoadScene("IslandScene"); // Replace with your island scene name
+        SceneManager.LoadScene("Islands"); // Replace with your island scene name
     }
 }

@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Singleplayer/Scenes/Math/NJ_gamescene.unity
     guid: f6a8de8d925412f43a277ff2ff4272fd
+  - enabled: 1
+    path: Assets/Singleplayer/Scenes/Math/BP_gamescene.unity
+    guid: f5ff92f56b6c9c347bd05252b36be6d6
+  - enabled: 1
+    path: Assets/Singleplayer/Scenes/Math/MM_gamescene.unity
+    guid: 39393ef378a6d424496f22134ae39172
   m_configObjects: {}
