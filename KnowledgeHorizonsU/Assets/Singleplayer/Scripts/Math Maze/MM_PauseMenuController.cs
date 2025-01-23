@@ -1,10 +1,11 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MM_PauseMenuController : MonoBehaviour
 {
     public GameObject pauseMenuPanel; // Reference to the Pause Menu Panel
-    public GameObject gameplayUI; // Reference to the gameplay UI (if any, optional)
-    private bool isPaused = false; // Tracks whether the game is paused
+    public GameObject gameplayUI;     // Reference to the gameplay UI (optional)
+    private bool isPaused = false;    // Tracks whether the game is paused
 
     private void Update()
     {
@@ -36,5 +37,11 @@ public class MM_PauseMenuController : MonoBehaviour
         pauseMenuPanel.SetActive(false); // Hide the Pause Menu
         if (gameplayUI != null) gameplayUI.SetActive(true); // Show gameplay UI (optional)
         Time.timeScale = 1f; // Resume the game by unfreezing time
+    }
+
+    public void ReturnToIslands()
+    {
+        Time.timeScale = 1f; // Resume the game
+        SceneManager.LoadScene("Islands"); // Replace with the actual name of your Islands scene
     }
 }
