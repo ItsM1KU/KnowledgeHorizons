@@ -14,7 +14,8 @@ public class FC_SlotHolder : MonoBehaviour, IDropHandler
 
             if(draggedObj != null)
             {    
-                draggedObj.GetComponent<RectTransform>().anchoredPosition = transform.GetComponent<RectTransform>().anchoredPosition;
+                draggedObj.transform.SetParent(transform);
+                draggedObj.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
                 isoccupied = true;
             }
         }

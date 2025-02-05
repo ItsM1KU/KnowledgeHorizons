@@ -17,6 +17,7 @@ public class FC_dragNdrop : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
     {
         objRect = GetComponent<RectTransform>();
         canvasgrp = GetComponent<CanvasGroup>();
+        orgTransform = transform.parent;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -25,13 +26,20 @@ public class FC_dragNdrop : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
         canvasgrp.alpha = 0.5f;
         canvasgrp.blocksRaycasts = false;
 
-        if(transform.parent.TryGetComponent<FC_SlotHolder>(out FC_SlotHolder slot))
+        /*if(transform.parent.TryGetComponent<FC_SlotHolder>(out FC_SlotHolder slot))
         {
             slot.isoccupied = false;
         }
 
         orgTransform = transform.parent;
         //transform.SetParent(_canvas.transform);
+        */
+
+        if(transform.parent.TryGetComponent<FC_SlotHolder>(out FC_SlotHolder slot))
+        {
+            slot.isoccupied = false;
+            transform.SetParent(_canvas.transform);
+        }
 
     }
 
@@ -48,7 +56,7 @@ public class FC_dragNdrop : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
         Debug.Log("EndDragging");
         canvasgrp.alpha = 1f;
         canvasgrp.blocksRaycasts = true;
-
+        /*
         GameObject droptarget = eventData.pointerEnter;
         if (droptarget != null && droptarget.TryGetComponent<FC_SlotHolder>(out FC_SlotHolder slot)) 
         {
@@ -69,7 +77,7 @@ public class FC_dragNdrop : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
         {
             //transform.SetParent(orgTransform);
             //objRect.anchoredPosition = Vector2.zero;
-        }
+        }*/
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -79,6 +87,10 @@ public class FC_dragNdrop : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
 
     public void clamptoCanvas()
     {
+        if(transform.parent == _canvas.transform)
+        {
+            return;
+        }
         Vector2 newpos = objRect.localPosition;
 
         Vector3 minPos = _canvas.GetComponent<RectTransform>().rect.min - objRect.rect.min;
