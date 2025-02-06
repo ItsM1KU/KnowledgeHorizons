@@ -16,7 +16,9 @@ public class FC_SlotHolder : MonoBehaviour, IDropHandler
             {    
                 draggedObj.transform.SetParent(transform);
                 draggedObj.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+                Debug.Log(draggedObj.GetComponent<FC_dragNdrop>().animalName);
                 isoccupied = true;
+                Debug.Log(isoccupied);
             }
         }
         else
