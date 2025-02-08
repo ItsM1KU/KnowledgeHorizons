@@ -8,8 +8,16 @@ public class FC_GameManager : MonoBehaviour
 {
    public static FC_GameManager instance;
 
-    [SerializeField] List<FC_SlotHolder> slots;
     [SerializeField] GameObject[] _slots;
+
+    [SerializeField] GameObject[] animalPrefabs;
+
+    [SerializeField]
+    Transform[] _spawnPoints;
+
+    [SerializeField] Canvas Canvas;
+
+    private int[] AnswerSet;
 
     int currentPlace;
     //private bool canSubmit = false;
@@ -21,36 +29,38 @@ public class FC_GameManager : MonoBehaviour
         {
             instance = this;
         }
+
+        
+    }
+
+    private void Start()
+    {
+        SpawnFirstSet();
+    }
+
+    private void SpawnFirstSet()
+    {
+        AnswerSet = FC_AnimalPicker.instance.PickFirstSet();
+        int[] selectedset = AnswerSet;
+        for (int i= 0; i < selectedset.Length; i++)
+        {
+            int animalIndex = selectedset[i];
+            if (animalIndex >= 0 && animalIndex < animalPrefabs.Length) 
+            {
+                GameObject go = Instantiate(animalPrefabs[animalIndex], _spawnPoints[i].position, Quaternion.identity);
+                go.gameObject.transform.SetParent(Canvas.transform);
+            }
+        }
     }
 
     public void submit()
     {
-       /* if (slots[0].isoccupied && slots[1].isoccupied && slots[2].isoccupied)
-        {
-            for (int i = 0; i < slots.Count; i++)
-            {
-                if (slots[i].transform.GetChild(0).GetComponent<FC_dragNdrop>().animalName == correctChain[i])
-                {
-                    Debug.Log("Correct");
-
-                }
-                else
-                {
-                    Debug.Log("Incorrect");
-                }
-            }
-        }
-        else
-        {
-            Debug.Log("CANT SUBMIT");
-        }
-       */
 
         if (_slots[0].GetComponent<FC_SlotHolder>().isoccupied && _slots[1].GetComponent<FC_SlotHolder>().isoccupied && _slots[2].GetComponent<FC_SlotHolder>().isoccupied)
         {
             for (int i = 0; i < _slots.Length; i++)
             {
-                if (_slots[i].transform.GetChild(0).GetComponent<FC_dragNdrop>().animalName == correctChain[i])
+                if (_slots[i].transform.GetChild(0).GetComponent<FC_AnimalInfo>().AnimalID == AnswerSet[i])
                 {
                     Debug.Log("Correct");
                     currentPlace++;
@@ -64,6 +74,7 @@ public class FC_GameManager : MonoBehaviour
             {
                 Debug.Log("You have completed the food chain");
                 currentPlace = 0;   
+                
             }
             else
             {

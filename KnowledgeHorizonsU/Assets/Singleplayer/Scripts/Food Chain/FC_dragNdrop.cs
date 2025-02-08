@@ -10,7 +10,6 @@ public class FC_dragNdrop : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
     [SerializeField] Canvas _canvas;
     private CanvasGroup canvasgrp;
 
-    public string animalName = "Ant";
 
     private Transform orgTransform;
     private void Awake()
