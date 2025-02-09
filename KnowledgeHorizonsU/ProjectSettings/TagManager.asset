@@ -8,6 +8,7 @@ TagManager:
   - Loss
   - Ball
   - FinishPoint
+  - Basket
   layers:
   - Default
   - TransparentFX
