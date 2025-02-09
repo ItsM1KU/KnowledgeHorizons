@@ -6,9 +6,9 @@ using UnityEngine;
 
 public class FC_GameManager : MonoBehaviour
 {
-   public static FC_GameManager instance;
+    public static FC_GameManager instance;
 
-    [SerializeField] GameObject[] _slots;
+    [SerializeField] GameObject[] slotsA;
 
     [SerializeField] GameObject[] animalPrefabs;
 
@@ -30,24 +30,28 @@ public class FC_GameManager : MonoBehaviour
             instance = this;
         }
 
-        
+
     }
 
     private void Start()
     {
         SpawnFirstSet();
+        //ActivateSlots();
     }
 
     private void SpawnFirstSet()
     {
         AnswerSet = FC_AnimalPicker.instance.PickFirstSet();
         int[] selectedset = AnswerSet;
-        for (int i= 0; i < selectedset.Length; i++)
+
+        List<int> spawnIndices = new List<int> { 0, 1, 2 };
+        shuffleList(spawnIndices);
+        for (int i = 0; i < selectedset.Length; i++)
         {
             int animalIndex = selectedset[i];
-            if (animalIndex >= 0 && animalIndex < animalPrefabs.Length) 
+            if (animalIndex >= 0 && animalIndex < animalPrefabs.Length)
             {
-                GameObject go = Instantiate(animalPrefabs[animalIndex], _spawnPoints[i].position, Quaternion.identity);
+                GameObject go = Instantiate(animalPrefabs[animalIndex], _spawnPoints[spawnIndices[i]].position, Quaternion.identity);
                 go.gameObject.transform.SetParent(Canvas.transform);
             }
         }
@@ -56,11 +60,11 @@ public class FC_GameManager : MonoBehaviour
     public void submit()
     {
 
-        if (_slots[0].GetComponent<FC_SlotHolder>().isoccupied && _slots[1].GetComponent<FC_SlotHolder>().isoccupied && _slots[2].GetComponent<FC_SlotHolder>().isoccupied)
+        if (slotsA[0].GetComponent<FC_SlotHolder>().isoccupied && slotsA[1].GetComponent<FC_SlotHolder>().isoccupied && slotsA[2].GetComponent<FC_SlotHolder>().isoccupied)
         {
-            for (int i = 0; i < _slots.Length; i++)
+            for (int i = 0; i < AnswerSet.Length; i++)
             {
-                if (_slots[i].transform.GetChild(0).GetComponent<FC_AnimalInfo>().AnimalID == AnswerSet[i])
+                if (slotsA[i].transform.GetChild(0).GetComponent<FC_AnimalInfo>().AnimalID == AnswerSet[i])
                 {
                     Debug.Log("Correct");
                     currentPlace++;
@@ -70,11 +74,11 @@ public class FC_GameManager : MonoBehaviour
                     Debug.Log("Incorrect");
                 }
             }
-            if(currentPlace >= _slots.Length)
+            if (currentPlace >= AnswerSet.Length)
             {
                 Debug.Log("You have completed the food chain");
-                currentPlace = 0;   
-                
+                currentPlace = 0;
+
             }
             else
             {
@@ -87,4 +91,24 @@ public class FC_GameManager : MonoBehaviour
             Debug.Log("CANT SUBMIT");
         }
     }
+
+    private void shuffleList(List<int> list)
+    {
+        for (int i = list.Count - 1; i > 0; i--)
+        {
+            int j = Random.Range(0, i);
+            int temp = list[i];
+            list[i] = list[j];
+            list[j] = temp;
+        }
+    }
+
+    private void ActivateSlots(GameObject[] slots)
+    {
+        for (int i = 0; i < slots.Length; i++)
+        {
+            slots[i].SetActive(true);
+        }
+    }
+
 }
