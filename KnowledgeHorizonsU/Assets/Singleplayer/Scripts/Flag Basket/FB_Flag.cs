@@ -1,18 +1,33 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class FB_Flag : MonoBehaviour
 {
-    [Header("Falling Settings")]
-    public float fallSpeed = 3f;
+    public string flagCountry;
+    private string flagCode;
 
-    public string FlagCountry { get; set; }
-
-    void Update()
+    public void SetFlag(string country, string code)
     {
-        // Move the flag downward over time
-        transform.Translate(Vector2.down * fallSpeed * Time.deltaTime);
+        flagCountry = country;
+        flagCode = code;
 
-        if (transform.position.y < -6f)
-            Destroy(gameObject);
+        Debug.Log("Assigning Flag: " + flagCountry + " with Code: " + flagCode);
+
+        Sprite flagSprite = Resources.Load<Sprite>("Flags/" + flagCode);
+        if (flagSprite != null)
+        {
+            GetComponent<SpriteRenderer>().sprite = flagSprite;
+        }
+        else
+        {
+            Debug.LogWarning("Sprite for " + flagCode + " not found in Resources/Flags/");
+        }
+    }
+
+    void Start()
+    {
+        if (!string.IsNullOrEmpty(flagCode))
+        {
+            SetFlag(flagCountry, flagCode);
+        }
     }
 }

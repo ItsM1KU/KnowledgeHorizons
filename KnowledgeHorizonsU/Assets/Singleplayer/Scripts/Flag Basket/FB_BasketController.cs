@@ -27,7 +27,7 @@ public class FB_BasketController : MonoBehaviour
                 // To access the GameManager (ensure only one exists in the scene)
                 FB_GameManager gm = FindObjectOfType<FB_GameManager>();
                 if (gm != null)
-                    gm.RegisterFlagCaught(flag.FlagCountry);
+                    gm.RegisterFlagCaught(flag.flagCountry);
 
                 Destroy(collision.gameObject);
             }

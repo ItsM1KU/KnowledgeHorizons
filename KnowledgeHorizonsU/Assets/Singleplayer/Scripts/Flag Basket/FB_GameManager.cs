@@ -1,13 +1,13 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
-using System.Collections.Generic; // For using List
 
 public class FB_GameManager : MonoBehaviour
 {
     [Header("Game Timer")]
-    public float gameTime = 60f;  // Total game time
+    public float gameTime = 60f;
     private float currentTime;
     private bool isTimerRunning = false;
 
@@ -25,7 +25,7 @@ public class FB_GameManager : MonoBehaviour
     [Header("Flag Spawning")]
     public GameObject flagPrefab;
     public Transform flagSpawnPoint;
-    public float spawnRangeX = 8f;
+    public float spawnSpacing = 5.0f;
 
     [System.Serializable]
     public class Question
@@ -40,6 +40,16 @@ public class FB_GameManager : MonoBehaviour
     private int currentQuestionIndex = 0;
     private int correctCount = 0;
     private int incorrectCount = 0;
+
+    private Dictionary<string, string> countryCodeMap = new Dictionary<string, string>
+    {
+        { "India", "IN" }, { "Afghanistan", "AF" }, { "Argentina", "AR" },
+        { "Brazil", "BR" }, { "Canada", "CA" }, { "China", "CN" },
+        { "France", "FR" }, { "Germany", "DE" }, { "Italy", "IT" },
+        { "Japan", "JP" }, { "Mexico", "MX" }, { "Russia", "RU" },
+        { "United States", "US" }, { "United Kingdom", "GB" }, { "Australia", "AU" },
+        { "Bangladesh", "BD" }, {"Korea", "KR" }, {"Turkey", "TR"}
+    };
 
     void Start()
     {
@@ -64,22 +74,15 @@ public class FB_GameManager : MonoBehaviour
         {
             ShowQuestion(questions[currentQuestionIndex]);
 
-            // Wait for 5 seconds while the question is visible (player is reading)
             yield return new WaitForSeconds(5f);
 
-            // Hide the question panel after reading time
             HideQuestion();
-
-            // Start the timer AFTER question disappears
             isTimerRunning = true;
 
-            // Wait 1 second before spawning flags (to prevent overlapping)
             yield return new WaitForSeconds(1f);
 
-            // Now spawn the flags
             SpawnFlagsForQuestion(questions[currentQuestionIndex].correctCountry);
 
-            // Wait until player catches a flag
             yield return new WaitUntil(() => isTimerRunning == false);
 
             currentQuestionIndex++;
@@ -90,7 +93,7 @@ public class FB_GameManager : MonoBehaviour
 
     void ShowQuestion(Question question)
     {
-        isTimerRunning = false; // Pause the timer
+        isTimerRunning = false;
         questionPanel.SetActive(true);
         questionText.text = question.questionText;
     }
@@ -100,66 +103,57 @@ public class FB_GameManager : MonoBehaviour
         questionPanel.SetActive(false);
     }
 
-    // Spawn flags for a given question
     void SpawnFlagsForQuestion(string correctCountry)
     {
-        List<string> selectedFlags = new List<string>(); // List to store selected flag names
+        List<string> selectedFlags = new List<string> { correctCountry };
 
-        selectedFlags.Add(correctCountry); // Add correct flag first
-
-        // Get 3 random incorrect flags
         while (selectedFlags.Count < 4)
         {
             string randomCountry = GetRandomCountryExcluding(selectedFlags);
             selectedFlags.Add(randomCountry);
         }
 
-        // Shuffle flags for randomness
         selectedFlags = ShuffleList(selectedFlags);
 
+        float startX = -spawnSpacing * 1.5f;
         for (int i = 0; i < 4; i++)
         {
-            Vector3 spawnPos = new Vector3(
-                Random.Range(-spawnRangeX, spawnRangeX),
-                flagSpawnPoint.position.y,
-                0f
-            );
+            Vector3 spawnPos = new Vector3(startX + (i * spawnSpacing), flagSpawnPoint.position.y, 0f);
 
             GameObject flagObj = Instantiate(flagPrefab, spawnPos, Quaternion.identity);
             FB_Flag flagScript = flagObj.GetComponent<FB_Flag>();
 
-            flagScript.FlagCountry = selectedFlags[i]; // Assign different country name to each flag
-
-            // Load sprite dynamically
-            Sprite flagSprite = Resources.Load<Sprite>("Flags/" + selectedFlags[i]);
-            if (flagSprite != null)
-                flagObj.GetComponent<SpriteRenderer>().sprite = flagSprite;
+            if (countryCodeMap.ContainsKey(selectedFlags[i]))
+            {
+                Debug.Log("Spawning Flag: " + selectedFlags[i] + " with Code: " + countryCodeMap[selectedFlags[i]]);
+                flagScript.SetFlag(selectedFlags[i], countryCodeMap[selectedFlags[i]]);
+            }
             else
-                Debug.LogWarning("Sprite for " + selectedFlags[i] + " not found in Resources/Flags/");
+            {
+                Debug.LogWarning("No country code found for: " + selectedFlags[i]);
+            }
         }
     }
 
-    // Helper function to get a random country excluding the ones in the list
     string GetRandomCountryExcluding(List<string> excludeCountries)
     {
-        string[] allCountries = new string[] { "USA", "Canada", "Mexico", "France", "Germany", "Brazil", "India", "China", "Japan", "Australia", "Russia", "Italy" }; // Add all available country names here
+        List<string> allCountries = new List<string>(countryCodeMap.Keys);
 
         string randomCountry;
         do
         {
-            randomCountry = allCountries[Random.Range(0, allCountries.Length)];
-        } while (excludeCountries.Contains(randomCountry)); // Ensure uniqueness
+            randomCountry = allCountries[Random.Range(0, allCountries.Count)];
+        } while (excludeCountries.Contains(randomCountry));
 
         return randomCountry;
     }
 
-    // Shuffle a list of items randomly
     List<T> ShuffleList<T>(List<T> list)
     {
         for (int i = 0; i < list.Count; i++)
         {
             int randomIndex = Random.Range(i, list.Count);
-            (list[i], list[randomIndex]) = (list[randomIndex], list[i]); // Swap elements
+            (list[i], list[randomIndex]) = (list[randomIndex], list[i]);
         }
         return list;
     }
@@ -179,8 +173,8 @@ public class FB_GameManager : MonoBehaviour
                 Debug.Log("Incorrect!");
             }
 
-            isTimerRunning = false; // Pause the timer when a flag is caught
-            HideQuestion(); // Hide the question after flag is caught
+            isTimerRunning = false;
+            HideQuestion();
         }
     }
 
