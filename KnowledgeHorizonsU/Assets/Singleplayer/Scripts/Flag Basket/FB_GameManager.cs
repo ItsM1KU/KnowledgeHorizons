@@ -1,7 +1,7 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
-using static Unity.IO.LowLevel.Unsafe.AsyncReadManagerMetrics;
+using UnityEngine.SceneManagement; // Import Scene Management
+using TMPro;
 
 public class FB_GameManager : MonoBehaviour
 {
@@ -10,11 +10,15 @@ public class FB_GameManager : MonoBehaviour
     private float currentTime;
 
     [Header("UI Elements")]
-    public Text timerText;
+    public TMP_Text timerText;
     public GameObject questionPanel;
-    public Text questionText;
+    public TMP_Text questionText;
     public GameObject endGamePanel;
-    public Text scoreText;
+    public TMP_Text scoreText;
+
+    [Header("Buttons")]
+    public GameObject retryButton;  // Assign in Inspector
+    public GameObject mainMenuButton; // Assign in Inspector
 
     [Header("Flag Spawning")]
     public GameObject flagPrefab;
@@ -28,7 +32,7 @@ public class FB_GameManager : MonoBehaviour
         public string correctCountry;
     }
 
-    [Header("Questions Setup")] // Place it here instead
+    [Header("Questions Setup")]
     public Question[] questions;
 
     // Score tracking
@@ -152,5 +156,17 @@ public class FB_GameManager : MonoBehaviour
         endGamePanel.SetActive(true);
         scoreText.text = "Correct: " + correctCount + "\nIncorrect: " + incorrectCount;
         Time.timeScale = 0f;
+    }
+
+    public void RestartGame()
+    {
+        Time.timeScale = 1f; 
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name); 
+    }
+
+    public void GoToMainMenu()
+    {
+        Time.timeScale = 1f; 
+        SceneManager.LoadScene("Islands"); 
     }
 }
