@@ -1,13 +1,15 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement; // Import Scene Management
+using UnityEngine.SceneManagement;
 using TMPro;
+using System.Collections.Generic; // For using List
 
 public class FB_GameManager : MonoBehaviour
 {
     [Header("Game Timer")]
-    public float gameTime = 60f;
+    public float gameTime = 60f;  // Total game time
     private float currentTime;
+    private bool isTimerRunning = false;
 
     [Header("UI Elements")]
     public TMP_Text timerText;
@@ -17,8 +19,8 @@ public class FB_GameManager : MonoBehaviour
     public TMP_Text scoreText;
 
     [Header("Buttons")]
-    public GameObject retryButton;  // Assign in Inspector
-    public GameObject mainMenuButton; // Assign in Inspector
+    public GameObject retryButton;
+    public GameObject mainMenuButton;
 
     [Header("Flag Spawning")]
     public GameObject flagPrefab;
@@ -35,7 +37,6 @@ public class FB_GameManager : MonoBehaviour
     [Header("Questions Setup")]
     public Question[] questions;
 
-    // Score tracking
     private int currentQuestionIndex = 0;
     private int correctCount = 0;
     private int incorrectCount = 0;
@@ -50,7 +51,7 @@ public class FB_GameManager : MonoBehaviour
 
     void Update()
     {
-        if (currentTime > 0)
+        if (isTimerRunning && currentTime > 0)
         {
             currentTime -= Time.deltaTime;
             timerText.text = "Time: " + Mathf.Ceil(currentTime).ToString();
@@ -62,11 +63,24 @@ public class FB_GameManager : MonoBehaviour
         while (currentTime > 0 && currentQuestionIndex < questions.Length)
         {
             ShowQuestion(questions[currentQuestionIndex]);
-            yield return new WaitForSeconds(10f);
+
+            // Wait for 5 seconds while the question is visible (player is reading)
+            yield return new WaitForSeconds(5f);
+
+            // Hide the question panel after reading time
             HideQuestion();
 
+            // Start the timer AFTER question disappears
+            isTimerRunning = true;
+
+            // Wait 1 second before spawning flags (to prevent overlapping)
+            yield return new WaitForSeconds(1f);
+
+            // Now spawn the flags
             SpawnFlagsForQuestion(questions[currentQuestionIndex].correctCountry);
-            yield return new WaitForSeconds(5f);
+
+            // Wait until player catches a flag
+            yield return new WaitUntil(() => isTimerRunning == false);
 
             currentQuestionIndex++;
         }
@@ -76,6 +90,7 @@ public class FB_GameManager : MonoBehaviour
 
     void ShowQuestion(Question question)
     {
+        isTimerRunning = false; // Pause the timer
         questionPanel.SetActive(true);
         questionText.text = question.questionText;
     }
@@ -85,9 +100,22 @@ public class FB_GameManager : MonoBehaviour
         questionPanel.SetActive(false);
     }
 
+    // Spawn flags for a given question
     void SpawnFlagsForQuestion(string correctCountry)
     {
-        int correctFlagIndex = Random.Range(0, 4);
+        List<string> selectedFlags = new List<string>(); // List to store selected flag names
+
+        selectedFlags.Add(correctCountry); // Add correct flag first
+
+        // Get 3 random incorrect flags
+        while (selectedFlags.Count < 4)
+        {
+            string randomCountry = GetRandomCountryExcluding(selectedFlags);
+            selectedFlags.Add(randomCountry);
+        }
+
+        // Shuffle flags for randomness
+        selectedFlags = ShuffleList(selectedFlags);
 
         for (int i = 0; i < 4; i++)
         {
@@ -100,38 +128,40 @@ public class FB_GameManager : MonoBehaviour
             GameObject flagObj = Instantiate(flagPrefab, spawnPos, Quaternion.identity);
             FB_Flag flagScript = flagObj.GetComponent<FB_Flag>();
 
-            if (i == correctFlagIndex)
-            {
-                flagScript.FlagCountry = correctCountry;
-                Sprite correctSprite = Resources.Load<Sprite>("Flags/" + correctCountry);
-                if (correctSprite != null)
-                    flagObj.GetComponent<SpriteRenderer>().sprite = correctSprite;
-                else
-                    Debug.LogWarning("Sprite for " + correctCountry + " not found in Resources/Flags/");
-            }
+            flagScript.FlagCountry = selectedFlags[i]; // Assign different country name to each flag
+
+            // Load sprite dynamically
+            Sprite flagSprite = Resources.Load<Sprite>("Flags/" + selectedFlags[i]);
+            if (flagSprite != null)
+                flagObj.GetComponent<SpriteRenderer>().sprite = flagSprite;
             else
-            {
-                string randomCountry = GetRandomCountryExcluding(correctCountry);
-                flagScript.FlagCountry = randomCountry;
-                Sprite randomSprite = Resources.Load<Sprite>("Flags/" + randomCountry);
-                if (randomSprite != null)
-                    flagObj.GetComponent<SpriteRenderer>().sprite = randomSprite;
-                else
-                    Debug.LogWarning("Sprite for " + randomCountry + " not found in Resources/Flags/");
-            }
+                Debug.LogWarning("Sprite for " + selectedFlags[i] + " not found in Resources/Flags/");
         }
     }
 
-    string GetRandomCountryExcluding(string excludeCountry)
+    // Helper function to get a random country excluding the ones in the list
+    string GetRandomCountryExcluding(List<string> excludeCountries)
     {
-        string[] allCountries = new string[] { "USA", "Canada", "Mexico", "France", "Germany", "Brazil" };
-        string randomCountry = excludeCountry;
+        string[] allCountries = new string[] { "USA", "Canada", "Mexico", "France", "Germany", "Brazil", "India", "China", "Japan", "Australia", "Russia", "Italy" }; // Add all available country names here
 
-        while (randomCountry == excludeCountry)
+        string randomCountry;
+        do
         {
             randomCountry = allCountries[Random.Range(0, allCountries.Length)];
-        }
+        } while (excludeCountries.Contains(randomCountry)); // Ensure uniqueness
+
         return randomCountry;
+    }
+
+    // Shuffle a list of items randomly
+    List<T> ShuffleList<T>(List<T> list)
+    {
+        for (int i = 0; i < list.Count; i++)
+        {
+            int randomIndex = Random.Range(i, list.Count);
+            (list[i], list[randomIndex]) = (list[randomIndex], list[i]); // Swap elements
+        }
+        return list;
     }
 
     public void RegisterFlagCaught(string flagCountry)
@@ -148,11 +178,15 @@ public class FB_GameManager : MonoBehaviour
                 incorrectCount++;
                 Debug.Log("Incorrect!");
             }
+
+            isTimerRunning = false; // Pause the timer when a flag is caught
+            HideQuestion(); // Hide the question after flag is caught
         }
     }
 
     void EndGame()
     {
+        isTimerRunning = false;
         endGamePanel.SetActive(true);
         scoreText.text = "Correct: " + correctCount + "\nIncorrect: " + incorrectCount;
         Time.timeScale = 0f;
@@ -160,13 +194,13 @@ public class FB_GameManager : MonoBehaviour
 
     public void RestartGame()
     {
-        Time.timeScale = 1f; 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name); 
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void GoToMainMenu()
     {
-        Time.timeScale = 1f; 
-        SceneManager.LoadScene("Islands"); 
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("Islands");
     }
 }
