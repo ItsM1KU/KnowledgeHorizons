@@ -9,6 +9,7 @@ TagManager:
   - Ball
   - FinishPoint
   - Basket
+  - Flag
   layers:
   - Default
   - TransparentFX
