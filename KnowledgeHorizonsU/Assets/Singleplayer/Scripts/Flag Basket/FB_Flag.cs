@@ -12,6 +12,7 @@ public class FB_Flag : MonoBehaviour
 
         Debug.Log("Assigning Flag: " + flagCountry + " with Code: " + flagCode);
 
+        // ✅ Load the sprite from the correct path inside Resources/
         Sprite flagSprite = Resources.Load<Sprite>("Flags/" + flagCode);
         if (flagSprite != null)
         {

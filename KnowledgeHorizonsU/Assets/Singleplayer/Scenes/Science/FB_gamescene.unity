@@ -1694,12 +1694,48 @@ MonoBehaviour:
   mainMenuButton: {fileID: 965744761}
   flagPrefab: {fileID: 8918853290210893312, guid: 17b10fe78d1bfe844964a6ff4498a704, type: 3}
   flagSpawnPoint: {fileID: 1407544356}
-  spawnSpacing: 3
+  spawnSpacing: 4
   questions:
   - questionText: Which country has the Eiffel Tower?
     correctCountry: France
-  - questionText: 
-    correctCountry: 
+  - questionText: Which country is known as the world's largest democracy?
+    correctCountry: India
+  - questionText: The traditional dish Kabuli Pulao originates from which country?
+    correctCountry: Afghanistan
+  - questionText: Lionel Messi was born in which country?
+    correctCountry: Argentina
+  - questionText: The city of Rio de Janeiro, famous for its Carnival, is in which
+      country?
+    correctCountry: Brazil
+  - questionText: The Niagara Falls are located on the border of the U.S. and which
+      country?
+    correctCountry: Canada
+  - questionText: The Great Wall is a landmark in which country?
+    correctCountry: China
+  - questionText: Which country is famous for the Louvre Museum and the Mona Lisa?
+    correctCountry: France
+  - questionText: The Brandenburg Gate is a famous landmark in which country?
+    correctCountry: Germany
+  - questionText: Pizza and pasta originate from which country?
+    correctCountry: Italy
+  - questionText: Mount Fuji is an iconic volcano in which country?
+    correctCountry: Japan
+  - questionText: "The ancient Mayan city of Chich\xE9n Itz\xE1 is in which country?"
+    correctCountry: Mexico
+  - questionText: The coldest inhabited place on Earth, Oymyakon, is in which country?
+    correctCountry: Russia
+  - questionText: The Statue of Liberty is a landmark in which country?
+    correctCountry: United States
+  - questionText: William Shakespeare was born in which country?
+    correctCountry: United Kingdom
+  - questionText: The Great Barrier Reef is located off the coast of which country?
+    correctCountry: Australia
+  - questionText: The Sundarbans mangrove forest is located in which country?
+    correctCountry: Bangladesh
+  - questionText: The city of Seoul is the capital of which country?
+    correctCountry: South Korea
+  - questionText: The traditional dish baklava originates from which country?
+    correctCountry: Turkey
 --- !u!4 &2116392730
 Transform:
   m_ObjectHideFlags: 0
