@@ -241,7 +241,7 @@ public class FC_GameManager : MonoBehaviour
             currentPlace = 0;
             for (int i = 0; i < AnswerSet.Length; i++)
             {
-                if (slotsA[i].transform.GetChild(0).GetComponent<FC_AnimalInfo>().AnimalID == AnswerSet[i])
+                if (currentSlots[i].transform.GetChild(0).GetComponent<FC_AnimalInfo>().AnimalID == AnswerSet[i])
                 {
                     Debug.Log("Correct");
                     currentPlace++;
@@ -268,6 +268,11 @@ public class FC_GameManager : MonoBehaviour
         {
             Debug.Log("CANT SUBMIT");
         }
+    }
+
+    public void test()
+    {
+        Debug.Log(AnswerSet.Length);
     }
 
     public IEnumerator SecondRound()
