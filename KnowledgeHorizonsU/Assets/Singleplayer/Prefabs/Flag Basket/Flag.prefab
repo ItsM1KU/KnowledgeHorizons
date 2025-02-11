@@ -172,3 +172,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flagCountry: 
+  fallSpeed: 3
+  fallThreshold: -5

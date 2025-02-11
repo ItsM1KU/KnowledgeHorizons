@@ -25,7 +25,7 @@ public class FB_GameManager : MonoBehaviour
     [Header("Flag Spawning")]
     public GameObject flagPrefab;
     public Transform flagSpawnPoint;
-    public float spawnSpacing = 10.0f;
+    public float spawnSpacing = 3.0f;
 
     [System.Serializable]
     public class Question
@@ -40,16 +40,27 @@ public class FB_GameManager : MonoBehaviour
     private int currentQuestionIndex = 0;
     private int correctCount = 0;
     private int incorrectCount = 0;
-    private int missedCount = 0; // Tracks number of missed flags
+    private bool gameOver = false;
+    private bool roundCompleted = false; // Will be set to true when at least one flag is caught this round
 
     // ✅ Country name to ISO code mapping
     private Dictionary<string, string> countryCodeMap = new Dictionary<string, string>
     {
-        { "India", "IN" }, { "Afghanistan", "AF" }, { "Argentina", "AR" },
-        { "Brazil", "BR" }, { "Canada", "CA" }, { "China", "CN" },
-        { "France", "FR" }, { "Germany", "DE" }, { "Italy", "IT" },
-        { "Japan", "JP" }, { "Mexico", "MX" }, { "Russia", "RU" },
-        { "United States", "US" }, { "United Kingdom", "GB" }, { "Australia", "AU" }
+        { "India", "IN" },
+        { "Afghanistan", "AF" },
+        { "Argentina", "AR" },
+        { "Brazil", "BR" },
+        { "Canada", "CA" },
+        { "China", "CN" },
+        { "France", "FR" },
+        { "Germany", "DE" },
+        { "Italy", "IT" },
+        { "Japan", "JP" },
+        { "Mexico", "MX" },
+        { "Russia", "RU" },
+        { "United States", "US" },
+        { "United Kingdom", "GB" },
+        { "Australia", "AU" }
     };
 
     void Start()
@@ -62,7 +73,7 @@ public class FB_GameManager : MonoBehaviour
 
     void Update()
     {
-        if (isTimerRunning && currentTime > 0)
+        if (isTimerRunning && currentTime > 0 && !gameOver)
         {
             currentTime -= Time.deltaTime;
             timerText.text = "Time: " + Mathf.Ceil(currentTime).ToString();
@@ -71,35 +82,49 @@ public class FB_GameManager : MonoBehaviour
 
     IEnumerator GameLoop()
     {
-        while (currentTime > 0 && currentQuestionIndex < questions.Length)
+        while (currentTime > 0 && currentQuestionIndex < questions.Length && !gameOver)
         {
-            // Show the question panel
-            ShowQuestion(questions[currentQuestionIndex]);
+            // Reset round flag.
+            roundCompleted = false;
 
-            yield return new WaitForSeconds(5f); // Wait for player to read the question
+            // Get the current question (cycle through questions if needed)
+            Question currentQuestion = questions[currentQuestionIndex];
 
-            // Hide the question panel
+            // Show the question panel.
+            ShowQuestion(currentQuestion);
+            yield return new WaitForSeconds(5f); // Allow time for the player to read.
+
             HideQuestion();
-            isTimerRunning = true; // Start the timer
+            isTimerRunning = true;
+            yield return new WaitForSeconds(1f); // Brief delay before spawning flags.
 
-            yield return new WaitForSeconds(1f); // Small delay before spawning flags
+            // Spawn flags for the round.
+            SpawnFlagsForQuestion(currentQuestion.correctCountry);
 
-            // Spawn flags for this round
-            SpawnFlagsForQuestion(questions[currentQuestionIndex].correctCountry);
+            // Wait until the round ends:
+            // If a flag is caught, RegisterFlagCaught() will set isTimerRunning = false.
+            // If no flag is caught and a flag falls, FlagMissed() will end the game.
+            yield return new WaitUntil(() => !isTimerRunning || gameOver);
 
-            // Wait for the player to interact with the flags
-            yield return new WaitUntil(() => isTimerRunning == false); // Wait until the flag is caught or missed
+            if (!gameOver)
+            {
+                // End the round by destroying any remaining flag objects.
+                DestroyAllFlags();
 
-            // Proceed to the next question after the flags have been caught or missed
-            currentQuestionIndex++;
+                // Advance to the next question.
+                currentQuestionIndex++;
+            }
         }
 
-        EndGame();
+        if (!gameOver)
+        {
+            EndGame();
+        }
     }
 
     void ShowQuestion(Question question)
     {
-        isTimerRunning = false; // Pause the timer when showing the question
+        isTimerRunning = false; // Pause timer while showing question.
         questionPanel.SetActive(true);
         questionText.text = question.questionText;
     }
@@ -111,31 +136,25 @@ public class FB_GameManager : MonoBehaviour
 
     void SpawnFlagsForQuestion(string correctCountry)
     {
+        // Build a list of 4 flags (1 correct, 3 incorrect).
         List<string> selectedFlags = new List<string> { correctCountry };
-
         while (selectedFlags.Count < 4)
         {
             string randomCountry = GetRandomCountryExcluding(selectedFlags);
             selectedFlags.Add(randomCountry);
         }
-
         selectedFlags = ShuffleList(selectedFlags);
 
-        // Calculate total width available for the flags to spread across (e.g., width of the screen or spawn area)
-        float totalWidth = spawnSpacing * 3f; // Total width for the flags, based on the spacing
-
-        // Calculate the starting x position (half the total width, so flags are centered on the screen)
+        // Evenly distribute flags across the spawn area.
+        float totalWidth = spawnSpacing * 3f; // For 4 flags, there are 3 intervals.
         float startX = -totalWidth / 2f;
-
-        // Spawn the flags evenly distributed
         for (int i = 0; i < 4; i++)
         {
-            // Evenly distribute flags based on total width and spawn spacing
-            float spawnPosX = startX + (i * spawnSpacing); // Adjust x position for each flag
-
-            Vector3 spawnPos = new Vector3(spawnPosX, flagSpawnPoint.position.y, 0f); // Set flag position
+            float spawnPosX = startX + (i * spawnSpacing);
+            Vector3 spawnPos = new Vector3(spawnPosX, flagSpawnPoint.position.y, 0f);
 
             GameObject flagObj = Instantiate(flagPrefab, spawnPos, Quaternion.identity);
+            // Make sure your flag prefab is tagged "Flag"
             FB_Flag flagScript = flagObj.GetComponent<FB_Flag>();
 
             if (countryCodeMap.ContainsKey(selectedFlags[i]))
@@ -150,39 +169,13 @@ public class FB_GameManager : MonoBehaviour
         }
     }
 
-
-
-
-    // ✅ Get a random country excluding already selected countries
-    string GetRandomCountryExcluding(List<string> excludeCountries)
-    {
-        List<string> allCountries = new List<string>(countryCodeMap.Keys);
-
-        string randomCountry;
-        do
-        {
-            randomCountry = allCountries[Random.Range(0, allCountries.Count)];
-        } while (excludeCountries.Contains(randomCountry));
-
-        return randomCountry;
-    }
-
-    // ✅ Shuffle the list of selected flags
-    List<T> ShuffleList<T>(List<T> list)
-    {
-        for (int i = 0; i < list.Count; i++)
-        {
-            int randomIndex = Random.Range(i, list.Count);
-            (list[i], list[randomIndex]) = (list[randomIndex], list[i]);
-        }
-        return list;
-    }
-
     public void RegisterFlagCaught(string flagCountry)
     {
-        if (currentQuestionIndex < questions.Length)
+        // Called by basket when a flag is caught.
+        if (!gameOver && currentQuestionIndex < questions.Length)
         {
-            if (flagCountry == questions[currentQuestionIndex].correctCountry)
+            Question currentQuestion = questions[currentQuestionIndex];
+            if (flagCountry == currentQuestion.correctCountry)
             {
                 correctCount++;
                 Debug.Log("Correct!");
@@ -193,44 +186,27 @@ public class FB_GameManager : MonoBehaviour
                 Debug.Log("Incorrect!");
             }
 
+            // Mark the round as completed so that missed events from other flags are ignored.
+            roundCompleted = true;
+
+            // End this round.
             isTimerRunning = false;
-            HideQuestion(); // Hide the question panel to move to the next question
+
+            // Destroy any remaining flags.
+            DestroyAllFlags();
         }
     }
 
-    // ✅ Handle a missed flag
     public void FlagMissed()
     {
-        Debug.Log("Flag missed! Moving to next question.");
-        missedCount++; // Increase missed flag count
-        isTimerRunning = false; // Stop the timer when a flag is missed
-        HideQuestion(); // Hide the question panel to prepare for the next question
-        StartCoroutine(ProceedToNextQuestion()); // Proceed to the next question after the delay
-    }
-
-    // ✅ Method to handle the transition to the next question
-    IEnumerator ProceedToNextQuestion()
-    {
-        yield return new WaitForSeconds(1f); // Small delay to simulate "waiting" for the player to see the missed flag
-
-        // Continue to the next question by re-triggering the GameLoop coroutine
-        if (currentQuestionIndex < questions.Length)
+        // Called by a flag when it falls off-screen.
+        // Only end the game if no flag was caught in this round.
+        if (!gameOver && !roundCompleted)
         {
-            // Show next question after the miss and move on
-            ShowQuestion(questions[currentQuestionIndex]);
-
-            yield return new WaitForSeconds(5f); // Wait for the player to read the next question
-            HideQuestion();
-
-            // Reset timer and flags for next round
-            isTimerRunning = true;
-            yield return new WaitForSeconds(1f);
-
-            // Spawn flags for the next round
-            SpawnFlagsForQuestion(questions[currentQuestionIndex].correctCountry);
-
-            // Wait until the next round completes
-            yield return new WaitUntil(() => isTimerRunning == false);
+            Debug.Log("Flag missed! Game Over.");
+            gameOver = true;
+            StopAllCoroutines();
+            EndGame();
         }
     }
 
@@ -238,7 +214,7 @@ public class FB_GameManager : MonoBehaviour
     {
         isTimerRunning = false;
         endGamePanel.SetActive(true);
-        scoreText.text = "Correct: " + correctCount + "\nIncorrect: " + incorrectCount + "\nFlags Dropped: " + missedCount; // Show missed flags
+        scoreText.text = "Game Over!\nCorrect: " + correctCount + "\nIncorrect: " + incorrectCount;
         Time.timeScale = 0f;
     }
 
@@ -252,5 +228,38 @@ public class FB_GameManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene("Islands");
+    }
+
+    // Helper: returns a random country not already in excludeCountries.
+    string GetRandomCountryExcluding(List<string> excludeCountries)
+    {
+        List<string> allCountries = new List<string>(countryCodeMap.Keys);
+        string randomCountry;
+        do
+        {
+            randomCountry = allCountries[Random.Range(0, allCountries.Count)];
+        } while (excludeCountries.Contains(randomCountry));
+        return randomCountry;
+    }
+
+    // Helper: shuffles the list.
+    List<T> ShuffleList<T>(List<T> list)
+    {
+        for (int i = 0; i < list.Count; i++)
+        {
+            int randomIndex = Random.Range(i, list.Count);
+            (list[i], list[randomIndex]) = (list[randomIndex], list[i]);
+        }
+        return list;
+    }
+
+    // Helper: destroys all flag objects currently in the scene.
+    void DestroyAllFlags()
+    {
+        GameObject[] remainingFlags = GameObject.FindGameObjectsWithTag("Flag");
+        foreach (GameObject flag in remainingFlags)
+        {
+            Destroy(flag);
+        }
     }
 }

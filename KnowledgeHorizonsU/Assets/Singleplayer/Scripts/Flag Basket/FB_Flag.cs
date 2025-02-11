@@ -2,8 +2,12 @@
 
 public class FB_Flag : MonoBehaviour
 {
-    public string flagCountry;
+    public string flagCountry; // Holds the country name for this flag.
     private string flagCode;
+
+    public float fallSpeed = 3f;
+    public float fallThreshold = -5f;
+    private bool isCollected = false; // Set true when caught.
 
     public void SetFlag(string country, string code)
     {
@@ -12,7 +16,6 @@ public class FB_Flag : MonoBehaviour
 
         Debug.Log("Assigning Flag: " + flagCountry + " with Code: " + flagCode);
 
-        // ✅ Load the sprite from the correct path inside Resources/
         Sprite flagSprite = Resources.Load<Sprite>("Flags/" + flagCode);
         if (flagSprite != null)
         {
@@ -24,11 +27,27 @@ public class FB_Flag : MonoBehaviour
         }
     }
 
-    void Start()
+    // Called by basket when the flag is caught.
+    public void MarkAsCollected()
     {
-        if (!string.IsNullOrEmpty(flagCode))
+        isCollected = true;
+    }
+
+    void Update()
+    {
+        if (isCollected)
+            return;
+
+        transform.Translate(Vector2.down * fallSpeed * Time.deltaTime);
+
+        if (transform.position.y < fallThreshold)
         {
-            SetFlag(flagCountry, flagCode);
+            FB_GameManager gm = FindObjectOfType<FB_GameManager>();
+            if (gm != null)
+            {
+                gm.FlagMissed();
+            }
+            Destroy(gameObject);
         }
     }
 }

@@ -1,11 +1,10 @@
 using UnityEngine;
-using static Unity.IO.LowLevel.Unsafe.AsyncReadManagerMetrics;
 
 public class FB_BasketController : MonoBehaviour
 {
     [Header("Movement Settings")]
     public float moveSpeed = 5f;
-    public float xBoundary = 8f; 
+    public float xBoundary = 8f;
 
     void Update()
     {
@@ -24,7 +23,9 @@ public class FB_BasketController : MonoBehaviour
             FB_Flag flag = collision.gameObject.GetComponent<FB_Flag>();
             if (flag != null)
             {
-                // To access the GameManager (ensure only one exists in the scene)
+                // Mark flag as collected.
+                flag.MarkAsCollected();
+
                 FB_GameManager gm = FindObjectOfType<FB_GameManager>();
                 if (gm != null)
                     gm.RegisterFlagCaught(flag.flagCountry);
