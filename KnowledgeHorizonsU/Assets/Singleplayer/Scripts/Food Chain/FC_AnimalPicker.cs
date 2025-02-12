@@ -8,37 +8,38 @@ public class FC_AnimalPicker : MonoBehaviour
 
     public List<int[]> firstAnimalSet = new List<int[]>
     {
-        new int[] {0, 1, 2},
-        new int[] {1, 2, 3},
-        new int[] {2, 3, 5}
+        new int[] {0, 5, 9},
+        new int[] {3, 4, 8},
+        new int[] {6, 7, 14}
     };
     
     public List<int[]> secondAnimalSet = new List<int[]>
     {
-        new int[] {0, 1, 2},
-        new int[] {1, 2, 3},
-        new int[] {2, 3, 4}
+        new int[] {1, 2, 8},
+        new int[] {0, 11, 13},
+        new int[] {2, 5, 10}
     };
 
     public List<int[]> thirdAnimalSet = new List<int[]>
     {
-        new int[] {0, 1, 2, 3},
-        new int[] {1, 2, 3, 4},
-        new int[] {2, 3, 4, 5}
+        new int[] {0, 2, 4, 8},
+        new int[] {0, 5, 7, 9},
+        new int[] {1, 2, 6, 14}
     };
 
     public List<int[]> fourthAnimalSet = new List<int[]>
     {
-        new int[] {0, 1, 2, 4},
-        new int[] {1, 2, 3, 2},
-        new int[] {2, 3, 4, 5}
+        new int[] {1, 2, 10, 14},
+        new int[] {3, 4, 7, 8},
+        new int[] {0, 11, 7, 10}
     };
 
     public List<int[]> fifthAnimalSet = new List<int[]>
     {
-        new int[] {0, 1, 2, 3, 4},
-        new int[] {1, 2, 3, 4, 1},
-        new int[] {2, 3, 4, 5, 1}
+        new int[] {0, 2, 4, 7, 8},
+        new int[] {1, 3, 4, 7, 14},
+        new int[] {0, 5, 7, 9, 13},
+        new int[] {1, 2, 4, 7, 10}
     };
 
     private void Awake()

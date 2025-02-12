@@ -13,7 +13,8 @@ public class FC_dragNdrop : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
 
     private Transform orgTransform;
     private void Awake()
-    {
+    {   
+        _canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
         objRect = GetComponent<RectTransform>();
         canvasgrp = GetComponent<CanvasGroup>();
         orgTransform = transform.parent;

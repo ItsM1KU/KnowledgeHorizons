@@ -190,10 +190,10 @@ public class FC_GameManager : MonoBehaviour
     private void SpawnFifthSet()
     {
         DeactivateSlots(slotsA);
-        ActivateSlots(slotsB);
+        ActivateSlots(slotsE);
         DeactivateSlots(slotsC);
         DeactivateSlots(slotsD);
-        DeactivateSlots(slotsE);
+        DeactivateSlots(slotsB);
 
         DestroyAnimals(spawnedAnimals);
 
