@@ -1736,6 +1736,236 @@ MonoBehaviour:
     correctCountry: South Korea
   - questionText: The traditional dish baklava originates from which country?
     correctCountry: Turkey
+  - questionText: The festival of Diwali is widely celebrated in which country?
+    correctCountry: India
+  - questionText: The official languages, Pashto and Dari, are spoken in which country?
+    correctCountry: Afghanistan
+  - questionText: The national football team of which country won the 2022 FIFA World
+      Cup?
+    correctCountry: Argentina
+  - questionText: The Amazon River flows through which country?
+    correctCountry: Brazil
+  - questionText: The province of Quebec, known for its French-speaking population,
+      is in which country?
+    correctCountry: Canada
+  - questionText: The Yangtze River, the longest in Asia, flows through which country?
+    correctCountry: China
+  - questionText: Which country is known for producing luxury brands like Louis Vuitton
+      and Chanel?
+    correctCountry: France
+  - questionText: The Autobahn, famous for having sections with no speed limit, is
+      in which country?
+    correctCountry: Germany
+  - questionText: The Leaning Tower of Pisa is located in which country?
+    correctCountry: Italy
+  - questionText: The cherry blossom (sakura) season is a major attraction in which
+      country?
+    correctCountry: Japan
+  - questionText: Which country is known for its spicy cuisine, including tacos and
+      enchiladas?
+    correctCountry: Mexico
+  - questionText: The Siberian region, known for its extreme cold, is part of which
+      country?
+    correctCountry: Russia
+  - questionText: NASA, the space agency, is headquartered in which country?
+    correctCountry: United States
+  - questionText: The Beatles, one of the most famous music bands, originated in
+      which country?
+    correctCountry: United Kingdom
+  - questionText: "Which country is home to the world\u2019s largest coral reef system?"
+    correctCountry: Australia
+  - questionText: "Which country\u2019s capital is Dhaka?"
+    correctCountry: Bangladesh
+  - questionText: The technology companies Samsung and LG are based in which country?
+    correctCountry: South Korea
+  - questionText: The city of Istanbul, formerly known as Constantinople, is in which
+      country?
+    correctCountry: Turkey
+  - questionText: The Taj Mahal, one of the Seven Wonders of the World, is in which
+      country?
+    correctCountry: India
+  - questionText: The Khyber Pass, a famous trade route, is located in which country?
+    correctCountry: Afghanistan
+  - questionText: Buenos Aires is the capital of which country?
+    correctCountry: Argentina
+  - questionText: The Christ the Redeemer statue stands in which country?
+    correctCountry: Brazil
+  - questionText: The Maple Leaf is the national symbol of which country?
+    correctCountry: Canada
+  - questionText: The Forbidden City is located in which country?
+    correctCountry: China
+  - questionText: The Eiffel Tower is a landmark in which country?
+    correctCountry: France
+  - questionText: Oktoberfest is celebrated in which country?
+    correctCountry: Germany
+  - questionText: Pizza originated in which country?
+    correctCountry: Italy
+  - questionText: Sushi is a traditional dish of which country?
+    correctCountry: Japan
+  - questionText: The holiday Cinco de Mayo originated in which country?
+    correctCountry: Mexico
+  - questionText: The Kremlin is located in which country?
+    correctCountry: Russia
+  - questionText: The Grand Canyon is a natural wonder in which country?
+    correctCountry: United States
+  - questionText: "The River Thames flows through which country\u2019s capital?"
+    correctCountry: United Kingdom
+  - questionText: Kangaroos and koalas are native to which country?
+    correctCountry: Australia
+  - questionText: The national flower of which country is the Water Lily?
+    correctCountry: Bangladesh
+  - questionText: The demilitarized zone (DMZ) separates North Korea and which country?
+    correctCountry: South Korea
+  - questionText: The ancient ruins of Troy are located in which country?
+    correctCountry: Turkey
+  - questionText: Nelson Mandela was the president of which country?
+    correctCountry: South Africa
+  - questionText: The running of the bulls festival happens in which country?
+    correctCountry: Spain
+  - questionText: The Pyramids of Giza are in which country?
+    correctCountry: Egypt
+  - questionText: "Mecca and Medina, Islam\u2019s holiest cities, are in which country?"
+    correctCountry: Saudi Arabia
+  - questionText: The Burj Khalifa, the tallest building in the world, is in which
+      country?
+    correctCountry: United Arab Emirates
+  - questionText: The Burj Khalifa, the tallest building in the world, is in which
+      country?
+    correctCountry: United Arab Emirates
+  - questionText: The island of Bali is part of which country?
+    correctCountry: Indonesia
+  - questionText: The city of Lahore is a cultural and historical center in which
+      country?
+    correctCountry: Pakistan
+  - questionText: 'Pho, a popular noodle soup, originates from which country? '
+    correctCountry: Vietnam
+  - questionText: The capital city Manila belongs to which country?
+    correctCountry: Philippines
+  - questionText: The city of Bangkok is the capital of which country?
+    correctCountry: Thailand
+  - questionText: The Petronas Twin Towers, once the tallest buildings in the world,
+      are in which country?
+    correctCountry: Malaysia
+  - questionText: The official language Persian (Farsi) is spoken in which country?
+    correctCountry: Iran
+  - questionText: The ancient city of Babylon was located in which modern-day country?
+    correctCountry: Iraq
+  - questionText: The Euphrates River flows through which country?
+    correctCountry: Syria
+  - questionText: The famous cedar trees appear on the flag of which country?
+    correctCountry: Lebanon
+  - questionText: The Olympic Games originated in which country?
+    correctCountry: Greece
+  - questionText: The world-famous footballer Cristiano Ronaldo was born in which
+      country?
+    correctCountry: Portugal
+  - questionText: The city of Amsterdam is the capital of which country?
+    correctCountry: Netherlands
+  - questionText: Waffles and chocolate are famously associated with which country?
+    correctCountry: Belgium
+  - questionText: The Matterhorn mountain is a famous landmark in which country?
+    correctCountry: Switzerland
+  - questionText: The Volvo car company was founded in which country?
+    correctCountry: Sweden
+  - questionText: The Northern Lights can be best seen in which Scandinavian country?
+    correctCountry: Norway
+  - questionText: The LEGO toy company originated in which country?
+    correctCountry: Denmark
+  - questionText: The sauna is a cultural tradition in which country?
+    correctCountry: Finland
+  - questionText: "The historic city of Krak\xF3w is in which country?"
+    correctCountry: Poland
+  - questionText: The Chernobyl nuclear disaster occurred in which country?
+    correctCountry: Ukraine
+  - questionText: The most populous country in Africa is which country?
+    correctCountry: Nigeria
+  - questionText: Coffee was first discovered in which African country?
+    correctCountry: Ethiopia
+  - questionText: The Great Rift Valley runs through which African country?
+    correctCountry: Kenya
+  - questionText: Victoria Falls, one of the largest waterfalls in the world, is
+      located in which country?
+    correctCountry: Zimbabwe
+  - questionText: The kiwi bird is a national symbol of which country?
+    correctCountry: New Zealand
+  - questionText: The Kruger National Park is a wildlife reserve in which country?
+    correctCountry: South Africa
+  - questionText: Flamenco dancing originated in which country?
+    correctCountry: Spain
+  - questionText: The Nile River flows through which country?
+    correctCountry: Egypt
+  - questionText: The world's largest oil reserves are in which country?
+    correctCountry: Saudi Arabia
+  - questionText: The capital city Abu Dhabi belongs to which country?
+    correctCountry: United Arab Emirates
+  - questionText: The national dish Nasi Goreng is from which country?
+    correctCountry: Indonesia
+  - questionText: The Karakoram Highway, one of the highest paved roads in the world,
+      is in which country?
+    correctCountry: Pakistan
+  - questionText: Ha Long Bay, known for its limestone islands, is in which country?
+    correctCountry: Vietnam
+  - questionText: The famous tea-producing country known for Ceylon tea is which
+      country?
+    correctCountry: Sri Lanka
+  - questionText: The Chocolate Hills, a natural geological formation, are in which
+      country?
+    correctCountry: Philippines
+  - questionText: Pad Thai is a famous dish from which country?
+    correctCountry: Thailand
+  - questionText: The national dish Nasi Lemak originates from which country?
+    correctCountry: Malaysia
+  - questionText: Persepolis, an ancient Persian city, is located in which country?
+    correctCountry: Iran
+  - questionText: The capital city Baghdad belongs to which country?
+    correctCountry: Iraq
+  - questionText: "The sacred Adam\u2019s Peak, a religious pilgrimage site, is in
+      which country?"
+    correctCountry: Sri Lanka
+  - questionText: The ancient city of Palmyra is located in which country?
+    correctCountry: Syria
+  - questionText: The national dish Kibbeh originates from which country?
+    correctCountry: Lebanon
+  - questionText: The island of Santorini is a famous tourist attraction in which
+      country?
+    correctCountry: Greece
+  - questionText: The city of Lisbon is the capital of which country?
+    correctCountry: Portugal
+  - questionText: Tulip fields and windmills are iconic symbols of which country?
+    correctCountry: Netherlands
+  - questionText: The city of Bruges, known as the "Venice of the North," is in which
+      country?
+    correctCountry: Belgium
+  - questionText: The Red Cross was founded in which country?
+    correctCountry: Switzerland
+  - questionText: The capital city Stockholm belongs to which country?
+    correctCountry: Sweden
+  - questionText: The fjords, deep sea inlets surrounded by cliffs, are found in
+      which country?
+    correctCountry: Norway
+  - questionText: The Little Mermaid statue is a landmark in which country?
+    correctCountry: Denmark
+  - questionText: The capital city Helsinki belongs to which country?
+    correctCountry: Finland
+  - questionText: The Auschwitz concentration camp, a World War II site, is located
+      in which country?
+    correctCountry: Poland
+  - questionText: The city of Kyiv is the capital of which country?
+    correctCountry: Ukraine
+  - questionText: The national dish Jollof Rice originates from which country?
+    correctCountry: Nigeria
+  - questionText: The oldest known human fossils, including "Lucy," were found in
+      which country?
+    correctCountry: Ethiopia
+  - questionText: Maasai Mara, a famous wildlife reserve, is in which country?
+    correctCountry: Maasai Mara, a famous wildlife reserve, is in which country?
+  - questionText: "The famous Hwange National Park, home to one of Africa\u2019s
+      largest elephant populations, is in which country?"
+    correctCountry: Zimbabwe
+  - questionText: The Southern Alps mountain range runs through which country?
+    correctCountry: New Zealand
+  - questionText: Cricket is the most popular sport in which South Asian island country?
+    correctCountry: Sri Lanka
 --- !u!4 &2116392730
 Transform:
   m_ObjectHideFlags: 0
