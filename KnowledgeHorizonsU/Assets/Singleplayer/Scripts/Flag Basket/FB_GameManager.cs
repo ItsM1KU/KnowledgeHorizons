@@ -34,10 +34,31 @@ public class FB_GameManager : MonoBehaviour
     public AudioSource wrongSound;
 
     [Header("Basket Visual Feedback")]
-    public SpriteRenderer basketSprite; 
+    public SpriteRenderer basketSprite;
     public Color correctColor = Color.green;
     public Color wrongColor = Color.red;
     private Color originalBasketColor;
+
+    private Dictionary<string, string> countryCodeMap = new Dictionary<string, string>
+{
+    { "India", "IN" }, { "Afghanistan", "AF" }, { "Argentina", "AR" },
+    { "Brazil", "BR" }, { "Canada", "CA" }, { "China", "CN" },
+    { "France", "FR" }, { "Germany", "DE" }, { "Italy", "IT" },
+    { "Japan", "JP" }, { "Mexico", "MX" }, { "Russia", "RU" },
+    { "United States", "US" }, { "United Kingdom", "GB" }, { "Australia", "AU" },
+    { "Bangladesh", "BD" }, { "South Korea", "KR" }, { "Turkey", "TR" },
+    { "South Africa", "ZA" }, { "Spain", "ES" }, { "Egypt", "EG" },
+    { "Saudi Arabia", "SA" }, { "United Arab Emirates", "AE" }, { "Indonesia", "ID" },
+    { "Pakistan", "PK" }, { "Vietnam", "VN" }, { "Philippines", "PH" },
+    { "Thailand", "TH" }, { "Malaysia", "MY" }, { "Iran", "IR" }, { "Iraq", "IQ" },
+    { "Syria", "SY" }, { "Lebanon", "LB" }, { "Greece", "GR" }, { "Portugal", "PT" },
+    { "Netherlands", "NL" }, { "Belgium", "BE" }, { "Switzerland", "CH" },
+    { "Sweden", "SE" }, { "Norway", "NO" }, { "Denmark", "DK" }, { "Finland", "FI" },
+    { "Poland", "PL" }, { "Ukraine", "UA" }, { "Nigeria", "NG" }, { "Ethiopia", "ET" },
+    { "Kenya", "KE" }, { "Zimbabwe", "ZW" }, { "New Zealand", "NZ" },
+    { "Sri Lanka", "LK" }
+};
+
 
     [System.Serializable]
     public class Question
@@ -47,35 +68,14 @@ public class FB_GameManager : MonoBehaviour
     }
 
     [Header("Questions Setup")]
-    public List<Question> questions; // Changed to List for shuffling
+    public List<Question> questions;
 
-    private List<Question> shuffledQuestions; // Stores shuffled questions
+    private List<Question> shuffledQuestions;
     private int currentQuestionIndex = 0;
     private int correctCount = 0;
     private int incorrectCount = 0;
     private bool gameOver = false;
     private bool roundCompleted = false;
-
-    // ✅ Country name to ISO code mapping
-    private Dictionary<string, string> countryCodeMap = new Dictionary<string, string>
-    {
-        { "India", "IN" }, { "Afghanistan", "AF" }, { "Argentina", "AR" },
-        { "Brazil", "BR" }, { "Canada", "CA" }, { "China", "CN" },
-        { "France", "FR" }, { "Germany", "DE" }, { "Italy", "IT" },
-        { "Japan", "JP" }, { "Mexico", "MX" }, { "Russia", "RU" },
-        { "United States", "US" }, { "United Kingdom", "GB" }, { "Australia", "AU" },
-        { "Bangladesh", "BD" }, { "South Korea", "KR" }, { "Turkey", "TR" },
-        { "South Africa", "ZA" }, { "Spain", "ES" }, { "Egypt", "EG" },
-        { "Saudi Arabia", "SA" }, { "United Arab Emirates", "AE" }, { "Indonesia", "ID" },
-        { "Pakistan", "PK" }, { "Vietnam", "VN" }, { "Philippines", "PH" },
-        { "Thailand", "TH" }, { "Malaysia", "MY" }, { "Iran", "IR" }, { "Iraq", "IQ" },
-        { "Syria", "SY" }, { "Lebanon", "LB" }, { "Greece", "GR" }, { "Portugal", "PT" },
-        { "Netherlands", "NL" }, { "Belgium", "BE" }, { "Switzerland", "CH" },
-        { "Sweden", "SE" }, { "Norway", "NO" }, { "Denmark", "DK" }, { "Finland", "FI" },
-        { "Poland", "PL" }, { "Ukraine", "UA" }, { "Nigeria", "NG" }, { "Ethiopia", "ET" },
-        { "Kenya", "KE" }, { "Zimbabwe", "ZW" }, { "New Zealand", "NZ" },
-        { "Sri Lanka", "LK" }
-    };
 
     void Start()
     {
@@ -83,17 +83,16 @@ public class FB_GameManager : MonoBehaviour
         questionPanel.SetActive(false);
         endGamePanel.SetActive(false);
 
-        // ✅ Get the CanvasGroup from FeedbackText for fade effect
         feedbackCanvasGroup = feedbackText.GetComponent<CanvasGroup>();
         if (feedbackCanvasGroup == null)
         {
             feedbackCanvasGroup = feedbackText.gameObject.AddComponent<CanvasGroup>();
         }
-        feedbackCanvasGroup.alpha = 0; // Make sure it's invisible at start
+        feedbackCanvasGroup.alpha = 0;
 
         if (basketSprite != null)
         {
-            originalBasketColor = basketSprite.color; // ✅ Store original color
+            originalBasketColor = basketSprite.color;
         }
 
         shuffledQuestions = new List<Question>(questions);
@@ -102,13 +101,18 @@ public class FB_GameManager : MonoBehaviour
         StartCoroutine(GameLoop());
     }
 
-
     void Update()
     {
         if (isTimerRunning && currentTime > 0 && !gameOver)
         {
             currentTime -= Time.deltaTime;
             timerText.text = "Time: " + Mathf.Ceil(currentTime).ToString();
+
+            if (currentTime <= 0) // ✅ End the game the moment the timer hits zero
+            {
+                currentTime = 0; // Ensure it doesn't go negative
+                EndGame();
+            }
         }
     }
 
@@ -116,24 +120,19 @@ public class FB_GameManager : MonoBehaviour
     {
         while (currentTime > 0 && currentQuestionIndex < shuffledQuestions.Count && !gameOver)
         {
-            // Reset round flag.
             roundCompleted = false;
-
-            // Get a **randomized** question from the shuffled list
             Question currentQuestion = shuffledQuestions[currentQuestionIndex];
 
-            // Show the question panel.
             ShowQuestion(currentQuestion);
-            yield return new WaitForSeconds(5f); // Allow time for the player to read.
+            yield return new WaitForSeconds(5f);
 
             HideQuestion();
             isTimerRunning = true;
-            yield return new WaitForSeconds(1f); // Brief delay before spawning flags.
+            yield return new WaitForSeconds(1f);
 
-            // Spawn flags for this round.
+            if (currentTime <= 0) yield break; // ✅ Stop if time runs out
+
             SpawnFlagsForQuestion(currentQuestion.correctCountry);
-
-            // Wait for player input.
             yield return new WaitUntil(() => !isTimerRunning || gameOver);
 
             if (!gameOver)
@@ -163,16 +162,22 @@ public class FB_GameManager : MonoBehaviour
 
     void SpawnFlagsForQuestion(string correctCountry)
     {
+        if (currentTime <= 0) return; // ✅ Prevent flag spawning when timer hits zero
+
         List<string> selectedFlags = new List<string> { correctCountry };
+
+        // ✅ Add 3 unique incorrect flags
         while (selectedFlags.Count < 4)
         {
             string randomCountry = GetRandomCountryExcluding(selectedFlags);
             selectedFlags.Add(randomCountry);
         }
-        selectedFlags = ShuffleList(selectedFlags);
+
+        selectedFlags = ShuffleList(selectedFlags); // ✅ Shuffle the flags for randomness
 
         float totalWidth = spawnSpacing * 3f;
         float startX = -totalWidth / 2f;
+
         for (int i = 0; i < 4; i++)
         {
             float spawnPosX = startX + (i * spawnSpacing);
@@ -181,12 +186,18 @@ public class FB_GameManager : MonoBehaviour
             GameObject flagObj = Instantiate(flagPrefab, spawnPos, Quaternion.identity);
             FB_Flag flagScript = flagObj.GetComponent<FB_Flag>();
 
+            // ✅ Assign the correct ISO code for the flag
             if (countryCodeMap.ContainsKey(selectedFlags[i]))
             {
                 flagScript.SetFlag(selectedFlags[i], countryCodeMap[selectedFlags[i]]);
             }
+            else
+            {
+                Debug.LogWarning("No country code found for: " + selectedFlags[i]);
+            }
         }
     }
+
 
     public void RegisterFlagCaught(string flagCountry)
     {
@@ -197,13 +208,13 @@ public class FB_GameManager : MonoBehaviour
             if (flagCountry == currentQuestion.correctCountry)
             {
                 correctCount++;
-                ShowFeedback(true); // ✅ Show "Correct!"
+                ShowFeedback(true);
                 if (correctSound) correctSound.Play();
             }
             else
             {
                 incorrectCount++;
-                ShowFeedback(false); // ✅ Show "Wrong!"
+                ShowFeedback(false);
                 if (wrongSound) wrongSound.Play();
             }
 
@@ -216,7 +227,7 @@ public class FB_GameManager : MonoBehaviour
     private void ShowFeedback(bool isCorrect)
     {
         feedbackText.gameObject.SetActive(true);
-        feedbackCanvasGroup.alpha = 1; // Make it fully visible
+        feedbackCanvasGroup.alpha = 1;
 
         if (isCorrect)
         {
@@ -231,13 +242,12 @@ public class FB_GameManager : MonoBehaviour
             if (basketSprite != null) StartCoroutine(FlashBasketColor(wrongColor));
         }
 
-        // Start the fade-out animation
         StartCoroutine(FadeOutFeedback());
     }
 
     private IEnumerator FadeOutFeedback()
     {
-        float duration = 1f; // Fade duration (1 second)
+        float duration = 1f;
         float startAlpha = feedbackCanvasGroup.alpha;
         float elapsed = 0f;
 
@@ -248,7 +258,7 @@ public class FB_GameManager : MonoBehaviour
             yield return null;
         }
 
-        feedbackCanvasGroup.alpha = 0; // Ensure it's fully invisible
+        feedbackCanvasGroup.alpha = 0;
         feedbackText.gameObject.SetActive(false);
     }
 
@@ -271,7 +281,11 @@ public class FB_GameManager : MonoBehaviour
 
     void EndGame()
     {
+        if (gameOver) return;
+
+        gameOver = true;
         isTimerRunning = false;
+        DestroyAllFlags(); // ✅ Ensure no flags remain
         endGamePanel.SetActive(true);
         scoreText.text = "Game Over!\nCorrect: " + correctCount + "\nIncorrect: " + incorrectCount;
         Time.timeScale = 0f;
@@ -293,12 +307,15 @@ public class FB_GameManager : MonoBehaviour
     {
         List<string> allCountries = new List<string>(countryCodeMap.Keys);
         string randomCountry;
+
         do
         {
             randomCountry = allCountries[Random.Range(0, allCountries.Count)];
-        } while (excludeCountries.Contains(randomCountry));
+        } while (excludeCountries.Contains(randomCountry)); // ✅ Ensure uniqueness
+
         return randomCountry;
     }
+
 
     List<T> ShuffleList<T>(List<T> list)
     {
@@ -309,6 +326,7 @@ public class FB_GameManager : MonoBehaviour
         }
         return list;
     }
+
 
     void DestroyAllFlags()
     {
