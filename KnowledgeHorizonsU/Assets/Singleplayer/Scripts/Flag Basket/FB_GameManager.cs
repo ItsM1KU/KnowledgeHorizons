@@ -17,6 +17,8 @@ public class FB_GameManager : MonoBehaviour
     public TMP_Text questionText;
     public GameObject endGamePanel;
     public TMP_Text scoreText;
+    public TMP_Text feedbackText;
+    private CanvasGroup feedbackCanvasGroup;
 
     [Header("Buttons")]
     public GameObject retryButton;
@@ -26,6 +28,16 @@ public class FB_GameManager : MonoBehaviour
     public GameObject flagPrefab;
     public Transform flagSpawnPoint;
     public float spawnSpacing = 3.0f;
+
+    [Header("Audio Effects")]
+    public AudioSource correctSound;
+    public AudioSource wrongSound;
+
+    [Header("Basket Visual Feedback")]
+    public SpriteRenderer basketSprite; 
+    public Color correctColor = Color.green;
+    public Color wrongColor = Color.red;
+    private Color originalBasketColor;
 
     [System.Serializable]
     public class Question
@@ -71,12 +83,25 @@ public class FB_GameManager : MonoBehaviour
         questionPanel.SetActive(false);
         endGamePanel.SetActive(false);
 
-        // **Shuffle Questions**
+        // ✅ Get the CanvasGroup from FeedbackText for fade effect
+        feedbackCanvasGroup = feedbackText.GetComponent<CanvasGroup>();
+        if (feedbackCanvasGroup == null)
+        {
+            feedbackCanvasGroup = feedbackText.gameObject.AddComponent<CanvasGroup>();
+        }
+        feedbackCanvasGroup.alpha = 0; // Make sure it's invisible at start
+
+        if (basketSprite != null)
+        {
+            originalBasketColor = basketSprite.color; // ✅ Store original color
+        }
+
         shuffledQuestions = new List<Question>(questions);
         shuffledQuestions = ShuffleList(shuffledQuestions);
 
         StartCoroutine(GameLoop());
     }
+
 
     void Update()
     {
@@ -99,11 +124,11 @@ public class FB_GameManager : MonoBehaviour
 
             // Show the question panel.
             ShowQuestion(currentQuestion);
-            yield return new WaitForSeconds(5f);
+            yield return new WaitForSeconds(5f); // Allow time for the player to read.
 
             HideQuestion();
             isTimerRunning = true;
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(1f); // Brief delay before spawning flags.
 
             // Spawn flags for this round.
             SpawnFlagsForQuestion(currentQuestion.correctCountry);
@@ -168,19 +193,70 @@ public class FB_GameManager : MonoBehaviour
         if (!gameOver && currentQuestionIndex < shuffledQuestions.Count)
         {
             Question currentQuestion = shuffledQuestions[currentQuestionIndex];
+
             if (flagCountry == currentQuestion.correctCountry)
             {
                 correctCount++;
+                ShowFeedback(true); // ✅ Show "Correct!"
+                if (correctSound) correctSound.Play();
             }
             else
             {
                 incorrectCount++;
+                ShowFeedback(false); // ✅ Show "Wrong!"
+                if (wrongSound) wrongSound.Play();
             }
 
             roundCompleted = true;
             isTimerRunning = false;
             DestroyAllFlags();
         }
+    }
+
+    private void ShowFeedback(bool isCorrect)
+    {
+        feedbackText.gameObject.SetActive(true);
+        feedbackCanvasGroup.alpha = 1; // Make it fully visible
+
+        if (isCorrect)
+        {
+            feedbackText.text = "Correct!";
+            feedbackText.color = Color.green;
+            if (basketSprite != null) StartCoroutine(FlashBasketColor(correctColor));
+        }
+        else
+        {
+            feedbackText.text = "Wrong!";
+            feedbackText.color = Color.red;
+            if (basketSprite != null) StartCoroutine(FlashBasketColor(wrongColor));
+        }
+
+        // Start the fade-out animation
+        StartCoroutine(FadeOutFeedback());
+    }
+
+    private IEnumerator FadeOutFeedback()
+    {
+        float duration = 1f; // Fade duration (1 second)
+        float startAlpha = feedbackCanvasGroup.alpha;
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            feedbackCanvasGroup.alpha = Mathf.Lerp(startAlpha, 0, elapsed / duration);
+            yield return null;
+        }
+
+        feedbackCanvasGroup.alpha = 0; // Ensure it's fully invisible
+        feedbackText.gameObject.SetActive(false);
+    }
+
+    private IEnumerator FlashBasketColor(Color flashColor)
+    {
+        basketSprite.color = flashColor;
+        yield return new WaitForSeconds(0.5f);
+        basketSprite.color = originalBasketColor;
     }
 
     public void FlagMissed()
