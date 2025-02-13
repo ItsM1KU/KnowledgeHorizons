@@ -3,18 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using System.Linq;
 
 public class FB_GameManager : MonoBehaviour
 {
-    [Header("Game Timer")]
-    public float gameTime = 60f;
-    private float currentTime;
-    private bool isTimerRunning = false;
-
     [Header("UI Elements")]
-    public TMP_Text timerText;
     public GameObject questionPanel;
     public TMP_Text questionText;
+    public TMP_Text remainingQuestionsText; // ✅ Display remaining questions
     public GameObject endGamePanel;
     public TMP_Text scoreText;
     public TMP_Text feedbackText;
@@ -40,25 +36,24 @@ public class FB_GameManager : MonoBehaviour
     private Color originalBasketColor;
 
     private Dictionary<string, string> countryCodeMap = new Dictionary<string, string>
-{
-    { "India", "IN" }, { "Afghanistan", "AF" }, { "Argentina", "AR" },
-    { "Brazil", "BR" }, { "Canada", "CA" }, { "China", "CN" },
-    { "France", "FR" }, { "Germany", "DE" }, { "Italy", "IT" },
-    { "Japan", "JP" }, { "Mexico", "MX" }, { "Russia", "RU" },
-    { "United States", "US" }, { "United Kingdom", "GB" }, { "Australia", "AU" },
-    { "Bangladesh", "BD" }, { "South Korea", "KR" }, { "Turkey", "TR" },
-    { "South Africa", "ZA" }, { "Spain", "ES" }, { "Egypt", "EG" },
-    { "Saudi Arabia", "SA" }, { "United Arab Emirates", "AE" }, { "Indonesia", "ID" },
-    { "Pakistan", "PK" }, { "Vietnam", "VN" }, { "Philippines", "PH" },
-    { "Thailand", "TH" }, { "Malaysia", "MY" }, { "Iran", "IR" }, { "Iraq", "IQ" },
-    { "Syria", "SY" }, { "Lebanon", "LB" }, { "Greece", "GR" }, { "Portugal", "PT" },
-    { "Netherlands", "NL" }, { "Belgium", "BE" }, { "Switzerland", "CH" },
-    { "Sweden", "SE" }, { "Norway", "NO" }, { "Denmark", "DK" }, { "Finland", "FI" },
-    { "Poland", "PL" }, { "Ukraine", "UA" }, { "Nigeria", "NG" }, { "Ethiopia", "ET" },
-    { "Kenya", "KE" }, { "Zimbabwe", "ZW" }, { "New Zealand", "NZ" },
-    { "Sri Lanka", "LK" }
-};
-
+    {
+        { "India", "IN" }, { "Afghanistan", "AF" }, { "Argentina", "AR" },
+        { "Brazil", "BR" }, { "Canada", "CA" }, { "China", "CN" },
+        { "France", "FR" }, { "Germany", "DE" }, { "Italy", "IT" },
+        { "Japan", "JP" }, { "Mexico", "MX" }, { "Russia", "RU" },
+        { "United States", "US" }, { "United Kingdom", "GB" }, { "Australia", "AU" },
+        { "Bangladesh", "BD" }, { "South Korea", "KR" }, { "Turkey", "TR" },
+        { "South Africa", "ZA" }, { "Spain", "ES" }, { "Egypt", "EG" },
+        { "Saudi Arabia", "SA" }, { "United Arab Emirates", "AE" }, { "Indonesia", "ID" },
+        { "Pakistan", "PK" }, { "Vietnam", "VN" }, { "Philippines", "PH" },
+        { "Thailand", "TH" }, { "Malaysia", "MY" }, { "Iran", "IR" }, { "Iraq", "IQ" },
+        { "Syria", "SY" }, { "Lebanon", "LB" }, { "Greece", "GR" }, { "Portugal", "PT" },
+        { "Netherlands", "NL" }, { "Belgium", "BE" }, { "Switzerland", "CH" },
+        { "Sweden", "SE" }, { "Norway", "NO" }, { "Denmark", "DK" }, { "Finland", "FI" },
+        { "Poland", "PL" }, { "Ukraine", "UA" }, { "Nigeria", "NG" }, { "Ethiopia", "ET" },
+        { "Kenya", "KE" }, { "Zimbabwe", "ZW" }, { "New Zealand", "NZ" },
+        { "Sri Lanka", "LK" }
+    };
 
     [System.Serializable]
     public class Question
@@ -76,10 +71,10 @@ public class FB_GameManager : MonoBehaviour
     private int incorrectCount = 0;
     private bool gameOver = false;
     private bool roundCompleted = false;
+    private const int totalQuestions = 20; // ✅ Game ends after 20 questions
 
     void Start()
     {
-        currentTime = gameTime;
         questionPanel.SetActive(false);
         endGamePanel.SetActive(false);
 
@@ -101,24 +96,9 @@ public class FB_GameManager : MonoBehaviour
         StartCoroutine(GameLoop());
     }
 
-    void Update()
-    {
-        if (isTimerRunning && currentTime > 0 && !gameOver)
-        {
-            currentTime -= Time.deltaTime;
-            timerText.text = "Time: " + Mathf.Ceil(currentTime).ToString();
-
-            if (currentTime <= 0) // ✅ End the game the moment the timer hits zero
-            {
-                currentTime = 0; // Ensure it doesn't go negative
-                EndGame();
-            }
-        }
-    }
-
     IEnumerator GameLoop()
     {
-        while (currentTime > 0 && currentQuestionIndex < shuffledQuestions.Count && !gameOver)
+        while (currentQuestionIndex < totalQuestions && !gameOver)
         {
             roundCompleted = false;
             Question currentQuestion = shuffledQuestions[currentQuestionIndex];
@@ -127,13 +107,10 @@ public class FB_GameManager : MonoBehaviour
             yield return new WaitForSeconds(5f);
 
             HideQuestion();
-            isTimerRunning = true;
             yield return new WaitForSeconds(1f);
 
-            if (currentTime <= 0) yield break; // ✅ Stop if time runs out
-
             SpawnFlagsForQuestion(currentQuestion.correctCountry);
-            yield return new WaitUntil(() => !isTimerRunning || gameOver);
+            yield return new WaitUntil(() => roundCompleted || gameOver);
 
             if (!gameOver)
             {
@@ -150,10 +127,21 @@ public class FB_GameManager : MonoBehaviour
 
     void ShowQuestion(Question question)
     {
-        isTimerRunning = false;
         questionPanel.SetActive(true);
         questionText.text = question.questionText;
+
+        // ✅ Hide "Questions Left" when the last question is answered
+        int questionsLeft = totalQuestions - currentQuestionIndex;
+        if (questionsLeft > 0)
+        {
+            remainingQuestionsText.text = "Questions Left: " + questionsLeft;
+        }
+        else
+        {
+            remainingQuestionsText.gameObject.SetActive(false);
+        }
     }
+
 
     void HideQuestion()
     {
@@ -162,18 +150,15 @@ public class FB_GameManager : MonoBehaviour
 
     void SpawnFlagsForQuestion(string correctCountry)
     {
-        if (currentTime <= 0) return; // ✅ Prevent flag spawning when timer hits zero
-
         List<string> selectedFlags = new List<string> { correctCountry };
 
-        // ✅ Add 3 unique incorrect flags
         while (selectedFlags.Count < 4)
         {
             string randomCountry = GetRandomCountryExcluding(selectedFlags);
             selectedFlags.Add(randomCountry);
         }
 
-        selectedFlags = ShuffleList(selectedFlags); // ✅ Shuffle the flags for randomness
+        selectedFlags = ShuffleList(selectedFlags);
 
         float totalWidth = spawnSpacing * 3f;
         float startX = -totalWidth / 2f;
@@ -186,22 +171,13 @@ public class FB_GameManager : MonoBehaviour
             GameObject flagObj = Instantiate(flagPrefab, spawnPos, Quaternion.identity);
             FB_Flag flagScript = flagObj.GetComponent<FB_Flag>();
 
-            // ✅ Assign the correct ISO code for the flag
-            if (countryCodeMap.ContainsKey(selectedFlags[i]))
-            {
-                flagScript.SetFlag(selectedFlags[i], countryCodeMap[selectedFlags[i]]);
-            }
-            else
-            {
-                Debug.LogWarning("No country code found for: " + selectedFlags[i]);
-            }
+            flagScript.SetFlag(selectedFlags[i], countryCodeMap[selectedFlags[i]]);
         }
     }
 
-
     public void RegisterFlagCaught(string flagCountry)
     {
-        if (!gameOver && currentQuestionIndex < shuffledQuestions.Count)
+        if (!gameOver && currentQuestionIndex < totalQuestions)
         {
             Question currentQuestion = shuffledQuestions[currentQuestionIndex];
 
@@ -219,7 +195,6 @@ public class FB_GameManager : MonoBehaviour
             }
 
             roundCompleted = true;
-            isTimerRunning = false;
             DestroyAllFlags();
         }
     }
@@ -229,17 +204,12 @@ public class FB_GameManager : MonoBehaviour
         feedbackText.gameObject.SetActive(true);
         feedbackCanvasGroup.alpha = 1;
 
-        if (isCorrect)
+        feedbackText.text = isCorrect ? "Correct!" : "Wrong!";
+        feedbackText.color = isCorrect ? Color.green : Color.red;
+
+        if (basketSprite != null)
         {
-            feedbackText.text = "Correct!";
-            feedbackText.color = Color.green;
-            if (basketSprite != null) StartCoroutine(FlashBasketColor(correctColor));
-        }
-        else
-        {
-            feedbackText.text = "Wrong!";
-            feedbackText.color = Color.red;
-            if (basketSprite != null) StartCoroutine(FlashBasketColor(wrongColor));
+            StartCoroutine(FlashBasketColor(isCorrect ? correctColor : wrongColor));
         }
 
         StartCoroutine(FadeOutFeedback());
@@ -248,13 +218,12 @@ public class FB_GameManager : MonoBehaviour
     private IEnumerator FadeOutFeedback()
     {
         float duration = 1f;
-        float startAlpha = feedbackCanvasGroup.alpha;
         float elapsed = 0f;
 
         while (elapsed < duration)
         {
             elapsed += Time.deltaTime;
-            feedbackCanvasGroup.alpha = Mathf.Lerp(startAlpha, 0, elapsed / duration);
+            feedbackCanvasGroup.alpha = Mathf.Lerp(1, 0, elapsed / duration);
             yield return null;
         }
 
@@ -274,66 +243,37 @@ public class FB_GameManager : MonoBehaviour
         if (!gameOver && !roundCompleted)
         {
             gameOver = true;
-            StopAllCoroutines();
+            StopAllCoroutines(); // ✅ Stop the game loop
             EndGame();
         }
     }
 
     void EndGame()
     {
-        if (gameOver) return;
-
         gameOver = true;
-        isTimerRunning = false;
-        DestroyAllFlags(); // ✅ Ensure no flags remain
+        DestroyAllFlags();
         endGamePanel.SetActive(true);
+        remainingQuestionsText.gameObject.SetActive(false); // ✅ Hide Questions Left Text
         scoreText.text = "Game Over!\nCorrect: " + correctCount + "\nIncorrect: " + incorrectCount;
-        Time.timeScale = 0f;
     }
 
-    public void RestartGame()
-    {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
 
-    public void GoToMainMenu()
-    {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene("Islands");
-    }
+    public void RestartGame() => SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
-    string GetRandomCountryExcluding(List<string> excludeCountries)
-    {
-        List<string> allCountries = new List<string>(countryCodeMap.Keys);
-        string randomCountry;
+    public void GoToMainMenu() => SceneManager.LoadScene("Islands");
 
-        do
-        {
-            randomCountry = allCountries[Random.Range(0, allCountries.Count)];
-        } while (excludeCountries.Contains(randomCountry)); // ✅ Ensure uniqueness
-
-        return randomCountry;
-    }
-
+    string GetRandomCountryExcluding(List<string> excludeCountries) =>
+        ShuffleList(new List<string>(countryCodeMap.Keys)).Find(c => !excludeCountries.Contains(c));
 
     List<T> ShuffleList<T>(List<T> list)
     {
-        for (int i = 0; i < list.Count; i++)
+        for (int i = list.Count - 1; i > 0; i--)
         {
-            int randomIndex = Random.Range(i, list.Count);
-            (list[i], list[randomIndex]) = (list[randomIndex], list[i]);
+            int j = Random.Range(0, i + 1);
+            (list[i], list[j]) = (list[j], list[i]);
         }
         return list;
     }
 
-
-    void DestroyAllFlags()
-    {
-        GameObject[] remainingFlags = GameObject.FindGameObjectsWithTag("Flag");
-        foreach (GameObject flag in remainingFlags)
-        {
-            Destroy(flag);
-        }
-    }
+    void DestroyAllFlags() => GameObject.FindGameObjectsWithTag("Flag").ToList().ForEach(Destroy);
 }
