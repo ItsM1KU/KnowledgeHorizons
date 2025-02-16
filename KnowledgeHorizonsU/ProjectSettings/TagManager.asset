@@ -10,6 +10,8 @@ TagManager:
   - FinishPoint
   - Basket
   - Flag
+  - Vehicle
+  - Anchor
   layers:
   - Default
   - TransparentFX
@@ -21,8 +23,8 @@ TagManager:
   - Boundary
   - Ball
   - islands
-  - 
-  - 
+  - Anchor
+  - Vehicle
   - 
   - 
   - 
