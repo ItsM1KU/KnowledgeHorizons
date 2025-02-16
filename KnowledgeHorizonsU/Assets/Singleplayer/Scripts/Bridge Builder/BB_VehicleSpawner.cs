@@ -1,44 +1,46 @@
 using UnityEngine;
-using UnityEngine.UI;  // For UI feedback if needed
+using System.Collections;
 
 public class BB_VehicleSpawner : MonoBehaviour
 {
-    public GameObject[] vehiclePrefabs;  // Assign your different vehicle prefabs here.
-    public Transform spawnPoint;         // Set this at the left side of your bridge.
-    public float spawnDelay = 1f;        // Delay before spawning the next vehicle.
+    [Header("Spawner Settings")]
+    // Array of different vehicle prefabs; assign these in the Inspector.
+    public GameObject[] vehiclePrefabs;
 
-    // Optional: UI Text element to display an educational tip.
-    public Text tipText;
+    // The spawn point where vehicles appear.
+    public Transform spawnPoint;
 
-    private bool isSpawning = false;
+    // Time delay between vehicle spawns
+    public float spawnDelay = 2f;
+
+    // Control to ensure one vehicle spawns at a time.
+    private bool canSpawn = true;
 
     void Start()
     {
+        // Optionally, spawn the first vehicle immediately.
         SpawnVehicle();
     }
 
     public void SpawnVehicle()
     {
-        if (!isSpawning)
+        if (canSpawn && vehiclePrefabs.Length > 0)
         {
-            isSpawning = true;
-            // Choose a random vehicle from the array.
-            int index = Random.Range(0, vehiclePrefabs.Length);
-            GameObject vehicle = Instantiate(vehiclePrefabs[index], spawnPoint.position, Quaternion.identity);
-
-            // Optionally display a tip based on vehicle mass.
-            Rigidbody2D rb = vehicle.GetComponent<Rigidbody2D>();
-            if (tipText != null)
-            {
-                tipText.text = "Incoming Vehicle Mass: " + rb.mass.ToString() + ". Place supports accordingly!";
-            }
+            // Choose a random vehicle prefab from the array
+            int randomIndex = Random.Range(0, vehiclePrefabs.Length);
+            Instantiate(vehiclePrefabs[randomIndex], spawnPoint.position, Quaternion.identity);
+            canSpawn = false;
+            // Use a coroutine to wait for the delay, then enable spawning
+            StartCoroutine(ResetSpawn());
         }
     }
 
-    // This method should be called when the current vehicle has finished its run.
-    public void OnVehicleFinished()
+    // Coroutine to enable spawning after a delay
+    IEnumerator ResetSpawn()
     {
-        Invoke(nameof(SpawnVehicle), spawnDelay);
-        isSpawning = false;
+        yield return new WaitForSeconds(spawnDelay);
+        canSpawn = true;
+        // Optionally, spawn the next vehicle automatically:
+        SpawnVehicle();
     }
 }
