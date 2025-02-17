@@ -3,7 +3,7 @@ using UnityEngine;
 public class BB_PlankController : MonoBehaviour
 {
     [Header("Plank Settings")]
-    [Tooltip("Maximum weight this plank can support.")]
+    [Tooltip("Maximum weight this plank can support (Green:30, Yellow:20, Red:10).")]
     public float maxSupportedWeight = 10f;
 
     [Tooltip("Multiplier for the collapse force (for dramatic effect).")]
@@ -12,14 +12,26 @@ public class BB_PlankController : MonoBehaviour
     // Flag to ensure we collapse only once.
     private bool hasCollapsed = false;
 
+    // Flag indicating if this plank is supported by the bridge support.
+    private bool isSupported = false;
+
+    /// <summary>
+    /// Called by the support zone to set the support status.
+    /// </summary>
+    public void SetSupported(bool supported)
+    {
+        isSupported = supported;
+    }
+
     /// <summary>
     /// Called by the sensor when a vehicle is detected.
     /// </summary>
     /// <param name="vehicleWeight">The weight of the vehicle driving over.</param>
     public void CheckVehicleWeight(float vehicleWeight)
     {
-        // Only collapse if not already collapsed and weight is exceeded.
-        if (!hasCollapsed && vehicleWeight > maxSupportedWeight)
+        // Only collapse if not already collapsed, not supported,
+        // and the vehicle's weight exceeds this plank's capacity.
+        if (!hasCollapsed && !isSupported && vehicleWeight > maxSupportedWeight)
         {
             CollapsePlank(vehicleWeight);
         }
@@ -47,11 +59,8 @@ public class BB_PlankController : MonoBehaviour
         {
             // Switch from kinematic to dynamic.
             rb.isKinematic = false;
-
-            // Optional: Set the gravity scale if it isn't set (or adjust it for dramatic effect).
             rb.gravityScale = 1f;
 
-            // Optional: Apply an extra impulse force to make the collapse more dramatic.
             float extraForce = (vehicleWeight - maxSupportedWeight) * collapseForceMultiplier;
             Vector2 forceDirection = new Vector2(extraForce * 0.5f, -extraForce);
             rb.AddForce(forceDirection, ForceMode2D.Impulse);

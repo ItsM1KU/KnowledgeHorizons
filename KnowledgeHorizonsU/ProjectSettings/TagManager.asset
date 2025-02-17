@@ -12,6 +12,7 @@ TagManager:
   - Flag
   - Vehicle
   - Anchor
+  - BridgeSupport
   layers:
   - Default
   - TransparentFX
