@@ -15,6 +15,8 @@ public class TV_PlayerController : MonoBehaviour
     private const string LastHorizontal = "LastHorizontal";
     private const string LastVertical = "LastVertical";
 
+    [SerializeField] private LayerMask ArtifactLayer;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -24,10 +26,7 @@ public class TV_PlayerController : MonoBehaviour
     private void Update()
     {
         movement = TV_InputManager.Movement;
-        if (movement.x != 0)
-        {
-            movement.y = 0;
-        }
+        
 
         rb.velocity = movement * moveSpeed;
 
@@ -39,6 +38,31 @@ public class TV_PlayerController : MonoBehaviour
             anim.SetFloat(LastHorizontal, movement.x);
             anim.SetFloat(LastVertical, movement.y);
         }
+
+
+        if(TV_InputManager.Instance.isInteracting)
+        {
+            InteractArtifact();
+        }
+
+        if (TV_InputManager.Instance.isClosing)
+        {
+            CloseArtifactUI();
+        }
+
     }
 
+    private void InteractArtifact()
+    {
+        var collider = Physics2D.OverlapCircle(transform.position, 0.5f, ArtifactLayer);
+        if (collider != null) 
+        {
+            TV_GameManager.Instance.SetupArtifactUI(collider);
+        }
+    }
+
+    private void CloseArtifactUI()
+    {
+        TV_GameManager.Instance.CloseArtifactUI();
+    }
 }
