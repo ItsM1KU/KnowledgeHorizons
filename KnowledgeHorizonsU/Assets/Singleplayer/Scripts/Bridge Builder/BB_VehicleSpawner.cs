@@ -1,18 +1,13 @@
 using UnityEngine;
-using System.Collections;
 
 public class BB_VehicleSpawner : MonoBehaviour
 {
     [Header("Spawner Settings")]
     public GameObject[] vehiclePrefabs;
     public Transform spawnPoint;
-    public float spawnDelay = 2f;
 
-    // Keep a reference to the current vehicle.
+    // Reference to the current vehicle.
     private GameObject currentVehicle;
-
-    // Flag to prevent multiple spawn coroutines.
-    private bool waitingForSpawn = false;
 
     // NEW: Reference to the UI manager script
     public BB_VehicleWeightDisplay weightDisplay;
@@ -22,35 +17,31 @@ public class BB_VehicleSpawner : MonoBehaviour
         SpawnVehicle();
     }
 
+    void Update()
+    {
+        // When currentVehicle is destroyed, it will evaluate to null.
+        if (currentVehicle == null)
+        {
+            Debug.Log("No current vehicle found. Spawning a new vehicle.");
+            SpawnVehicle();
+        }
+    }
+
     void SpawnVehicle()
     {
         if (vehiclePrefabs.Length > 0)
         {
             int randomIndex = Random.Range(0, vehiclePrefabs.Length);
             currentVehicle = Instantiate(vehiclePrefabs[randomIndex], spawnPoint.position, Quaternion.identity);
+            Debug.Log("Spawned new vehicle: " + currentVehicle.name);
 
             // Update the UI with the weight of the spawned vehicle.
             BB_VehicleController vc = currentVehicle.GetComponent<BB_VehicleController>();
             if (vc != null && weightDisplay != null)
             {
                 weightDisplay.UpdateVehicleWeight(vc.weight);
+                Debug.Log("Updated UI with vehicle weight: " + vc.weight);
             }
         }
-    }
-
-    void Update()
-    {
-        if (currentVehicle == null && !waitingForSpawn)
-        {
-            waitingForSpawn = true;
-            StartCoroutine(ResetSpawn());
-        }
-    }
-
-    IEnumerator ResetSpawn()
-    {
-        yield return new WaitForSeconds(spawnDelay);
-        waitingForSpawn = false;
-        SpawnVehicle();
     }
 }
