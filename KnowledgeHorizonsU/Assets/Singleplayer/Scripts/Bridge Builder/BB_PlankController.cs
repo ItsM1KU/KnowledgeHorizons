@@ -46,24 +46,36 @@ public class BB_PlankController : MonoBehaviour
         hasCollapsed = true;
         Debug.Log($"{gameObject.name} is collapsing! Vehicle weight: {vehicleWeight}, Capacity: {maxSupportedWeight}");
 
-        // Remove the hinge joint (so the plank disconnects from its neighbors).
+        // Remove the hinge joint so this plank disconnects from its neighbors.
         HingeJoint2D hinge = GetComponent<HingeJoint2D>();
         if (hinge != null)
         {
             Destroy(hinge);
         }
 
+        // Change this plank's layer to a new layer "CollapsedPlank"
+        // (Make sure you create this layer in Unity's Tags & Layers settings.)
+        gameObject.layer = LayerMask.NameToLayer("CollapsedPlank");
+
         // Get the Rigidbody2D component.
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         if (rb != null)
         {
-            // Switch from kinematic to dynamic.
+            // Switch from kinematic to dynamic so physics affect it.
             rb.isKinematic = false;
             rb.gravityScale = 1f;
 
+            // Reset any existing velocity to avoid residual momentum.
+            rb.velocity = Vector2.zero;
+
+            // Calculate the extra force based on how much the vehicle exceeds capacity.
             float extraForce = (vehicleWeight - maxSupportedWeight) * collapseForceMultiplier;
-            Vector2 forceDirection = new Vector2(extraForce * 0.5f, -extraForce);
+            // Apply force only downward: X component is 0.
+            Vector2 forceDirection = new Vector2(0, -extraForce);
             rb.AddForce(forceDirection, ForceMode2D.Impulse);
+
+            // **New Step:** Set a high angular drag to dampen rotation.
+            rb.angularDrag = 10f; // Adjust this value as needed.
         }
     }
 }

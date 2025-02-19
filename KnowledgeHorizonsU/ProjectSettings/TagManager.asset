@@ -13,6 +13,7 @@ TagManager:
   - Vehicle
   - Anchor
   - BridgeSupport
+  - Water
   layers:
   - Default
   - TransparentFX
@@ -26,7 +27,7 @@ TagManager:
   - islands
   - Anchor
   - Vehicle
-  - 
+  - CollapsedPlank
   - 
   - 
   - 

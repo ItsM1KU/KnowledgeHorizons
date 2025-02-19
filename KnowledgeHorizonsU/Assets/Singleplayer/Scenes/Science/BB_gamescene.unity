@@ -180,6 +180,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BridgePlank (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 5585210789981742321, guid: b938b45c1d527fe41a201656ba74fa6e, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: ee00b6d9aff693f4399b3052f102ea81, type: 2}
     - target: {fileID: 7006580188936527605, guid: b938b45c1d527fe41a201656ba74fa6e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8
@@ -907,6 +911,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BridgePlank (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 5585210789981742321, guid: b938b45c1d527fe41a201656ba74fa6e, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: ee00b6d9aff693f4399b3052f102ea81, type: 2}
     - target: {fileID: 7006580188936527605, guid: b938b45c1d527fe41a201656ba74fa6e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.6000001
@@ -1236,6 +1244,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BridgePlank (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 5585210789981742321, guid: b938b45c1d527fe41a201656ba74fa6e, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: ee00b6d9aff693f4399b3052f102ea81, type: 2}
     - target: {fileID: 7006580188936527605, guid: b938b45c1d527fe41a201656ba74fa6e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8
@@ -1621,6 +1633,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buoyancyForce: 10
+  waterDrag: 2
+  waterAngularDrag: 2
 --- !u!61 &714478918
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1693,6 +1707,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BridgePlank (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 5585210789981742321, guid: b938b45c1d527fe41a201656ba74fa6e, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: ee00b6d9aff693f4399b3052f102ea81, type: 2}
     - target: {fileID: 7006580188936527605, guid: b938b45c1d527fe41a201656ba74fa6e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.2
@@ -2057,7 +2075,7 @@ PrefabInstance:
     - target: {fileID: 5585210789981742321, guid: b938b45c1d527fe41a201656ba74fa6e, type: 3}
       propertyPath: m_Material
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 6200000, guid: ee00b6d9aff693f4399b3052f102ea81, type: 2}
     - target: {fileID: 5585210789981742321, guid: b938b45c1d527fe41a201656ba74fa6e, type: 3}
       propertyPath: m_IsTrigger
       value: 0
@@ -2436,6 +2454,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BridgePlank (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 5585210789981742321, guid: b938b45c1d527fe41a201656ba74fa6e, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: ee00b6d9aff693f4399b3052f102ea81, type: 2}
     - target: {fileID: 7006580188936527605, guid: b938b45c1d527fe41a201656ba74fa6e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.6
@@ -2530,6 +2552,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BridgePlank (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 5585210789981742321, guid: b938b45c1d527fe41a201656ba74fa6e, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: ee00b6d9aff693f4399b3052f102ea81, type: 2}
     - target: {fileID: 7006580188936527605, guid: b938b45c1d527fe41a201656ba74fa6e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.8
@@ -2625,7 +2651,7 @@ GameObject:
   - component: {fileID: 1196674829}
   m_Layer: 0
   m_Name: Water
-  m_TagString: Untagged
+  m_TagString: Water
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2845,6 +2871,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BridgePlank (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5585210789981742321, guid: b938b45c1d527fe41a201656ba74fa6e, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: ee00b6d9aff693f4399b3052f102ea81, type: 2}
     - target: {fileID: 7006580188936527605, guid: b938b45c1d527fe41a201656ba74fa6e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.4000006
@@ -3395,6 +3425,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BridgePlank (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 5585210789981742321, guid: b938b45c1d527fe41a201656ba74fa6e, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: ee00b6d9aff693f4399b3052f102ea81, type: 2}
     - target: {fileID: 7006580188936527605, guid: b938b45c1d527fe41a201656ba74fa6e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.8
@@ -5125,6 +5159,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BridgePlank (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 5585210789981742321, guid: b938b45c1d527fe41a201656ba74fa6e, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: ee00b6d9aff693f4399b3052f102ea81, type: 2}
     - target: {fileID: 7006580188936527605, guid: b938b45c1d527fe41a201656ba74fa6e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.2
@@ -5453,6 +5491,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BridgePlank (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5585210789981742321, guid: b938b45c1d527fe41a201656ba74fa6e, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: ee00b6d9aff693f4399b3052f102ea81, type: 2}
     - target: {fileID: 7006580188936527605, guid: b938b45c1d527fe41a201656ba74fa6e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.3999996
