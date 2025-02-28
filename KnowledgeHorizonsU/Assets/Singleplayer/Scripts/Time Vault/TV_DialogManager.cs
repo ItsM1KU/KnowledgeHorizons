@@ -12,6 +12,8 @@ public class TV_DialogManager : MonoBehaviour
     [SerializeField] GameObject dialogBox;
     [SerializeField] TextMeshProUGUI dialogText;
 
+
+    public bool isPresenting;
     private void Awake()
     {
         if (Instance == null)
@@ -28,6 +30,7 @@ public class TV_DialogManager : MonoBehaviour
 
     public IEnumerator StartDialog(List<string> dialog)
     {
+        isPresenting = true;
         dialogText.text = "";
         dialogBox.SetActive(true);
 
@@ -38,6 +41,7 @@ public class TV_DialogManager : MonoBehaviour
             yield return new WaitForSeconds(1f);
         }
         yield return new WaitForSeconds(1f);
+        isPresenting = false;
         dialogBox.SetActive(false);
 
     }
@@ -47,7 +51,7 @@ public class TV_DialogManager : MonoBehaviour
         foreach (char letter in sentence.ToCharArray())
         {
             dialogText.text += letter;
-            yield return new WaitForSeconds(1/30f);
+            yield return new WaitForSeconds(1/15f);
         }
     }
 }
