@@ -76,3 +76,5 @@ public class GameManagerr : MonoBehaviour
         return "No Reaction!";
     }
 }
+
+
