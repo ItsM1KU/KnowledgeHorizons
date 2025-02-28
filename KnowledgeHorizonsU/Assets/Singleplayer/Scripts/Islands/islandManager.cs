@@ -13,6 +13,8 @@ public class islandManager : MonoBehaviour
     //[SerializeField] Button mathButton;
 
     [SerializeField] GameObject mathPanel;
+    [SerializeField] GameObject sciencePanel;
+    [SerializeField] GameObject socialPanel;
 
     private void Awake()
     {
@@ -32,6 +34,27 @@ public class islandManager : MonoBehaviour
         mathPanel.SetActive(false);
     }
 
+    public void openSciencePanel()
+    {
+        sciencePanel.SetActive(true);
+    }
+
+    public void closeSciencePanel()
+    {
+        sciencePanel.SetActive(false);
+    }
+
+    public void openSocialPanel()
+    {
+        socialPanel.SetActive(true);
+    }
+
+    public void closeSocialPanel()
+    {
+        socialPanel.SetActive(false);
+    }
+
+
     public void playMM()
     {
         SceneManager.LoadScene("MM_gamescene");
@@ -47,11 +70,24 @@ public class islandManager : MonoBehaviour
         SceneManager.LoadScene("BP_gamescene");
     }
 
+    public void playFC()
+    {
+        SceneManager.LoadScene("FC_gamescene");
+    }
+
+    public void playFB()
+    {
+        SceneManager.LoadScene("FB_gamescene");
+    }
+
+    public void playTV()
+    {
+        SceneManager.LoadScene("TV_gamescene");
+    }
 
 
 
 
-    
 
 
 

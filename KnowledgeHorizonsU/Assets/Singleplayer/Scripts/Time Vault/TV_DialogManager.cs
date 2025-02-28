@@ -24,7 +24,7 @@ public class TV_DialogManager : MonoBehaviour
 
     private void Start()
     {
-        //StartCoroutine(StartDialog(dialogA));
+        StartCoroutine(StartDialog(dialogA));
     }
 
 

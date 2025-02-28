@@ -2,7 +2,9 @@ using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class FC_GameManager : MonoBehaviour
 {
@@ -34,6 +36,10 @@ public class FC_GameManager : MonoBehaviour
     
     private List<GameObject> spawnedAnimals = new List<GameObject>();
 
+
+    [SerializeField] GameObject responsePanel;
+    [SerializeField] TMP_Text responseText;
+
     private void Awake()
     {
         if (instance == null)
@@ -54,6 +60,14 @@ public class FC_GameManager : MonoBehaviour
     {
         SpawnFirstSet();
         //ActivateSlots();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R)) 
+        {
+            SceneManager.LoadScene("Islands");
+        }
     }
 
     private void PickRound()
@@ -244,24 +258,27 @@ public class FC_GameManager : MonoBehaviour
                 if (currentSlots[i].transform.GetChild(0).GetComponent<FC_AnimalInfo>().AnimalID == AnswerSet[i])
                 {
                     Debug.Log("Correct");
+                    
                     currentPlace++;
                 }
                 else
                 {
                     Debug.Log("Incorrect");
+                    
                 }
             }
             if (currentPlace >= AnswerSet.Length)
             {
                 Debug.Log("You have completed the food chain");
-                currentRound++;
-                PickRound();
+                
+                StartCoroutine(startNextRound());
 
             }
             else
             {
                 Debug.Log("You have " + currentPlace + " Correct");
-                
+                StartCoroutine(showResponse("You have " + currentPlace + " Correct"));
+
             }
         }
         else
@@ -333,6 +350,22 @@ public class FC_GameManager : MonoBehaviour
         {
             Destroy(animal);
         }
+    }
+
+    public IEnumerator showResponse(string response)
+    {
+        responsePanel.SetActive(true);
+        responseText.text = response;
+        yield return new WaitForSeconds(2);
+        responsePanel.SetActive(false);
+    }
+
+    public IEnumerator startNextRound()
+    {
+        yield return showResponse("You have completed the food chain");
+        //yield return new WaitForSeconds(1);
+        currentRound++;
+        PickRound();
     }
 
 }

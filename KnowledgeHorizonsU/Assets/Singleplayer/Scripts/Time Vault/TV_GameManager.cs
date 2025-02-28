@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class TV_GameManager : MonoBehaviour
@@ -49,6 +50,11 @@ public class TV_GameManager : MonoBehaviour
                 Debug.Log("Answer the question");
                 StartCoroutine(DoorDialog());
             }
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene("Islands");
         }
     }
 
@@ -105,12 +111,16 @@ public class TV_GameManager : MonoBehaviour
     {
         QuestionUI.SetActive(false);
         yield return TV_DialogManager.Instance.StartDialog(AnswerDialog);
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene("Islands");
     }
 
     public IEnumerator wrongAnswer()
     {
         QuestionUI.SetActive(false);
         yield return TV_DialogManager.Instance.StartDialog(WrongDialog);
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene("Islands");
     }
 
 
