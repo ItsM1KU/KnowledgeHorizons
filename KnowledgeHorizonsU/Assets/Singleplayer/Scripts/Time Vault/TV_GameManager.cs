@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class TV_GameManager : MonoBehaviour
 {
     public static TV_GameManager Instance;
+    [SerializeField] Transform playerTransform;
 
     // Artifact Details UI
     [SerializeField] GameObject artifactUI;
@@ -15,11 +16,35 @@ public class TV_GameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI artifactDescription;
 
 
+    //UI
+    [SerializeField] InputField answerInput;
+    [SerializeField] GameObject QuestionUI;
+ 
+    //Dialogs 
+    [SerializeField] List<string> QuestionDialog;
+    [SerializeField] List<string> AnswerDialog;
+    [SerializeField] List<string> WrongDialog;
+
+    [SerializeField] LayerMask DoorLayer;
+
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
+        }
+    }
+
+    private void Update()
+    {
+        if (TV_InputManager.Instance.isInteracting)
+        {
+            Debug.Log("this works");
+            if (Physics2D.OverlapCircle(playerTransform.position, 0.5f, DoorLayer))
+            {
+                Debug.Log("Answer the question");
+                StartCoroutine(DoorDialog());
+            }
         }
     }
 
@@ -42,5 +67,10 @@ public class TV_GameManager : MonoBehaviour
     public void CloseArtifactUI()
     {
         artifactUI.SetActive(false);
+    }
+
+    public IEnumerator DoorDialog()
+    {
+        yield return TV_DialogManager.Instance.StartDialog(QuestionDialog);
     }
 }

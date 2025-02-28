@@ -22,7 +22,7 @@ public class TV_DialogManager : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(StartDialog(dialogA));
+        //StartCoroutine(StartDialog(dialogA));
     }
 
 
@@ -37,7 +37,7 @@ public class TV_DialogManager : MonoBehaviour
             yield return typeDialog(dialog[i]);
             yield return new WaitForSeconds(1f);
         }
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(1f);
         dialogBox.SetActive(false);
 
     }
