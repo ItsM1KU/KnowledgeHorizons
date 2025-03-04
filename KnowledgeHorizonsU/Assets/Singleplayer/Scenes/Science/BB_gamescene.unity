@@ -532,6 +532,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSupportedWeight: 30
   collapseForceMultiplier: 1
+  maxCollapseForce: 20
 --- !u!1 &283539029
 GameObject:
   m_ObjectHideFlags: 0
@@ -672,6 +673,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSupportedWeight: 30
   collapseForceMultiplier: 1
+  maxCollapseForce: 20
 --- !u!1 &364721019
 GameObject:
   m_ObjectHideFlags: 0
@@ -1232,6 +1234,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSupportedWeight: 20
   collapseForceMultiplier: 1
+  maxCollapseForce: 20
 --- !u!1001 &533672191
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2219,6 +2222,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSupportedWeight: 20
   collapseForceMultiplier: 1
+  maxCollapseForce: 20
 --- !u!1 &941340218
 GameObject:
   m_ObjectHideFlags: 0
@@ -3014,6 +3018,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSupportedWeight: 20
   collapseForceMultiplier: 1
+  maxCollapseForce: 20
 --- !u!1 &1342508239 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3656256356613620744, guid: b938b45c1d527fe41a201656ba74fa6e, type: 3}
@@ -3086,6 +3091,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSupportedWeight: 10
   collapseForceMultiplier: 1
+  maxCollapseForce: 20
 --- !u!1 &1396019778
 GameObject:
   m_ObjectHideFlags: 0
@@ -3416,6 +3422,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSupportedWeight: 10
   collapseForceMultiplier: 1
+  maxCollapseForce: 20
 --- !u!1001 &1471593473
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3822,7 +3829,7 @@ Transform:
   m_GameObject: {fileID: 1540317740}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.32, y: 1.69, z: 0}
+  m_LocalPosition: {x: 13.46, y: 1.69, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3882,6 +3889,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSupportedWeight: 10
   collapseForceMultiplier: 1
+  maxCollapseForce: 20
 --- !u!1 &1571687517
 GameObject:
   m_ObjectHideFlags: 0
@@ -4026,6 +4034,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSupportedWeight: 10
   collapseForceMultiplier: 1
+  maxCollapseForce: 20
 --- !u!1 &1606285194
 GameObject:
   m_ObjectHideFlags: 0
@@ -4170,6 +4179,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSupportedWeight: 20
   collapseForceMultiplier: 1
+  maxCollapseForce: 20
 --- !u!1 &1814335484
 GameObject:
   m_ObjectHideFlags: 0
@@ -5262,6 +5272,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSupportedWeight: 10
   collapseForceMultiplier: 1
+  maxCollapseForce: 20
 --- !u!1 &2065334803
 GameObject:
   m_ObjectHideFlags: 0

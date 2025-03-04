@@ -3,7 +3,7 @@ using TMPro;
 
 public class BB_VehicleWeightDisplay : MonoBehaviour
 {
-    public TMP_Text weightText; // Assign your TextMeshPro UI Text in the Inspector
+    public TMP_Text weightText;
 
     public void UpdateVehicleWeight(float weight)
     {

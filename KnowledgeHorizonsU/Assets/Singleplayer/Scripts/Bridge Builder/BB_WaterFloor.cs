@@ -9,8 +9,8 @@ public class BB_WaterFloor : MonoBehaviour
             Rigidbody2D rb = collision.GetComponent<Rigidbody2D>();
             if (rb != null)
             {
-                rb.velocity = Vector2.zero; // Stops movement
-                rb.gravityScale = 0f; // Prevents further sinking
+                rb.velocity = Vector2.zero; 
+                rb.gravityScale = 0f; 
             }
         }
     }

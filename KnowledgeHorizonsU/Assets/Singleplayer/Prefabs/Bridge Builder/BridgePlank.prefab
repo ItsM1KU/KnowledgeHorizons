@@ -95,7 +95,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3656256356613620744}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -112,7 +112,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!61 &5585210789981742321
 BoxCollider2D:
@@ -123,7 +123,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 3656256356613620744}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: ee00b6d9aff693f4399b3052f102ea81, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -168,7 +168,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 3656256356613620744}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b995f7ab329b08e43ba49432d0f1e94c, type: 3}
+  m_Script: {fileID: 11500000, guid: 88ae97b575db7a042a7e9bd83972b152, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plankMass: 50
+  maxSupportedWeight: 10
+  collapseForceMultiplier: 0.5
+  maxCollapseForce: 2
