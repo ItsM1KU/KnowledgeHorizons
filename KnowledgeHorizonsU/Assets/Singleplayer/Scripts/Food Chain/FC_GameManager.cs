@@ -365,6 +365,10 @@ public class FC_GameManager : MonoBehaviour
         yield return showResponse("You have completed the food chain");
         //yield return new WaitForSeconds(1);
         currentRound++;
+        if(currentRound >= 6)
+        {
+            Debug.Log("Game Over");
+        }
         PickRound();
     }
 

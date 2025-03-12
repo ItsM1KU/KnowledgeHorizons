@@ -4,12 +4,14 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class FC_dragNdrop : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler, IPointerDownHandler
+public class FC_dragNdrop : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
 {
     private RectTransform objRect;
     [SerializeField] Canvas _canvas;
+    [SerializeField] FC_AnimalInfo animalInfo;
     private CanvasGroup canvasgrp;
 
+    [SerializeField] GameObject animalNameText;
 
     private Transform orgTransform;
     private void Awake()
@@ -102,4 +104,13 @@ public class FC_dragNdrop : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
         objRect.localPosition = newpos;
     }
 
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        animalNameText.SetActive(true);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        animalNameText.SetActive(false);
+    }
 }
