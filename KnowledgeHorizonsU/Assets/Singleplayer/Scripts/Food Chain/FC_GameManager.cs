@@ -5,6 +5,8 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
+using UnityEngine.UI;
 
 public class FC_GameManager : MonoBehaviour
 {
@@ -40,6 +42,12 @@ public class FC_GameManager : MonoBehaviour
     [SerializeField] GameObject responsePanel;
     [SerializeField] TMP_Text responseText;
 
+
+    //Testing Animations
+    [SerializeField] GameObject A1;
+    [SerializeField] GameObject A2;
+    [SerializeField] GameObject A3;
+
     private void Awake()
     {
         if (instance == null)
@@ -58,8 +66,10 @@ public class FC_GameManager : MonoBehaviour
 
     private void Start()
     {
-        SpawnFirstSet();
+        //SpawnFirstSet();
         //ActivateSlots();
+
+        StartCoroutine(AnimalSubmitAnimation());
     }
 
     private void Update()
@@ -367,9 +377,28 @@ public class FC_GameManager : MonoBehaviour
         currentRound++;
         if(currentRound >= 6)
         {
-            Debug.Log("Game Over");
+            Debug.Log("Game Over"); 
         }
         PickRound();
     }
 
+
+    private IEnumerator AnimalSubmitAnimation()
+    {
+        animalAnimation(A1, A2);
+        yield return new WaitForSeconds(1.5f);
+        animalAnimation(A2, A3);
+
+    }
+
+    private void animalAnimation(GameObject animal1, GameObject animal2)
+    {
+        Image animal1I = animal1.GetComponent<Image>();
+        Image animal2I = animal2.GetComponent<Image>();
+
+        var sequence = DOTween.Sequence();
+        sequence.Append(animal2.transform.DOMove(animal1.transform.position, 1.5f));
+        sequence.Append(animal2.transform.DOScale(new Vector3(2.5f, 2.5f, 2.5f), 0.6f));
+        sequence.Join(animal1I.DOFade(0, 0.6f));
+    }
 }
