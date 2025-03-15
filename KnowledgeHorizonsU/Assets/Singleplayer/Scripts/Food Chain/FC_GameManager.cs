@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
 using UnityEngine.UI;
+using UnityEditorInternal.VR;
 
 public class FC_GameManager : MonoBehaviour
 {
@@ -42,11 +43,8 @@ public class FC_GameManager : MonoBehaviour
     [SerializeField] GameObject responsePanel;
     [SerializeField] TMP_Text responseText;
 
+    [SerializeField] GameObject submitButton;
 
-    //Testing Animations
-    [SerializeField] GameObject A1;
-    [SerializeField] GameObject A2;
-    [SerializeField] GameObject A3;
 
     private void Awake()
     {
@@ -66,10 +64,8 @@ public class FC_GameManager : MonoBehaviour
 
     private void Start()
     {
-        //SpawnFirstSet();
+        SpawnFirstSet();
         //ActivateSlots();
-
-        StartCoroutine(AnimalSubmitAnimation());
     }
 
     private void Update()
@@ -155,6 +151,7 @@ public class FC_GameManager : MonoBehaviour
                 spawnedAnimals.Add(go);
             }
         }
+        submitButton.SetActive(true);
     }
 
     private void SpawnThirdSet()
@@ -182,6 +179,7 @@ public class FC_GameManager : MonoBehaviour
                 spawnedAnimals.Add(go);
             }
         }
+        submitButton.SetActive(true);
     }
 
     private void SpawnFourthSet()
@@ -209,6 +207,7 @@ public class FC_GameManager : MonoBehaviour
                 spawnedAnimals.Add(go);
             }
         }
+        submitButton.SetActive(true);
     }
 
     private void SpawnFifthSet()
@@ -236,14 +235,15 @@ public class FC_GameManager : MonoBehaviour
                 spawnedAnimals.Add(go);
             }
         }
+        submitButton.SetActive(true);
     }
 
 
 
     public void submit()
     {
-
-        if(currentRound > 5)
+        
+        if (currentRound > 5)
         {
             Debug.Log("Game Over");
         }
@@ -262,9 +262,13 @@ public class FC_GameManager : MonoBehaviour
 
         if (areOccupied)
         {
+            submitButton.SetActive(false);
             currentPlace = 0;
+            List<GameObject> placedAnimals = new List<GameObject>();
             for (int i = 0; i < AnswerSet.Length; i++)
             {
+                GameObject placedAnimal = currentSlots[i].transform.GetChild(0).gameObject;
+                placedAnimals.Add(placedAnimal);
                 if (currentSlots[i].transform.GetChild(0).GetComponent<FC_AnimalInfo>().AnimalID == AnswerSet[i])
                 {
                     Debug.Log("Correct");
@@ -281,12 +285,14 @@ public class FC_GameManager : MonoBehaviour
             {
                 Debug.Log("You have completed the food chain");
                 
-                StartCoroutine(startNextRound());
+                StartCoroutine(AnimalSubmitAnimation(placedAnimals));
 
             }
             else
             {
+
                 Debug.Log("You have " + currentPlace + " Correct");
+                submitButton.SetActive(true);
                 StartCoroutine(showResponse("You have " + currentPlace + " Correct"));
 
             }
@@ -380,25 +386,38 @@ public class FC_GameManager : MonoBehaviour
             Debug.Log("Game Over"); 
         }
         PickRound();
+        
     }
 
 
-    private IEnumerator AnimalSubmitAnimation()
+    private IEnumerator AnimalSubmitAnimation(List<GameObject> placedAnimals)
     {
-        animalAnimation(A1, A2);
-        yield return new WaitForSeconds(1.5f);
-        animalAnimation(A2, A3);
+        for (int i = 0; i < placedAnimals.Count - 1; i++) 
+        {
+            animalAnimation(placedAnimals[i], placedAnimals[i+1]);
+            yield return new WaitForSeconds(2.5f);
+        }
 
+        yield return new WaitForSeconds(0.5f);
+
+        StartCoroutine(startNextRound());
     }
 
-    private void animalAnimation(GameObject animal1, GameObject animal2)
+    private void animalAnimation(GameObject prey, GameObject predator)
     {
-        Image animal1I = animal1.GetComponent<Image>();
-        Image animal2I = animal2.GetComponent<Image>();
+        Image preyImage = prey.GetComponent<Image>();
+        Image predatorImage = predator.GetComponent<Image>();
 
         var sequence = DOTween.Sequence();
-        sequence.Append(animal2.transform.DOMove(animal1.transform.position, 1.5f));
-        sequence.Append(animal2.transform.DOScale(new Vector3(2.5f, 2.5f, 2.5f), 0.6f));
-        sequence.Join(animal1I.DOFade(0, 0.6f));
+
+        sequence.Append(prey.transform.DOShakePosition(0.5f, 5, 10, 90, false, true));
+        sequence.Append(predator.transform.DOMove(prey.transform.position, 1f).SetEase(Ease.InOutQuad));
+        sequence.Join(predator.transform.DOScale(new Vector3(2.5f, 2.5f, 2.5f), 1f));
+        sequence.Append(prey.transform.DOScale(Vector3.zero, 0.5f));
+        sequence.Join(preyImage.DOFade(0, 0.5f));
+        sequence.Append(predator.transform.DOScale(new Vector3(2f, 2f, 2f), 0.5f).SetEase(Ease.OutBounce));
+        sequence.Join(predatorImage.DOColor(Color.red, 0.1f));
+        sequence.Append(predatorImage.DOColor(Color.white, 0.1f));
+
     }
 }
