@@ -48,8 +48,8 @@ public class FC_dragNdrop : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
     public void OnDrag(PointerEventData eventData)
     {
         //Debug.Log("OnDragging");
-        
-        objRect.anchoredPosition += eventData.delta;
+
+        objRect.anchoredPosition += eventData.delta / _canvas.scaleFactor; 
         clamptoCanvas();
     }
 
@@ -89,19 +89,20 @@ public class FC_dragNdrop : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
 
     public void clamptoCanvas()
     {
-        if(transform.parent == _canvas.transform)
-        {
-            return;
-        }
-        Vector2 newpos = objRect.localPosition;
+        RectTransform canvasRect = _canvas.GetComponent<RectTransform>();
 
-        Vector3 minPos = _canvas.GetComponent<RectTransform>().rect.min - objRect.rect.min;
-        Vector3 maxPos = _canvas.GetComponent<RectTransform>().rect.max - objRect.rect.max;
+        Vector3[] corners = new Vector3[4];
+        canvasRect.GetWorldCorners(corners);
 
-        newpos.x = Mathf.Clamp(newpos.x, minPos.x, maxPos.x);
-        newpos.y = Mathf.Clamp(newpos.y, minPos.y, maxPos.y);
+        Vector3 minCanvas = corners[0]; 
+        Vector3 maxCanvas = corners[2]; 
 
-        objRect.localPosition = newpos;
+        Vector3 newPos = objRect.position;
+
+        newPos.x = Mathf.Clamp(newPos.x, minCanvas.x + (objRect.rect.width * 0.5f), maxCanvas.x - (objRect.rect.width * 0.5f));
+        newPos.y = Mathf.Clamp(newPos.y, minCanvas.y + (objRect.rect.height * 0.5f), maxCanvas.y - (objRect.rect.height * 0.5f));
+
+        objRect.position = newPos;
     }
 
     public void OnPointerEnter(PointerEventData eventData)

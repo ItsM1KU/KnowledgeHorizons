@@ -35,17 +35,22 @@ public class FC_GameManager : MonoBehaviour
 
 
     private int currentRound = 0;
-
+    private int score;
     
     private List<GameObject> spawnedAnimals = new List<GameObject>();
 
 
     [SerializeField] GameObject responsePanel;
     [SerializeField] TMP_Text responseText;
+    [SerializeField] TMP_Text scoreText;
+
 
     [SerializeField] GameObject submitButton;
+    [SerializeField] AudioSource chompSound;
 
-
+    [SerializeField] Text finalScoreText;
+    [SerializeField] GameObject gameOverMenu;
+    [SerializeField] GameObject menuManager;
     private void Awake()
     {
         if (instance == null)
@@ -54,6 +59,7 @@ public class FC_GameManager : MonoBehaviour
         }
 
         currentRound = 0;
+        score = 0;
 
         slotsPerRound.Add(slotsA);
         slotsPerRound.Add(slotsB);
@@ -94,6 +100,9 @@ public class FC_GameManager : MonoBehaviour
                 break;
             case 4:
                 StartCoroutine(FifthRound());
+                break;
+            case 5:
+                StartCoroutine(endgame());
                 break;
             default:
                 Debug.Log("Game Over");
@@ -245,7 +254,7 @@ public class FC_GameManager : MonoBehaviour
         
         if (currentRound > 5)
         {
-            Debug.Log("Game Over");
+            StartCoroutine(endgame());
         }
 
         GameObject[] currentSlots = slotsPerRound[currentRound];
@@ -284,7 +293,8 @@ public class FC_GameManager : MonoBehaviour
             if (currentPlace >= AnswerSet.Length)
             {
                 Debug.Log("You have completed the food chain");
-                
+                score += AnswerSet.Length * 10;
+                scoreText.text = score.ToString();
                 StartCoroutine(AnimalSubmitAnimation(placedAnimals));
 
             }
@@ -292,14 +302,17 @@ public class FC_GameManager : MonoBehaviour
             {
 
                 Debug.Log("You have " + currentPlace + " Correct");
-                submitButton.SetActive(true);
+                //submitButton.SetActive(true);
+                int wrongAnswers = AnswerSet.Length - currentPlace;
+                score -= (currentPlace * 5);
+                scoreText.text = score.ToString();
                 StartCoroutine(showResponse("You have " + currentPlace + " Correct"));
 
             }
         }
         else
         {
-            Debug.Log("CANT SUBMIT");
+           StartCoroutine(showResponse("Please fill all the slots."));
         }
     }
 
@@ -370,15 +383,22 @@ public class FC_GameManager : MonoBehaviour
 
     public IEnumerator showResponse(string response)
     {
+        
         responsePanel.SetActive(true);
         responseText.text = response;
         yield return new WaitForSeconds(2);
         responsePanel.SetActive(false);
+
+        yield return new WaitForSeconds(4f);
+        submitButton.SetActive(true);
     }
 
     public IEnumerator startNextRound()
     {
-        yield return showResponse("You have completed the food chain");
+        responsePanel.SetActive(true);
+        responseText.text = "You have completed the food chain";
+        yield return new WaitForSeconds(1);
+        responsePanel.SetActive(false);
         //yield return new WaitForSeconds(1);
         currentRound++;
         if(currentRound >= 6)
@@ -415,9 +435,30 @@ public class FC_GameManager : MonoBehaviour
         sequence.Join(predator.transform.DOScale(new Vector3(2.5f, 2.5f, 2.5f), 1f));
         sequence.Append(prey.transform.DOScale(Vector3.zero, 0.5f));
         sequence.Join(preyImage.DOFade(0, 0.5f));
+        //chompSound.Play();
         sequence.Append(predator.transform.DOScale(new Vector3(2f, 2f, 2f), 0.5f).SetEase(Ease.OutBounce));
         sequence.Join(predatorImage.DOColor(Color.red, 0.1f));
         sequence.Append(predatorImage.DOColor(Color.white, 0.1f));
+    }
 
+    private IEnumerator endgame()
+    {
+        menuManager.SetActive(false);
+        responsePanel.SetActive(true);
+        responseText.text = "You have completed all the given food chains";
+        yield return new WaitForSeconds(1);
+        responsePanel.SetActive(false);
+        finalScoreText.text = "Final Score: " + score;
+        gameOverMenu.SetActive(true);
+    }
+
+    public void restart()
+    {
+        SceneManager.LoadScene("FC_gamescene");
+    }
+
+    public void Islands()
+    {
+        SceneManager.LoadScene("Islands");
     }
 }
