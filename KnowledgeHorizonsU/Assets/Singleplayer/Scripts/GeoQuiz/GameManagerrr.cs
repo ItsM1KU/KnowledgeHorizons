@@ -25,13 +25,18 @@ public class GameManagerrr : MonoBehaviour
     public TextMeshProUGUI europeText;
     public TextMeshProUGUI americasText;
 
+    public GameObject asiaButton;
+    public GameObject europeButton;
+    public GameObject americasButton;
+    public GameObject resetButton;
+
     [Header("Question UI")]
     public TextMeshProUGUI questionText;
     public TextMeshProUGUI timerText;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI finalScoreText;
-    
-    public Image[] answerButtons; // Image GameObjects acting as buttons
+
+    public Image[] answerButtons;
 
     [Header("Quiz Data")]
     public List<Question> asiaQuestions;
@@ -44,17 +49,24 @@ public class GameManagerrr : MonoBehaviour
     private float timer;
     private bool isGameActive = false;
 
+    private int scoreFactor;
+    private float timePerQuestion;
+
     private void Start()
     {
         quizPanel.SetActive(false);
         finalScorePanel.SetActive(false);
         continentSelectionPanel.SetActive(true);
 
-        // Set up the continent selection screen
-        continentQuestionText.text = "Which continent do you want to choose?";
+        // Set correct text for continent buttons
         asiaText.text = "Asia";
         europeText.text = "Europe";
         americasText.text = "Americas";
+
+        resetButton.SetActive(false); // Hide Reset at the start
+        finalScoreText.gameObject.SetActive(false); // Hide Final Score at the start
+
+        scoreText.text = "Score: 0";
     }
 
     public void SelectContinent(string continent)
@@ -65,22 +77,27 @@ public class GameManagerrr : MonoBehaviour
         if (continent == "Asia")
         {
             currentQuestions = new List<Question>(asiaQuestions);
-            timer = 20f;
+            timePerQuestion = 20f;
+            scoreFactor = 10;
         }
         else if (continent == "Europe")
         {
             currentQuestions = new List<Question>(europeQuestions);
-            timer = 25f;
+            timePerQuestion = 25f;
+            scoreFactor = 15;
         }
         else if (continent == "Americas")
         {
             currentQuestions = new List<Question>(americasQuestions);
-            timer = 30f;
+            timePerQuestion = 30f;
+            scoreFactor = 20;
         }
 
         currentQuestionIndex = 0;
         score = 0;
+        scoreText.text = "Score: 0";
         isGameActive = true;
+        timer = timePerQuestion;
         ShowNextQuestion();
     }
 
@@ -104,6 +121,7 @@ public class GameManagerrr : MonoBehaviour
             }
         }
 
+        timer = timePerQuestion;
         timerText.text = "Time: " + timer.ToString("F1");
     }
 
@@ -115,7 +133,8 @@ public class GameManagerrr : MonoBehaviour
 
         if (index == q.correctAnswer)
         {
-            score += 10;
+            score += scoreFactor;
+            scoreText.text = "Score: " + score;
         }
 
         currentQuestionIndex++;
@@ -140,29 +159,48 @@ public class GameManagerrr : MonoBehaviour
         isGameActive = false;
         quizPanel.SetActive(false);
         finalScorePanel.SetActive(true);
+
+        // Hide all continent selection UI
+        continentQuestionText.gameObject.SetActive(false);
+        asiaButton.SetActive(false);
+        europeButton.SetActive(false);
+        americasButton.SetActive(false);
+
+        // Show only final score and reset button
+        finalScoreText.gameObject.SetActive(true);
         finalScoreText.text = "Final Score: " + score;
+        resetButton.SetActive(true);
     }
 
     public void RestartGame()
     {
-        finalScorePanel.SetActive(false);
-        quizPanel.SetActive(false);
-        continentSelectionPanel.SetActive(true);
-
+        isGameActive = false;
+        currentQuestions = null;
         currentQuestionIndex = 0;
         score = 0;
         timer = 0f;
-        isGameActive = false;
-        
-        currentQuestions = null;
+
+        quizPanel.SetActive(false);
+        finalScorePanel.SetActive(false);
+        continentSelectionPanel.SetActive(true);
+
         questionText.text = "";
         timerText.text = "Time: 0";
         scoreText.text = "Score: 0";
+        finalScoreText.text = "";
 
-        // Reset continent selection text
-        continentQuestionText.text = "Which continent do you want to choose?";
+        // Restore continent selection UI
+        continentQuestionText.gameObject.SetActive(true);
+        asiaButton.SetActive(true);
+        europeButton.SetActive(true);
+        americasButton.SetActive(true);
+
+        // Restore text for continent selection
         asiaText.text = "Asia";
         europeText.text = "Europe";
         americasText.text = "Americas";
+
+        resetButton.SetActive(false);
+        finalScoreText.gameObject.SetActive(false);
     }
 }

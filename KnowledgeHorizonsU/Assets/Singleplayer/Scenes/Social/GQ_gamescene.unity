@@ -2295,7 +2295,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1355806361}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2117273526}
+        m_TargetAssemblyTypeName: GameManagerrr, Assembly-CSharp
+        m_MethodName: RestartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1355806361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3366,6 +3378,10 @@ MonoBehaviour:
   asiaText: {fileID: 1484307644}
   europeText: {fileID: 1610908970}
   americasText: {fileID: 1019911815}
+  asiaButton: {fileID: 705006321}
+  europeButton: {fileID: 434810783}
+  americasButton: {fileID: 1597901848}
+  resetButton: {fileID: 1355806358}
   questionText: {fileID: 2118759083}
   timerText: {fileID: 563821164}
   scoreText: {fileID: 248448613}
