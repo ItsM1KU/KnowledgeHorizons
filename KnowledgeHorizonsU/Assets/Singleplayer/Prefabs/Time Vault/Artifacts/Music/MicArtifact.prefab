@@ -145,11 +145,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   artifactName: Microphone
-  artifactDescription: 'As television and radio became more common in households,
-    microphones like this allowed singers to reach millions of people worldwide.
-    Unlike older microphones used in jazz clubs, these were designed for live performances
-    on big stages, where energetic singers would move and dance while belting out
-    lyrics. '
+  artifactDescription: This type of microphone was used by some of the most legendary
+    performers of the time, including Elvis Presley. When he stepped onto the stage,
+    gripping the mic stand and swinging his hips, fans screamed in excitement. Songs
+    like 'Hound Dog' and 'Jailhouse Rock' became worldwide hits, and his energetic
+    performances set the standard for rock concerts.
   artifactSprite: {fileID: 21300000, guid: 17312991c70d9564b853a4b28afe8872, type: 3}
 --- !u!1 &3940197677605716807
 GameObject:

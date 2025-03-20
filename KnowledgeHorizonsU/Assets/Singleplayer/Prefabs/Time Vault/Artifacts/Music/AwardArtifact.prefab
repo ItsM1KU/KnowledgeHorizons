@@ -145,11 +145,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   artifactName: Award
-  artifactDescription: Music was always a popular form of entertainment, but it was
-    during this time that it truly became a global phenomenon. For the first time,
-    major awards were introduced to recognize musical achievements. These trophies
-    symbolized how this once-controversial genre had gone from an underground movement
-    to a mainstream cultural force, changing the music industry forever.
+  artifactDescription: During this time, music awards became more prestigious as
+    rock & roll grew into a massive industry. The Grammy Awards recognized legends
+    like Elvis Presley and Ray Charles. Meanwhile, TV shows like The Ed Sullivan
+    Show introduced these new rock stars to millions of viewers. Winning an award
+    in this era meant becoming a household name across the world.
   artifactSprite: {fileID: 21300000, guid: fceb79ac91a1d2d4cb1d86036c78ec11, type: 3}
 --- !u!1 &6831604425581082124
 GameObject:

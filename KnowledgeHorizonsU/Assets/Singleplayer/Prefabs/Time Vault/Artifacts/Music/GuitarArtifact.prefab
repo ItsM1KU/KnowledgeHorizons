@@ -222,8 +222,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   artifactName: Electric Guitar
-  artifactDescription: This sleek, amplified instrument revolutionized music, allowing
-    musicians to create a bold and electrifying sound. With the rise of this new
-    instrument, bands began experimenting with distortion and powerful riffs that
-    would captivate young audiences and define a rebellious new movement in music.
+  artifactDescription: This type of guitar became famous when musicians like Chuck
+    Berry and Buddy Holly used it to create fast, energetic riffs that made crowds
+    go wild. The unique, distorted sound of this guitar can be heard in classics
+    like 'Johnny B. Goode,' one of the most iconic rock songs ever recorded.
   artifactSprite: {fileID: 21300000, guid: 3801d47681bfd3744861fb8755b8a9d6, type: 3}

@@ -145,11 +145,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   artifactName: Harp
-  artifactDescription: Although not commonly associated with the loud, energetic
-    music of this period, the harp was still used in orchestral arrangements and
-    film scores that influenced the evolving music scene. Many musicians of this
-    era were inspired by classical and jazz elements, blending them into their new
-    and exciting sound.
+  artifactDescription: Bands experimenting with different sounds, like The Beach
+    Boys, incorporated string and harp sections into their layered, complex music,
+    especially in later albums like Pet Sounds. The contrast between soft, classical
+    elements and loud electric guitars became a defining trait of some of the greatest
+    rock albums of all time.
   artifactSprite: {fileID: 21300000, guid: b60560694c8076749a40618cb9e36f71, type: 3}
 --- !u!1 &7292234762138108042
 GameObject:

@@ -145,10 +145,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   artifactName: Drum
-  artifactDescription: Before full drum kits became the standard in rock bands, individual
-    drums like this were commonly used in marching bands and orchestral performances.
-    Many of the biggest artists of this time had backgrounds in these styles, incorporating
-    bold, steady beats into their music.
+  artifactDescription: The wild, fast beats of rock & roll needed a strong rhythm,
+    and drummers like Ringo Starr of The Beatles made sure every song had a powerful
+    backbeat. The signature drum sounds in songs like 'Twist and Shout' made people
+    want to dance instantly. Before this era, drums were mostly used in jazz or swing
+    music, but rock drummers brought a whole new level of energy to the stage.
   artifactSprite: {fileID: 21300000, guid: f80cbe128635a22438cfbf7f93fc5903, type: 3}
 --- !u!1 &6093852037861884118
 GameObject:

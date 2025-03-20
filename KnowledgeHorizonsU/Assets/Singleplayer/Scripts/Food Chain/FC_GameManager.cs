@@ -304,7 +304,7 @@ public class FC_GameManager : MonoBehaviour
                 Debug.Log("You have " + currentPlace + " Correct");
                 //submitButton.SetActive(true);
                 int wrongAnswers = AnswerSet.Length - currentPlace;
-                score -= (currentPlace * 5);
+                score -= (wrongAnswers * 5);
                 scoreText.text = score.ToString();
                 StartCoroutine(showResponse("You have " + currentPlace + " Correct"));
 
