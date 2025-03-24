@@ -1217,9 +1217,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2117273526}
+      - m_Target: {fileID: 2117273525}
         m_TargetAssemblyTypeName: GameManagerrr, Assembly-CSharp
-        m_MethodName: SelectContinent
+        m_MethodName: 
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3391,116 +3391,6 @@ MonoBehaviour:
   - {fileID: 963698550}
   - {fileID: 1341793528}
   - {fileID: 63409711}
-  asiaQuestions:
-  - question: Which country is most populated in Asia?
-    answers:
-    - China
-    - India
-    - Russia
-    - Singapore
-    correctAnswer: 1
-  - question: What is the capital of Japan
-    answers:
-    - Seoul
-    - Tokyo
-    - Beijing
-    - Bangkok
-    correctAnswer: 1
-  - question: 'Which country in Asia is known as the "Land of the Rising Sun"? '
-    answers:
-    - China
-    - Singapore
-    - Japan
-    - Korea
-    correctAnswer: 2
-  - question: 'Which country in Asia is known for its "floating markets"? '
-    answers:
-    - Singapore
-    - Malaysia
-    - Thailand
-    - Korea
-    correctAnswer: 2
-  - question: What is Korea's currency called?
-    answers:
-    - Won
-    - One
-    - Dang
-    - Lang
-    correctAnswer: 0
-  europeQuestions:
-  - question: Which treaty officially ended World War I?
-    answers:
-    - Treaty of Paris
-    - Treaty of Berlin
-    - Treaty of Versailles
-    - Treaty of Amsterdam
-    correctAnswer: 2
-  - question: What was the main purpose of the Magna Carta, signed in 1215?
-    answers:
-    - "To expand the king\u2019s power"
-    - To establish the Catholic Church in England
-    - To limit the power of the king and establish rights for nobles
-    - To unify England and France
-    correctAnswer: 2
-  - question: Which European city is home to the headquarters of the European Union?
-    answers:
-    - paris
-    - berlin
-    - brussels
-    - rome
-    correctAnswer: 2
-  - question: Who was the first ruler to unite much of Western Europe after the fall
-      of the Roman Empire?
-    answers:
-    - Julius Caesar
-    - Charlemagne
-    - Napoleon Bonaparte
-    - Shivaji
-    correctAnswer: 1
-  - question: What was the purpose of the Berlin Wall?
-    answers:
-    - To protect Berlin from invasion
-    - To separate Berlin from Germany
-    - To serve as a memorial for World War II
-    - To prevent East Germans from fleeing to West Berlin
-    correctAnswer: 3
-  americasQuestions:
-  - question: Which ancient civilization built the city of Machu Picchu in the Andes
-      Mountains?
-    answers:
-    - The Aztec Civilization
-    - The Maya Civilization
-    - The Inca Civilization
-    - The Olmec Civilization
-    correctAnswer: 2
-  - question: What was the main purpose of the Monroe Doctrine (1823)?
-    answers:
-    - o support European colonization in the Americas
-    - To establish trade relations with Asia
-    - To create a military alliance with Britain
-    - To prevent European interference in the Americas
-    correctAnswer: 3
-  - question: Which country in the Americas has the largest rainforest in the world?
-    answers:
-    - Brazil
-    - Ecuador
-    - Mexico
-    - Argentina
-    correctAnswer: 0
-  - question: The American Civil War (1861-1865) was fought between which two sides?
-    answers:
-    - The Union and the Confederacy
-    - The North and Mexico
-    - The Colonists and the French
-    - The British and the Americans
-    correctAnswer: 0
-  - question: What is the official currency of Argentina?
-    answers:
-    - Real
-    - Dinar
-    - Dollar
-    - Peso
-    correctAnswer: 3
 --- !u!4 &2117273527
 Transform:
   m_ObjectHideFlags: 0
