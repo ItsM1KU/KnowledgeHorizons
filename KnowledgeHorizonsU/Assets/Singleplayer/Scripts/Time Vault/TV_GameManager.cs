@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -9,6 +10,7 @@ public class TV_GameManager : MonoBehaviour
 {
     public static TV_GameManager Instance;
     [SerializeField] Transform playerTransform;
+    [SerializeField] GameObject pauseMenu;
 
     // Artifact Details UI
     [SerializeField] GameObject artifactUI;
@@ -16,8 +18,7 @@ public class TV_GameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI artifactName;
     [SerializeField] TextMeshProUGUI artifactDescription;
 
-    private int correctAnswerMin = 1950;
-    private int correctAnswerMax = 1960;
+    private int[] correctRange = new int[2];
     private int playerAnswer;
 
     //UI
@@ -26,10 +27,30 @@ public class TV_GameManager : MonoBehaviour
  
     //Dialogs 
     [SerializeField] List<string> QuestionDialog;
-    [SerializeField] List<string> AnswerDialog;
+    private List<string> AnswerDialog = new List<string>();
     [SerializeField] List<string> WrongDialog;
 
+    //Dialogs for each Scenario
+    [SerializeField] List<string> MusicDialog;
+    [SerializeField] List<string> SpaceDialog;
+    [SerializeField] List<string> WarDialog;
+
+    //Layer Mask
     [SerializeField] LayerMask DoorLayer;
+
+    //Rando Artifact List
+    [SerializeField] List<GameObject[]> artifactList = new List<GameObject[]>();
+    [SerializeField] GameObject[] musicArtifacts;
+    [SerializeField] GameObject[] spaceArtifacts;
+    [SerializeField] GameObject[] warArtifacts;
+    [SerializeField]
+    List<int[]> artifactYears = new List<int[]>{
+            new int[] { 1950, 1960 },
+            new int[] { 1968, 1969 },
+            new int[] { 1914, 1918 }
+    };
+    [SerializeField] List<List<string>> artifactDialogs = new List<List<string>>();  
+
 
     private void Awake()
     {
@@ -37,7 +58,22 @@ public class TV_GameManager : MonoBehaviour
         {
             Instance = this;
         }
+
+        artifactList.Add(musicArtifacts);
+        artifactList.Add(spaceArtifacts);
+        artifactList.Add(warArtifacts);
+
+        artifactDialogs.Add(MusicDialog);
+        artifactDialogs.Add(SpaceDialog);
+        artifactDialogs.Add(WarDialog);
     }
+
+    private void Start()
+    {
+        setupRoom();
+    }
+
+
 
     private void Update()
     {
@@ -55,6 +91,20 @@ public class TV_GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             SceneManager.LoadScene("Islands");
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (pauseMenu.activeSelf)
+            {
+                pauseMenu.SetActive(false);
+                Time.timeScale = 1;
+            }
+            else
+            {
+                pauseMenu.SetActive(true);
+                Time.timeScale = 0;
+            }
         }
     }
 
@@ -90,7 +140,7 @@ public class TV_GameManager : MonoBehaviour
     {
         if(int.TryParse(AnswerInputField.text, out playerAnswer))
         {
-            if (playerAnswer >= correctAnswerMin && playerAnswer <= correctAnswerMax)
+            if (playerAnswer >= correctRange[0] && playerAnswer <= correctRange[1])
             {
                 Debug.Log("Correct Answer");
                 StartCoroutine(correctAnswer());
@@ -123,5 +173,34 @@ public class TV_GameManager : MonoBehaviour
         SceneManager.LoadScene("Islands");
     }
 
+    private void setupRoom()
+    {
+        int randomIndex = UnityEngine.Random.Range(0, 3);
+        GameObject[] currentArtifactList = artifactList[randomIndex];
+        correctRange = artifactYears[randomIndex];
+        AnswerDialog = artifactDialogs[randomIndex];
+        for (int i = 0; i < currentArtifactList.Length; i++)
+        {
+            currentArtifactList[i].SetActive(true);
+        }
+    }
 
+
+    public void Resume()
+    {
+        pauseMenu.SetActive(false);
+        Time.timeScale = 1;
+    }
+
+    public void restart()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene("TV_gamescene"); 
+    }
+
+    public void Islands()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene("Islands");
+    }
 }

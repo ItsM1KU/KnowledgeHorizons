@@ -32,11 +32,13 @@ public class FC_MenuManager : MonoBehaviour
 
     public void restart()
     {
-        SceneManager.LoadScene("FC_gamescene");
+        Time.timeScale = 1;
+        SceneManager.LoadScene("FC_gamescene");       
     }
 
     public void Islands()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene("Islands");
     }
 

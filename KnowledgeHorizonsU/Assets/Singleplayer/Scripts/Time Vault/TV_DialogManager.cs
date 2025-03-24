@@ -12,7 +12,6 @@ public class TV_DialogManager : MonoBehaviour
     [SerializeField] GameObject dialogBox;
     [SerializeField] TextMeshProUGUI dialogText;
 
-
     public bool isPresenting;
     private void Awake()
     {
