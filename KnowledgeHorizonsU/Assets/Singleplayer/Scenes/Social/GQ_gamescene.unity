@@ -1217,9 +1217,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2117273525}
+      - m_Target: {fileID: 2117273526}
         m_TargetAssemblyTypeName: GameManagerrr, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: SelectContinent
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3391,6 +3391,59 @@ MonoBehaviour:
   - {fileID: 963698550}
   - {fileID: 1341793528}
   - {fileID: 63409711}
+  asiaQuestions:
+  - question: 
+    answers:
+    - 
+    - 
+    - 
+    - 
+    - 
+    correctAnswer: 0
+  - question: 
+    answers: []
+    correctAnswer: 0
+  - question: 
+    answers: []
+    correctAnswer: 0
+  - question: 
+    answers: []
+    correctAnswer: 0
+  - question: 
+    answers: []
+    correctAnswer: 0
+  europeQuestions:
+  - question: 
+    answers: []
+    correctAnswer: 0
+  - question: 
+    answers: []
+    correctAnswer: 0
+  - question: 
+    answers: []
+    correctAnswer: 0
+  - question: 
+    answers: []
+    correctAnswer: 0
+  - question: 
+    answers: []
+    correctAnswer: 0
+  americasQuestions:
+  - question: 
+    answers: []
+    correctAnswer: 0
+  - question: 
+    answers: []
+    correctAnswer: 0
+  - question: 
+    answers: []
+    correctAnswer: 0
+  - question: 
+    answers: []
+    correctAnswer: 0
+  - question: 
+    answers: []
+    correctAnswer: 0
 --- !u!4 &2117273527
 Transform:
   m_ObjectHideFlags: 0
