@@ -10,7 +10,7 @@ public class BB_Buoyancy : MonoBehaviour
 
     [Header("Water Boundaries")]
     public float waterSurfaceY = 0f;
-    public float waterBottomY = -3f; 
+    public float waterBottomY = -3f;
 
     private void OnTriggerStay2D(Collider2D other)
     {
@@ -21,7 +21,7 @@ public class BB_Buoyancy : MonoBehaviour
 
             if (other.gameObject.layer == LayerMask.NameToLayer("CollapsedPlank"))
             {
-                rb.drag = 7f; 
+                rb.drag = 7f;
                 rb.angularDrag = 8f;
             }
 

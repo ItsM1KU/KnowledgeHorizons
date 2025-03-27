@@ -8,6 +8,8 @@ public class BB_VehicleController : MonoBehaviour
     [Header("Vehicle Properties")]
     public float weight = 10f;
 
+    public bool IsGrounded { get; private set; }
+
     void Update()
     {
         transform.Translate(Vector2.right * speed * Time.deltaTime);
