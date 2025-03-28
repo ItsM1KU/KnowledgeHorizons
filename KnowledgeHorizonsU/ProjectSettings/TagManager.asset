@@ -16,6 +16,7 @@ TagManager:
   - Water
   - WaterFloor
   - Artifact
+  - Reactant
   layers:
   - Default
   - TransparentFX
