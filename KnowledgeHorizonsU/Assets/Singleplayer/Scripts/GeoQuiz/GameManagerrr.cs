@@ -24,6 +24,9 @@ public class GameManagerrr : MonoBehaviour
     public TextMeshProUGUI asiaText;
     public TextMeshProUGUI europeText;
     public TextMeshProUGUI americasText;
+    public GameObject asiaButton;
+    public GameObject europeButton;
+    public GameObject americasButton;
 
     [Header("Question UI")]
     public TextMeshProUGUI questionText;
@@ -43,6 +46,9 @@ public class GameManagerrr : MonoBehaviour
     private int score;
     private float timer;
     private bool isGameActive = false;
+    
+    private int scoreFactor; // Unique score adder per continent
+    private float timePerQuestion; // Unique time per question based on continent
 
     private void Start()
     {
@@ -55,6 +61,8 @@ public class GameManagerrr : MonoBehaviour
         asiaText.text = "Asia";
         europeText.text = "Europe";
         americasText.text = "Americas";
+
+        scoreText.text = "Score: 0"; // ✅ Ensure initial score is displayed
     }
 
     public void SelectContinent(string continent)
@@ -65,22 +73,27 @@ public class GameManagerrr : MonoBehaviour
         if (continent == "Asia")
         {
             currentQuestions = new List<Question>(asiaQuestions);
-            timer = 20f;
+            timePerQuestion = 20f;
+            scoreFactor = 10;
         }
         else if (continent == "Europe")
         {
             currentQuestions = new List<Question>(europeQuestions);
-            timer = 25f;
+            timePerQuestion = 25f;
+            scoreFactor = 15;
         }
         else if (continent == "Americas")
         {
             currentQuestions = new List<Question>(americasQuestions);
-            timer = 30f;
+            timePerQuestion = 30f;
+            scoreFactor = 20;
         }
 
         currentQuestionIndex = 0;
         score = 0;
+        scoreText.text = "Score: 0"; // ✅ Ensure score resets when starting a new game
         isGameActive = true;
+        timer = timePerQuestion; // ✅ Reset timer based on continent
         ShowNextQuestion();
     }
 
@@ -104,6 +117,7 @@ public class GameManagerrr : MonoBehaviour
             }
         }
 
+        timer = timePerQuestion; // ✅ Reset timer per question
         timerText.text = "Time: " + timer.ToString("F1");
     }
 
@@ -115,7 +129,8 @@ public class GameManagerrr : MonoBehaviour
 
         if (index == q.correctAnswer)
         {
-            score += 10;
+            score += scoreFactor; // ✅ Add points based on continent
+            scoreText.text = "Score: " + score;
         }
 
         currentQuestionIndex++;
@@ -140,26 +155,47 @@ public class GameManagerrr : MonoBehaviour
         isGameActive = false;
         quizPanel.SetActive(false);
         finalScorePanel.SetActive(true);
-        finalScoreText.text = "Final Score: " + score;
+        finalScoreText.text = "Final Score: " + score; // ✅ Ensure final score is displayed
+
+        // ✅ Hide continent selection elements
+        continentQuestionText.gameObject.SetActive(false);
+        asiaButton.SetActive(false);
+        europeButton.SetActive(false);
+        americasButton.SetActive(false);
     }
 
     public void RestartGame()
     {
-        finalScorePanel.SetActive(false);
-        quizPanel.SetActive(false);
-        continentSelectionPanel.SetActive(true);
-
+        isGameActive = false;
+        currentQuestions = null;
         currentQuestionIndex = 0;
         score = 0;
         timer = 0f;
-        isGameActive = false;
-        
-        currentQuestions = null;
+
+        quizPanel.SetActive(false);
+        finalScorePanel.SetActive(false);
+        continentSelectionPanel.SetActive(true);
+
         questionText.text = "";
         timerText.text = "Time: 0";
-        scoreText.text = "Score: 0";
+        scoreText.text = "Score: 0"; // ✅ Reset score UI properly
+        finalScoreText.text = "";
 
-        // Reset continent selection text
+        foreach (Image button in answerButtons)
+        {
+            TextMeshProUGUI answerText = button.GetComponentInChildren<TextMeshProUGUI>();
+            if (answerText != null)
+            {
+                answerText.text = "";
+            }
+        }
+
+        // ✅ Show continent selection elements again
+        continentQuestionText.gameObject.SetActive(true);
+        asiaButton.SetActive(true);
+        europeButton.SetActive(true);
+        americasButton.SetActive(true);
+
         continentQuestionText.text = "Which continent do you want to choose?";
         asiaText.text = "Asia";
         europeText.text = "Europe";

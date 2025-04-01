@@ -2295,7 +2295,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1355806361}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2117273526}
+        m_TargetAssemblyTypeName: GameManagerrr, Assembly-CSharp
+        m_MethodName: RestartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1355806361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3366,6 +3378,9 @@ MonoBehaviour:
   asiaText: {fileID: 1484307644}
   europeText: {fileID: 1610908970}
   americasText: {fileID: 1019911815}
+  asiaButton: {fileID: 705006321}
+  europeButton: {fileID: 434810783}
+  americasButton: {fileID: 1597901848}
   questionText: {fileID: 2118759083}
   timerText: {fileID: 563821164}
   scoreText: {fileID: 248448613}
@@ -3376,58 +3391,124 @@ MonoBehaviour:
   - {fileID: 1341793528}
   - {fileID: 63409711}
   asiaQuestions:
-  - question: 
+  - question: Which country has the world's largest democracy by population?
     answers:
-    - 
-    - 
-    - 
-    - 
-    - 
-    correctAnswer: 0
-  - question: 
-    answers: []
-    correctAnswer: 0
-  - question: 
-    answers: []
-    correctAnswer: 0
-  - question: 
-    answers: []
-    correctAnswer: 0
-  - question: 
-    answers: []
-    correctAnswer: 0
+    - China
+    - India
+    - Japan
+    - Indonesia
+    correctAnswer: 1
+  - question: Which international organization focuses on economic and political
+      cooperation in Southeast Asia?
+    answers:
+    - BRICKS
+    - OPEC
+    - SAARC
+    - ASEAN
+    correctAnswer: 3
+  - question: Which Chinese emperor first unified China and ordered the construction
+      of the Great Wall?
+    answers:
+    - Emperor Taizong
+    - Emperor Kangxi
+    - Emperor Wu
+    - Emperor Qin Shi Huang
+    correctAnswer: 3
+  - question: The Mongol Empire, under Genghis Khan, used which innovative military
+      strategy to conquer vast territories?
+    answers:
+    - Naval warfare supremacy
+    - 'Blitzkrieg-style armored cavalry  '
+    - Feigned retreats and ambush tactics
+    - Heavy reliance on fortifications
+    correctAnswer: 2
+  - question: Which treaty officially ended the First Opium War between China and
+      Britain, ceding Hong Kong to the British?
+    answers:
+    - Treaty of Tordesillas
+    - Treaty of Portsmouth
+    - Treaty of Nanjing
+    - Treaty of Shimonoseki
+    correctAnswer: 2
   europeQuestions:
-  - question: 
-    answers: []
+  - question: Which European country is known for its parliamentary system and monarchy
+      with King Charles III as its head of state?
+    answers:
+    - France
+    - Spain
+    - Portugal
+    - United Kingdom
+    correctAnswer: 3
+  - question: The European Union (EU) was officially formed by which treaty?
+    answers:
+    - Treaty of Versailles
+    - Treaty of Rome
+    - Treaty of Vienna
+    - Treaty of Maastrict
+    correctAnswer: 3
+  - question: Which empire was dissolved after World War I, leading to the creation
+      of several modern European nations?
+    answers:
+    - Russian Empire
+    - Ottoman Empire
+    - Austro-Hungarian Empire
+    - Holy Roman Empire
+    correctAnswer: 2
+  - question: The Napoleonic Code, a major influence on modern legal systems, was
+      introduced in which year?
+    answers:
+    - 1804
+    - 1806
+    - 1789
+    - 1814
     correctAnswer: 0
-  - question: 
-    answers: []
-    correctAnswer: 0
-  - question: 
-    answers: []
-    correctAnswer: 0
-  - question: 
-    answers: []
-    correctAnswer: 0
-  - question: 
-    answers: []
-    correctAnswer: 0
+  - question: Which 1648 treaties ended the Thirty Years' War and significantly shaped
+      modern European state boundaries?
+    answers:
+    - Treaty of Utrecht
+    - Treaty of Westphalia
+    - Treaty of Verdun
+    - Treaty of Aix-la-Chapelle
+    correctAnswer: 1
   americasQuestions:
-  - question: 
-    answers: []
+  - question: Which country has the oldest written constitution still in use today?
+    answers:
+    - Canada
+    - Mexico
+    - USA
+    - Brazil
+    correctAnswer: 2
+  - question: Which international organization was founded in 1948 to promote cooperation
+      among countries in the Americas?
+    answers:
+    - NATO
+    - OAS
+    - NAFTA
+    - BAFTA
+    correctAnswer: 1
+  - question: Which event marked the start of the American Revolution in 1775?
+    answers:
+    - Signing of the Declaration of Independence
+    - The Boston Tea Party
+    - 'Battles of Lexington and Concord '
+    - The Siege of Yorktown
     correctAnswer: 0
-  - question: 
-    answers: []
-    correctAnswer: 0
-  - question: 
-    answers: []
-    correctAnswer: 0
-  - question: 
-    answers: []
-    correctAnswer: 0
-  - question: 
-    answers: []
-    correctAnswer: 0
+  - question: "Sim\xF3n Bol\xEDvar played a key role in the independence of which
+      South American country?"
+    answers:
+    - Brazil
+    - Argentina
+    - Venezuela
+    - Ecuador
+    correctAnswer: 2
+  - question: Which U.S. Supreme Court case in 1832 ruled that Native American nations
+      were sovereign but was ignored by President Andrew Jackson?
+    answers:
+    - Marbury v. Madison
+    - Dred Scott v. Sandford
+    - Cherokee Nation v. Georgia
+    - Worcester v. Georgia
+    correctAnswer: 3
 --- !u!4 &2117273527
 Transform:
   m_ObjectHideFlags: 0
