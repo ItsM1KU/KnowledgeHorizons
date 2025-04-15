@@ -18,13 +18,8 @@ public class ERT_PlayerController : MonoBehaviour
     [SerializeField] Transform groundCheck;
     [SerializeField] LayerMask groundLayer;
 
-    [Header("Firearm Settings")]
-    [SerializeField] Transform muzzlePosition;
-    [SerializeField] GameObject projectilePrefab;
-
     private float horizontalInput;
     private bool jumpPressed = false;
-    private bool isShooting = false;
 
     private void Awake()
     {
@@ -37,19 +32,8 @@ public class ERT_PlayerController : MonoBehaviour
             jumpPressed = true;
         }
 
-        if (playerInput.actions["Shoot"].triggered)
-        {
-            isShooting = true;
-        }
-        else
-        {
-            isShooting = false;
-        }
-
-
         anim.SetBool("Jump", !isGrounded());
         anim.SetFloat("Speed", Mathf.Abs(horizontalInput));
-        anim.SetBool("Shoot", isShooting);
     }
 
     private void FixedUpdate()
@@ -87,7 +71,8 @@ public class ERT_PlayerController : MonoBehaviour
     {
         return Physics2D.OverlapCapsule(groundCheck.position, new Vector2(0.64f, 0.06f), CapsuleDirection2D.Horizontal, 0f, groundLayer);
     }
-    
+
 
     #endregion
+
 }

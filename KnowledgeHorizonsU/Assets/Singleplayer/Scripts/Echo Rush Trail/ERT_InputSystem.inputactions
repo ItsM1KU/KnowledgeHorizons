@@ -1,5 +1,5 @@
 {
-    "name": "KnowledgeHorizonsU",
+    "name": "ERT_InputSystem",
     "maps": [
         {
             "name": "Player",
@@ -16,12 +16,12 @@
                 },
                 {
                     "name": "Fire",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "790b7949-28ba-4dbf-89e1-3bbfd09a261f",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Jump",
