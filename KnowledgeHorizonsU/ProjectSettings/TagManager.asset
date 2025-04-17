@@ -17,6 +17,7 @@ TagManager:
   - WaterFloor
   - Artifact
   - Reactant
+  - Enemy
   layers:
   - Default
   - TransparentFX

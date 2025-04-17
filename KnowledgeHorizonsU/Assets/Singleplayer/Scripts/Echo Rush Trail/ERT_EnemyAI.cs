@@ -12,6 +12,7 @@ public class ERT_EnemyAI : MonoBehaviour
     [SerializeField] GameObject projectilePrefab;
 
     [Header("Enemy Settings")]
+    [SerializeField] float health;
     [SerializeField] float speed;
     [SerializeField] float MinDistanceToPlayer;
     [SerializeField] float shotSpeed;
@@ -21,6 +22,7 @@ public class ERT_EnemyAI : MonoBehaviour
     private Animator anim;
     private Transform currentPoint;
     private float shotCounter;
+    private float currentHealth;
 
     private void Awake()
     {
@@ -28,6 +30,7 @@ public class ERT_EnemyAI : MonoBehaviour
         anim = GetComponent<Animator>();
         currentPoint = pointA;
         anim.SetBool("isMoving", true);
+        currentHealth = health;
     }
 
     private void Update()
@@ -82,9 +85,9 @@ public class ERT_EnemyAI : MonoBehaviour
 
     private void AttackFunction()
     {
+        FaceThePlayer();
         GameObject GO = Instantiate(projectilePrefab, firePosition.position, firePosition.rotation);
         Rigidbody2D rb = GO.GetComponent<Rigidbody2D>();
-        FaceThePlayer();
         Vector2 direction = (playerTransform.position - firePosition.position).normalized;   
         rb.AddForce(direction * shotSpeed, ForceMode2D.Impulse);
         Destroy(GO, 1f);
@@ -105,6 +108,15 @@ public class ERT_EnemyAI : MonoBehaviour
         transform.localScale = localScale;
     }
 
+    public void TakeDamage(float damage)
+    {
+        currentHealth -= damage;
+        if (currentHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(pointA.position, 0.5f);
@@ -113,18 +125,6 @@ public class ERT_EnemyAI : MonoBehaviour
     }
 
     #region Enemy Coroutines
-
-    public IEnumerator Attack()
-    {
-        Vector2 direction = transform.position - playerTransform.position;
-        direction.Normalize();
-        GameObject GO = Instantiate(projectilePrefab, firePosition.position, firePosition.rotation);
-        Rigidbody2D rb = GO.GetComponent<Rigidbody2D>();
-        rb.AddForce(direction * shotSpeed, ForceMode2D.Impulse);
-        Destroy(GO, 2f);
-
-        yield return new WaitForSeconds(2f);
-    }
 
     public IEnumerator Idle(Transform point)
     {
