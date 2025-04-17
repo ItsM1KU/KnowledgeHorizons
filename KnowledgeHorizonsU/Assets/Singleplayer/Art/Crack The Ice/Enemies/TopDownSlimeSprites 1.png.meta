@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ae6cfa46d54a4b34bb485e342c39253c
+guid: f3c99447039f9304d9e7715ec3b379b5
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,11 +123,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: TopDownSlimeSprites_0
+      name: TopDownSlimeSprites 1_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 160
+        x: 8
+        y: 152
         width: 32
         height: 32
       alignment: 0
@@ -137,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ac121f29aeb84284491f9320864feb28
-      internalID: -404323580
+      spriteID: 69b47c195703f1842a6782f23df82515
+      internalID: 1062909242
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TopDownSlimeSprites_1
+      name: TopDownSlimeSprites 1_1
       rect:
         serializedVersion: 2
         x: 64
@@ -158,14 +158,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e0a229f1262463c4e82ec50439baf7bb
-      internalID: 1285241425
+      spriteID: b93a110bcc55eab4b9b55a2b1c603b8a
+      internalID: 998568893
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TopDownSlimeSprites_2
+      name: TopDownSlimeSprites 1_2
       rect:
         serializedVersion: 2
         x: 96
@@ -179,14 +179,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 71951da149bf01a4382e96c6a45e64ca
-      internalID: -1942316742
+      spriteID: fc6701f56bf2dea478aba34e09f26826
+      internalID: 1048138286
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TopDownSlimeSprites_3
+      name: TopDownSlimeSprites 1_3
       rect:
         serializedVersion: 2
         x: 160
@@ -200,14 +200,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 47ff14456dbd76146a895204f729b281
-      internalID: 1069873219
+      spriteID: 64abbdd09999e9a4788a67d5ada8c5cf
+      internalID: 1261267174
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TopDownSlimeSprites_4
+      name: TopDownSlimeSprites 1_4
       rect:
         serializedVersion: 2
         x: 192
@@ -221,14 +221,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4a435f9484ed1394191ee01586e7a25e
-      internalID: -1668982735
+      spriteID: e15ae96fb0bbbae418b0bb83ae39a151
+      internalID: -452870942
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TopDownSlimeSprites_5
+      name: TopDownSlimeSprites 1_5
       rect:
         serializedVersion: 2
         x: 256
@@ -242,14 +242,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 29f140966869b4d48836cda3bd55de32
-      internalID: -1871017153
+      spriteID: 6f5e9d95f6d0a8d4e99b4845cdd11730
+      internalID: 1071229883
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TopDownSlimeSprites_6
+      name: TopDownSlimeSprites 1_6
       rect:
         serializedVersion: 2
         x: 0
@@ -263,14 +263,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 059092006bdac3e4cb8b12d22be30275
-      internalID: -1422890984
+      spriteID: 42871723ae1c68a48a20ded68b0a0ddf
+      internalID: 547012750
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TopDownSlimeSprites_7
+      name: TopDownSlimeSprites 1_7
       rect:
         serializedVersion: 2
         x: 64
@@ -284,14 +284,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 26c514c69ce268749b3188d746ba907f
-      internalID: -1618610254
+      spriteID: 9789ac9acb6291248a792ede8a7d0371
+      internalID: 752967329
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TopDownSlimeSprites_8
+      name: TopDownSlimeSprites 1_8
       rect:
         serializedVersion: 2
         x: 96
@@ -305,14 +305,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dcb609becdd6a944bb4e4d8414279555
-      internalID: -39753917
+      spriteID: 00e9ff7cd77bd3449846b8b0b3a07f65
+      internalID: -94895061
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TopDownSlimeSprites_9
+      name: TopDownSlimeSprites 1_9
       rect:
         serializedVersion: 2
         x: 160
@@ -326,14 +326,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ac188ab043db25a4783b4496bd632bd1
-      internalID: -1626898562
+      spriteID: e5b98e95425b49646aaa396a7b47e285
+      internalID: 1976709787
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TopDownSlimeSprites_10
+      name: TopDownSlimeSprites 1_10
       rect:
         serializedVersion: 2
         x: 192
@@ -347,14 +347,35 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 35b32da9da7df2949bb3c442f41be17f
-      internalID: 22071840
+      spriteID: 3a519f5b89985b64298ff79eca4ba335
+      internalID: -1465488671
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TopDownSlimeSprites_11
+      name: TopDownSlimeSprites 1_11
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7ee7d70542922c42b4db274e1c2111b
+      internalID: -1605576325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TopDownSlimeSprites 1_12
       rect:
         serializedVersion: 2
         x: 256
@@ -368,14 +389,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dcfccfe27b762214c95e9d88c1294e90
-      internalID: 1164800654
+      spriteID: 032615d62559b6945981f3ce65c9cdfc
+      internalID: -1132535371
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TopDownSlimeSprites_12
+      name: TopDownSlimeSprites 1_13
       rect:
         serializedVersion: 2
         x: 0
@@ -389,14 +410,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5e1a368e575c2d341bbb08d08ae26887
-      internalID: 892530009
+      spriteID: 87e56f66f4f7f1a49ac778ace2598975
+      internalID: 1503343220
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TopDownSlimeSprites_13
+      name: TopDownSlimeSprites 1_14
       rect:
         serializedVersion: 2
         x: 64
@@ -410,14 +431,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b5a54b124296c7140be91191f2c4775c
-      internalID: -96956372
+      spriteID: 51d3a4112ed96cc42a50fd4178f243e6
+      internalID: -1559917194
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TopDownSlimeSprites_14
+      name: TopDownSlimeSprites 1_15
       rect:
         serializedVersion: 2
         x: 96
@@ -431,14 +452,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 34fe315b897ef734f8664ff9c87b0651
-      internalID: 30726336
+      spriteID: c7b777e9cb3206248b506674e7936e1b
+      internalID: -1340601706
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TopDownSlimeSprites_15
+      name: TopDownSlimeSprites 1_16
       rect:
         serializedVersion: 2
         x: 160
@@ -452,14 +473,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e24cd4052281c984f9cc7400f89895f0
-      internalID: -1558317776
+      spriteID: fdf4276f19d3d214f9f3e47db6419336
+      internalID: 1932442090
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TopDownSlimeSprites_16
+      name: TopDownSlimeSprites 1_17
       rect:
         serializedVersion: 2
         x: 192
@@ -473,14 +494,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c72a2dd3d77520f4babe4096126f42f8
-      internalID: 289967743
+      spriteID: 4ba6a51407158244db88fcdaff15b363
+      internalID: -1624125990
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TopDownSlimeSprites_17
+      name: TopDownSlimeSprites 1_18
       rect:
         serializedVersion: 2
         x: 256
@@ -494,14 +515,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 28c6043f2d86e0f4fb1bc0bac78b0c59
-      internalID: 1923883223
+      spriteID: fdd8a5a258e006240b7ae4b32b00f170
+      internalID: -214745180
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TopDownSlimeSprites_18
+      name: TopDownSlimeSprites 1_19
       rect:
         serializedVersion: 2
         x: 0
@@ -515,14 +536,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d68c75c5aa3be79469dd2b353ca56ec7
-      internalID: 1101952606
+      spriteID: f3b2101b15f1e9d4b82bc586a7d29e82
+      internalID: 1067565511
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TopDownSlimeSprites_19
+      name: TopDownSlimeSprites 1_20
       rect:
         serializedVersion: 2
         x: 64
@@ -536,14 +557,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5306d3dead12b3645a9f9fd43bd99a95
-      internalID: -584182031
+      spriteID: 4c869a16ddb0d02499f19277bd8e0ef1
+      internalID: -534479289
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TopDownSlimeSprites_20
+      name: TopDownSlimeSprites 1_21
       rect:
         serializedVersion: 2
         x: 96
@@ -557,14 +578,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a6015ff4348681840bb0d608c1f2cdae
-      internalID: -1625139099
+      spriteID: 6d03b6d783120fc4b8fefac2b844e433
+      internalID: -24642838
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TopDownSlimeSprites_21
+      name: TopDownSlimeSprites 1_22
       rect:
         serializedVersion: 2
         x: 160
@@ -578,14 +599,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0a3b6b1661a9b4644b9fd7f31c357cc1
-      internalID: -1562092733
+      spriteID: 092cb58f216a846438ae8cc99a33132f
+      internalID: -812616660
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TopDownSlimeSprites_22
+      name: TopDownSlimeSprites 1_23
       rect:
         serializedVersion: 2
         x: 192
@@ -599,14 +620,35 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b075a672b4e47c04baf66f2fa3721855
-      internalID: -1036459287
+      spriteID: 06b670ebd5c9c5f4f93bad49caf4878a
+      internalID: 2066747746
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TopDownSlimeSprites_23
+      name: TopDownSlimeSprites 1_24
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e421bf99d63968429df53cc89f16e6e
+      internalID: 2094559918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TopDownSlimeSprites 1_25
       rect:
         serializedVersion: 2
         x: 256
@@ -620,8 +662,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b63cc1c8ead5b584e9d9eb002007fbe6
-      internalID: -2016600907
+      spriteID: 7756eadab8e7bd44e81fb17f67a8e840
+      internalID: 1915180096
       vertices: []
       indices: 
       edges: []
@@ -637,30 +679,32 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      TopDownSlimeSprites_0: -404323580
-      TopDownSlimeSprites_1: 1285241425
-      TopDownSlimeSprites_10: 22071840
-      TopDownSlimeSprites_11: 1164800654
-      TopDownSlimeSprites_12: 892530009
-      TopDownSlimeSprites_13: -96956372
-      TopDownSlimeSprites_14: 30726336
-      TopDownSlimeSprites_15: -1558317776
-      TopDownSlimeSprites_16: 289967743
-      TopDownSlimeSprites_17: 1923883223
-      TopDownSlimeSprites_18: 1101952606
-      TopDownSlimeSprites_19: -584182031
-      TopDownSlimeSprites_2: -1942316742
-      TopDownSlimeSprites_20: -1625139099
-      TopDownSlimeSprites_21: -1562092733
-      TopDownSlimeSprites_22: -1036459287
-      TopDownSlimeSprites_23: -2016600907
-      TopDownSlimeSprites_3: 1069873219
-      TopDownSlimeSprites_4: -1668982735
-      TopDownSlimeSprites_5: -1871017153
-      TopDownSlimeSprites_6: -1422890984
-      TopDownSlimeSprites_7: -1618610254
-      TopDownSlimeSprites_8: -39753917
-      TopDownSlimeSprites_9: -1626898562
+      TopDownSlimeSprites 1_0: 1062909242
+      TopDownSlimeSprites 1_1: 998568893
+      TopDownSlimeSprites 1_10: -1465488671
+      TopDownSlimeSprites 1_11: -1605576325
+      TopDownSlimeSprites 1_12: -1132535371
+      TopDownSlimeSprites 1_13: 1503343220
+      TopDownSlimeSprites 1_14: -1559917194
+      TopDownSlimeSprites 1_15: -1340601706
+      TopDownSlimeSprites 1_16: 1932442090
+      TopDownSlimeSprites 1_17: -1624125990
+      TopDownSlimeSprites 1_18: -214745180
+      TopDownSlimeSprites 1_19: 1067565511
+      TopDownSlimeSprites 1_2: 1048138286
+      TopDownSlimeSprites 1_20: -534479289
+      TopDownSlimeSprites 1_21: -24642838
+      TopDownSlimeSprites 1_22: -812616660
+      TopDownSlimeSprites 1_23: 2066747746
+      TopDownSlimeSprites 1_24: 2094559918
+      TopDownSlimeSprites 1_25: 1915180096
+      TopDownSlimeSprites 1_3: 1261267174
+      TopDownSlimeSprites 1_4: -452870942
+      TopDownSlimeSprites 1_5: 1071229883
+      TopDownSlimeSprites 1_6: 547012750
+      TopDownSlimeSprites 1_7: 752967329
+      TopDownSlimeSprites 1_8: -94895061
+      TopDownSlimeSprites 1_9: 1976709787
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
