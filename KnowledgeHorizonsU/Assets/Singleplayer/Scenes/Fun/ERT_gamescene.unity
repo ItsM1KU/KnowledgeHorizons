@@ -831,7 +831,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.31, y: -3.34, z: 0}
-  m_LocalScale: {x: 6.14, y: 1.49, z: 1}
+  m_LocalScale: {x: 10.232309, y: 1.49, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1082,7 +1082,8 @@ Transform:
   m_LocalPosition: {x: 3.22, y: -0.06, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2057280138}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1876646300
@@ -1099,7 +1100,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointA: {fileID: 736854974}
   pointB: {fileID: 112818144}
+  playerTransform: {fileID: 2040716914}
+  firePosition: {fileID: 2057280138}
+  projectilePrefab: {fileID: 5281551078493996843, guid: 4a0ed5b79de836043afdb676bf50b98a, type: 3}
   speed: 2
+  MinDistanceToPlayer: 5
+  shotSpeed: 5
+  fireRate: 1
 --- !u!95 &1876646301
 Animator:
   serializedVersion: 5
@@ -1370,7 +1377,7 @@ Transform:
   m_GameObject: {fileID: 2040716908}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.39, y: -1.55, z: 0}
+  m_LocalPosition: {x: -7.74, y: -1.41, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1459,6 +1466,37 @@ MonoBehaviour:
   muzzlePosition: {fileID: 33963323}
   projectilePrefab: {fileID: 5281551078493996843, guid: 4a0ed5b79de836043afdb676bf50b98a, type: 3}
   anim: {fileID: 2040716910}
+--- !u!1 &2057280137
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2057280138}
+  m_Layer: 0
+  m_Name: AttackPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2057280138
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2057280137}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.756, y: -0.419, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1876646299}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
