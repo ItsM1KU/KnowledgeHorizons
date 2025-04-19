@@ -1,40 +1,59 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class CTI_RectangularGrid : MonoBehaviour
 {
-    public GameObject iceBlockPrefab;     // Scale 1.5
-    public GameObject centerTilePrefab;   // Scale 3
-    public int rows = 9;
-    public int cols = 9;
+    public GameObject iceBlockPrefab;     // Scale = 1.5
+    public GameObject centerTilePrefab;   // Scale = 3
+    public Camera mainCamera;
+
+    public float tileSize = 1.5f;         // Surrounding tile size in world units
+    public float centerTileSize = 3f;     // Center tile size in world units
+
+    public List<CTI_IceTile> allTiles = new List<CTI_IceTile>(); // To store all the tiles
+    public List<CTI_IceTile> cornerTiles = new List<CTI_IceTile>(); // To store corner tiles
 
     void Start()
     {
-        GenerateGridWithGap();
+        GenerateSymmetricalGrid();
     }
 
-    void GenerateGridWithGap()
+    void GenerateSymmetricalGrid()
     {
-        float tileSize = 1.5f;      // Surrounding tile size (based on scale)
-        float centerTileSize = 3f;  // Size of center tile in world units
+        if (mainCamera == null)
+            mainCamera = Camera.main;
 
-        Vector2 center = Vector2.zero;
+        float orthoHeight = mainCamera.orthographicSize;
+        float aspect = 16f / 9f;
+        float orthoWidth = orthoHeight * aspect;
 
-        // Place the large center tile at the origin
-        Instantiate(centerTilePrefab, center, Quaternion.identity, transform);
+        // Calculate how many tiles can fit on each side
+        int halfCols = Mathf.FloorToInt(orthoWidth / tileSize);
+        int halfRows = Mathf.FloorToInt(orthoHeight / tileSize);
 
-        for (int row = 0; row < rows; row++)
+        // Place center tile at origin
+        Instantiate(centerTilePrefab, Vector3.zero, Quaternion.identity, transform);
+
+        for (int row = -halfRows; row <= halfRows; row++)
         {
-            for (int col = 0; col < cols; col++)
+            for (int col = -halfCols; col <= halfCols; col++)
             {
-                float x = (col - cols / 2) * tileSize;
-                float y = (row - rows / 2) * tileSize;
-                Vector2 pos = new Vector2(x, y);
+                Vector2 pos = new Vector2(col * tileSize, row * tileSize);
 
-                // Skip a full square region the size of the center tile
+                // Leave a square area at center for the larger center tile
                 if (Mathf.Abs(pos.x) < centerTileSize && Mathf.Abs(pos.y) < centerTileSize)
                     continue;
 
-                Instantiate(iceBlockPrefab, pos, Quaternion.identity, transform);
+                // Instantiate and add the ice block to the list
+                GameObject iceBlockGO = Instantiate(iceBlockPrefab, pos, Quaternion.identity, transform);
+                CTI_IceTile iceTile = iceBlockGO.GetComponent<CTI_IceTile>();
+                allTiles.Add(iceTile);
+
+                // Identify and store corner tiles
+                if ((row == -halfRows || row == halfRows) && (col == -halfCols || col == halfCols))
+                {
+                    cornerTiles.Add(iceTile);
+                }
             }
         }
     }
