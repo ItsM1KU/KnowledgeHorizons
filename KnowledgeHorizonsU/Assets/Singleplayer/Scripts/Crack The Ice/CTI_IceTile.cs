@@ -1,48 +1,26 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CTI_IceTile : MonoBehaviour
 {
-    public bool hasSlime = false;
     public int clickCount = 0;
     public int maxClicks = 5;
 
-    // 🧩 List of neighboring tiles (populate this during grid generation)
+    // Neighboring tiles (can be assigned later by grid logic if needed)
     public List<CTI_IceTile> neighbors = new List<CTI_IceTile>();
 
     public void OnTileClicked()
     {
-        if (!hasSlime) return;
-
         clickCount++;
         Debug.Log($"Tile clicked {clickCount} times!");
 
         if (clickCount >= maxClicks)
         {
-            DestroySlime();
-            Destroy(gameObject); // destroys the ice tile
+            Destroy(gameObject); // Destroy the ice tile
         }
     }
 
-    public void AddSlime()
-    {
-        hasSlime = true;
-        clickCount = 0;
-    }
-
-    public void RemoveSlime()
-    {
-        hasSlime = false;
-        clickCount = 0;
-    }
-
-    void DestroySlime()
-    {
-        // You can trigger slime death animation here
-        Debug.Log("Slime destroyed!");
-    }
-
-    // ✅ NEW: Get closest neighbor tile toward a given position (used by slimes)
+    // Utility: Get closest neighbor to a position (optional, useful for future pathfinding)
     public CTI_IceTile GetClosestNeighborTo(Vector3 targetPosition)
     {
         CTI_IceTile closest = null;
