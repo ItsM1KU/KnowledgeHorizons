@@ -5,39 +5,26 @@ using UnityEngine;
 public class ERT_MovingPlatform : MonoBehaviour
 {
     private Rigidbody2D rb;
-    [SerializeField] private float speed = 5f;
+    [SerializeField] private float speed = 2f;
 
     [SerializeField] Transform pointA;
     [SerializeField] Transform pointB;
-    private Transform currentPoint;
+    private Transform targetPosition;
 
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        currentPoint = pointB;
+        targetPosition = pointB;
     }
 
     private void Update()
     {
-        if(currentPoint == pointB)
-        {
-            rb.velocity = new Vector2(speed, 0);
-        }
-        else if (currentPoint == pointA)
-        {
-            rb.velocity = new Vector2(-speed, 0 );
-        }
+        transform.position = Vector3.MoveTowards(transform.position, targetPosition.position, speed * Time.deltaTime);
 
-        if(Vector2.Distance(transform.position, currentPoint.position) < 0.5f && currentPoint == pointB)
+        if(transform.position == targetPosition.position)
         {
-            currentPoint = pointA;
-            rb.velocity = new Vector2(-speed, 0);
-        }
-        else if (Vector2.Distance(transform.position, currentPoint.position) < 0.5f && currentPoint == pointA)
-        {
-            currentPoint = pointB;
-            rb.velocity = new Vector2(speed, 0);
+            targetPosition = (targetPosition == pointA) ? pointB : pointA;
         }
     }
 

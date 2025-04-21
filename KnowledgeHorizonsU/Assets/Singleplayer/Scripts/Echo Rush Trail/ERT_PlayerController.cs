@@ -18,12 +18,13 @@ public class ERT_PlayerController : MonoBehaviour
     [SerializeField] Transform groundCheck;
     [SerializeField] LayerMask groundLayer;
 
+    private Vector2 initialPosition;
     private float horizontalInput;
     private bool jumpPressed = false;
 
     private void Awake()
     {
-        
+        initialPosition = transform.position;
     }
     private void Update()
     {
@@ -72,6 +73,27 @@ public class ERT_PlayerController : MonoBehaviour
         return Physics2D.OverlapCapsule(groundCheck.position, new Vector2(0.64f, 0.06f), CapsuleDirection2D.Horizontal, 0f, groundLayer);
     }
 
+
+    #endregion
+
+    #region Collisions & Triggers
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.CompareTag("Trap"))
+        {
+            transform.position = initialPosition;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Fruit")
+        {
+            Destroy(collision.gameObject);
+            ERT_GameManager.instance.FruitCollection();
+        }
+    }
 
     #endregion
 

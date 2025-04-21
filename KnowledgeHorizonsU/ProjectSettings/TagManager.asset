@@ -19,6 +19,8 @@ TagManager:
   - Reactant
   - Enemy
   - Crate
+  - Trap
+  - Fruit
   layers:
   - Default
   - TransparentFX
@@ -35,7 +37,7 @@ TagManager:
   - CollapsedPlank
   - Artifact
   - Platform
-  - 
+  - Traps
   - 
   - 
   - 
