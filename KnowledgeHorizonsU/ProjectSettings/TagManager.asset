@@ -18,6 +18,7 @@ TagManager:
   - Artifact
   - Reactant
   - Enemy
+  - Crate
   layers:
   - Default
   - TransparentFX
