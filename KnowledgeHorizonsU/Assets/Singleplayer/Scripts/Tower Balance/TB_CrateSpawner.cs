@@ -7,12 +7,15 @@ public class TB_CrateSpawner : MonoBehaviour
     public float swingSpeed = 2f;
     public float swingRange = 3f;
     private float startX;
+    private TB_CameraFollow cameraFollow;
 
     void Start()
     {
         startX = transform.position.x;
+        cameraFollow = Camera.main.GetComponent<TB_CameraFollow>(); // Get reference
         SpawnNewCrate();
     }
+
 
     void Update()
     {
@@ -31,13 +34,29 @@ public class TB_CrateSpawner : MonoBehaviour
     void SpawnNewCrate()
     {
         currentCrate = Instantiate(cratePrefab, transform.position, Quaternion.identity);
-        currentCrate.GetComponent<Rigidbody2D>().isKinematic = true; // Don't fall until dropped
+        currentCrate.GetComponent<Rigidbody2D>().isKinematic = true;
+
+        // Set camera to follow this crate
+        if (cameraFollow != null)
+        {
+            cameraFollow.target = currentCrate.transform;
+        }
     }
+
+
 
     void DropCrate()
     {
         currentCrate.GetComponent<Rigidbody2D>().isKinematic = false;
+
+        // Set the camera to follow the falling crate
+        if (cameraFollow != null)
+        {
+            cameraFollow.target = currentCrate.transform;
+        }
+
         currentCrate = null;
-        Invoke("SpawnNewCrate", 1f); // Delay before spawning next crate
+        Invoke("SpawnNewCrate", 1f);
     }
+
 }
