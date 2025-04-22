@@ -11,6 +11,9 @@ public class DropZone : MonoBehaviour, IDropHandler
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI questionText;
     public TextMeshProUGUI feedbackText;
+    public TextMeshProUGUI element1Text; // <-- New
+    public TextMeshProUGUI element2Text; // <-- New
+    public TextMeshProUGUI productText;  // <-- New
     public float reactionTime = 10f;
 
     private List<string> droppedElements = new List<string>();
@@ -61,6 +64,7 @@ public class DropZone : MonoBehaviour, IDropHandler
             timerText.text = "Time: " + Mathf.Ceil(timer).ToString();
             if (timer <= 0f) {
                 ShowFeedback("Wrong!");
+                productText.text = "Timed out!";
                 Invoke(nameof(NextQuestion), 1.5f);
             }
         }
@@ -72,6 +76,13 @@ public class DropZone : MonoBehaviour, IDropHandler
             string elementName = dropped.name.Replace("Element_", "");
             droppedElements.Add(elementName);
             dropped.GetComponent<ElementDrag>().ReturnToOriginal();
+
+            // Update reaction panel
+            if (droppedElements.Count == 1) {
+                element1Text.text = elementName;
+            } else if (droppedElements.Count == 2) {
+                element2Text.text = elementName;
+            }
 
             if (droppedElements.Count == 2) {
                 React();
@@ -89,8 +100,10 @@ public class DropZone : MonoBehaviour, IDropHandler
         if ((e1 == expected.Item2 && e2 == expected.Item3) || (e1 == expected.Item3 && e2 == expected.Item2)) {
             if (reactions.ContainsKey((e1, e2))) {
                 beakerImage.color = reactions[(e1, e2)];
+                productText.text = GetProductName(e1, e2);
             } else if (reactions.ContainsKey((e2, e1))) {
                 beakerImage.color = reactions[(e2, e1)];
+                productText.text = GetProductName(e2, e1);
             }
 
             score += 10;
@@ -98,6 +111,7 @@ public class DropZone : MonoBehaviour, IDropHandler
             ShowFeedback("Correct!");
         } else {
             beakerImage.color = Color.black;
+            productText.text = "Invalid!";
             ShowFeedback("Wrong!");
         }
 
@@ -121,6 +135,11 @@ public class DropZone : MonoBehaviour, IDropHandler
         droppedElements.Clear();
         beakerImage.color = Color.white;
         isReacting = false;
+
+        // Reset reaction panel
+        element1Text.text = "____";
+        element2Text.text = "____";
+        productText.text = "???";
     }
 
     void DisplayQuestion() {
@@ -145,5 +164,12 @@ public class DropZone : MonoBehaviour, IDropHandler
             list[i] = list[randIndex];
             list[randIndex] = temp;
         }
+    }
+
+    string GetProductName(string e1, string e2) {
+        if ((e1 == "Hydrogen" && e2 == "Oxygen") || (e1 == "Oxygen" && e2 == "Hydrogen")) return "Water (H2O)";
+        if ((e1 == "Sodium" && e2 == "Chlorine") || (e1 == "Chlorine" && e2 == "Sodium")) return "Salt (NaCl)";
+        if ((e1 == "HCl" && e2 == "NaOH") || (e1 == "NaOH" && e2 == "HCl")) return "Salt + Water";
+        return "???";
     }
 }
