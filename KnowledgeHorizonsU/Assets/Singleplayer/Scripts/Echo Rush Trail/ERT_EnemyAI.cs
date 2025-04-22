@@ -114,6 +114,7 @@ public class ERT_EnemyAI : MonoBehaviour
         if (currentHealth <= 0)
         {
             Destroy(gameObject);
+            ERT_GameManager.instance.EnemyKilled();
         }
     }
 

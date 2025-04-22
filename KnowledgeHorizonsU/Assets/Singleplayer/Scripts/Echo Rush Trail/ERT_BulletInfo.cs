@@ -27,9 +27,5 @@ public class ERT_BulletInfo : MonoBehaviour
             }
             Destroy(gameObject);
         }
-        else
-        {
-            Destroy(gameObject);
-        }
     }
 }

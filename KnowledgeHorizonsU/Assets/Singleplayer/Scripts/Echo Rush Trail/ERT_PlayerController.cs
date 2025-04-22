@@ -93,6 +93,10 @@ public class ERT_PlayerController : MonoBehaviour
             Destroy(collision.gameObject);
             ERT_GameManager.instance.FruitCollection();
         }
+        else if(collision.gameObject.tag == "FinishPoint")
+        {
+            ERT_GameManager.instance.EndGame();
+        }
     }
 
     #endregion

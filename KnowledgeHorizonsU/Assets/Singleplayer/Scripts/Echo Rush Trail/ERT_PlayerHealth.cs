@@ -13,6 +13,7 @@ public class ERT_PlayerHealth : MonoBehaviour
     private void Awake()
     {
         currentHealth = health;
+        gameObject.SetActive(true);
     }
 
     public void TakeDamage(float damage)
@@ -22,7 +23,7 @@ public class ERT_PlayerHealth : MonoBehaviour
         if (currentHealth <= 0)
         {
             gameObject.SetActive(false);
-            //invoke game over!!
+            ERT_GameManager.instance.EndGame();
         }
     }
 }
