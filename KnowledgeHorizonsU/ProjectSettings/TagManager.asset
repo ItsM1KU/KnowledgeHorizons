@@ -21,6 +21,7 @@ TagManager:
   - Crate
   - Trap
   - Fruit
+  - BeakerZone
   layers:
   - Default
   - TransparentFX
