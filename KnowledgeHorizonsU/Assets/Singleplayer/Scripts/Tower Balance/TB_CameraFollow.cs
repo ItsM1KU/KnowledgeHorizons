@@ -2,52 +2,45 @@ using UnityEngine;
 
 public class TB_CameraFollow : MonoBehaviour
 {
-    public Transform target;             // Crate to follow
-    public float yOffset = 2f;           // Vertical buffer
-    public float smoothSpeed = 2f;
-
-    private float fixedX;
-    private float fixedZ;
-    private float cameraHeightWorld;
+    public float followSpeed = 2f;
+    public float yOffset = 2f; // How much buffer to leave above the tower
     private float initialY;
-
-    private bool shouldFollow = false;   // When to start moving up
 
     void Start()
     {
-        fixedX = transform.position.x;
-        fixedZ = transform.position.z;
         initialY = transform.position.y;
-
-        // Calculate half the camera height in world units
-        Camera cam = Camera.main;
-        cameraHeightWorld = cam.orthographicSize;
     }
 
-    void LateUpdate()
+    void Update()
     {
-        if (target == null) return;
+        if (!TB_CrateSpawner.cameraShouldFollow) return;
 
-        // Get the top visible Y position of the camera
-        float visibleTopY = transform.position.y + cameraHeightWorld;
+        float highestCrateY = GetHighestCrateY();
+        float cameraTopY = transform.position.y + Camera.main.orthographicSize;
 
-        // If the crate goes above the visible top, begin following
-        if (!shouldFollow && target.position.y > visibleTopY - yOffset)
+        // Move camera up only when a crate rises above the current top view
+        if (highestCrateY > cameraTopY - yOffset)
         {
-            shouldFollow = true;
+            float targetY = highestCrateY - Camera.main.orthographicSize + yOffset;
+            Vector3 newPos = new Vector3(transform.position.x, targetY, transform.position.z);
+            transform.position = Vector3.Lerp(transform.position, newPos, followSpeed * Time.deltaTime);
+        }
+    }
+
+
+
+    float GetHighestCrateY()
+    {
+        GameObject[] crates = GameObject.FindGameObjectsWithTag("Crate");
+        if (crates.Length == 0) return float.MinValue;
+
+        float highestY = float.MinValue;
+        foreach (GameObject crate in crates)
+        {
+            if (crate.transform.position.y > highestY)
+                highestY = crate.transform.position.y;
         }
 
-        if (shouldFollow)
-        {
-            float targetY = target.position.y + yOffset;
-
-            // Only move upward
-            if (targetY > transform.position.y)
-            {
-                Vector3 desiredPosition = new Vector3(fixedX, targetY, fixedZ);
-                transform.position = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed * Time.deltaTime);
-            }
-        }
+        return highestY;
     }
 }
-
