@@ -232,6 +232,6 @@ MonoBehaviour:
   projectilePrefab: {fileID: 5281551078493996843, guid: 75b2a8b8f63688148a3df64bacc9af07, type: 3}
   health: 10
   speed: 1
-  MinDistanceToPlayer: 5
+  MinDistanceToPlayer: 10
   shotSpeed: 5
   fireRate: 1

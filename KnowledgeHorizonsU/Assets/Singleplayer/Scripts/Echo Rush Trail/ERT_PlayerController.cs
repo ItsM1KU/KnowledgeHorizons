@@ -83,6 +83,8 @@ public class ERT_PlayerController : MonoBehaviour
         if(collision.gameObject.CompareTag("Trap"))
         {
             transform.position = initialPosition;
+            ERT_PlayerHealth player = GetComponent<ERT_PlayerHealth>();
+            player.TakeDamage(5);
         }
     }
 
