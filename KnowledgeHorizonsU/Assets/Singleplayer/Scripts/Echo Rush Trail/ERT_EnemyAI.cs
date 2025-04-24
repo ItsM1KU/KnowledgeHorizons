@@ -87,17 +87,14 @@ public class ERT_EnemyAI : MonoBehaviour
     {
         FaceThePlayer();
         GameObject GO = Instantiate(projectilePrefab, firePosition.position, firePosition.rotation);
-        Rigidbody2D rb = GO.GetComponent<Rigidbody2D>();
-        Vector2 direction = (playerTransform.position - firePosition.position).normalized;   
-        rb.AddForce(direction * shotSpeed, ForceMode2D.Impulse);
-        Destroy(GO, 1f);
+        Destroy(GO, 2f);
     }
 
 
     private void FaceThePlayer()
     {
         Vector3 localScale = transform.localScale;
-        if(transform.position.x < playerTransform.position.x)
+        if (transform.position.x < playerTransform.position.x)
         {
             localScale.x = -1;
         }

@@ -19,6 +19,7 @@ public class ERT_GameManager : MonoBehaviour
 
     [SerializeField] GameObject PauseMenu;
     private bool isPaused;
+    private bool canPause = true;
 
     private void Awake()
     {
@@ -35,7 +36,7 @@ public class ERT_GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !isPaused)
+        if (Input.GetKeyDown(KeyCode.Escape) && !isPaused && canPause)
         {
             PauseMenu.SetActive(true);
             isPaused = true;
@@ -46,6 +47,7 @@ public class ERT_GameManager : MonoBehaviour
     public void EndGame()
     {
         Time.timeScale = 0;
+        canPause = false;
         endScreen.SetActive(true);
         endText.text = "You collected " + FruitsCollected.ToString() + " fruits and killed " + enemiesKilled.ToString() + " enemies";
         StartCoroutine(ending());
