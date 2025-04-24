@@ -2,32 +2,31 @@ using UnityEngine;
 
 public class TB_BlockSpawner : MonoBehaviour
 {
-    public GameObject cratePrefab;  // Prefab for the crate
-    private GameObject currentCrate;  // The current crate being spawned
-    private float swingSpeed = 2f;  // Speed of the swinging motion
-    private float swingRange = 3f;  // How far the crate swings left to right
-    private float startX;  // Starting X position for the crate
-    private static int droppedCrateCount = 0;  // Number of crates dropped
+    public GameObject cratePrefab;
+    private GameObject currentCrate;
+    public Transform cameraTransform;
 
-    public GameObject ground;  // Reference to the ground where crates will land
-    public float cameraRisePerDrop = 1f;  // Amount the camera moves up after each drop
+    public float swingSpeed = 2f;
+    public float swingRange = 3f;
+    public float distanceAboveTopCrate = 6f;
+    public float cameraOffsetBelowSpawner = 3f;
+
+    private float startX;
+    private bool firstCrateDropped = false;
 
     void Start()
     {
-        startX = transform.position.x;  // Set the start position of the spawner
-        SpawnNewCrate();  // Spawn the first crate
+        startX = transform.position.x;
+        SpawnNewCrate();
     }
 
     void Update()
     {
-        // Swing the current crate if it's active
         if (currentCrate != null)
         {
-            // Swing the crate back and forth on the X-axis
             float swing = Mathf.Sin(Time.time * swingSpeed) * swingRange;
             currentCrate.transform.position = new Vector3(startX + swing, transform.position.y, 0);
 
-            // Drop the crate when Spacebar is pressed
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 DropCrate();
@@ -35,43 +34,62 @@ public class TB_BlockSpawner : MonoBehaviour
         }
     }
 
-    void SpawnNewCrate()
-    {
-        // Instantiate the crate and make it kinematic
-        currentCrate = Instantiate(cratePrefab, new Vector3(startX, transform.position.y), Quaternion.identity);
-        currentCrate.GetComponent<Rigidbody2D>().isKinematic = true;
-    }
-
     void DropCrate()
     {
-        // Enable physics on the crate so it falls naturally
-        Rigidbody2D rb = currentCrate.GetComponent<Rigidbody2D>();
-        rb.isKinematic = false;
-        rb.gravityScale = 1f; // Make sure gravity scale is reasonable
-
-        currentCrate = null;
-        droppedCrateCount++;
-
-        if (droppedCrateCount > 1)
+        if (currentCrate != null)
         {
-            MoveCameraAndSpawnerUp();
-        }
+            currentCrate.GetComponent<Rigidbody2D>().isKinematic = false;
+            currentCrate = null;
 
-        // Spawn the next crate after a short delay
-        Invoke(nameof(SpawnNewCrate), 1f);
+            if (!firstCrateDropped)
+            {
+                firstCrateDropped = true;
+            }
+            else
+            {
+                // Only move the camera up slightly after each crate drop (after the first)
+                Camera.main.GetComponent<TB_SmoothCameraFollow>().MoveCameraUp();
+            }
+
+            Invoke(nameof(SpawnNewCrate), 1f);
+        }
     }
 
-
-    void MoveCameraAndSpawnerUp()
+    void SpawnNewCrate()
     {
-        // Move the camera up gradually after every crate drop
-        Vector3 camPos = Camera.main.transform.position;
-        camPos.y += cameraRisePerDrop;  // Move up by the specified amount
-        Camera.main.transform.position = camPos;
+        float newY;
 
-        // Move the spawner up to maintain consistent distance
-        Vector3 spawnerPos = transform.position;
-        spawnerPos.y += cameraRisePerDrop;  // Same as the camera
-        transform.position = spawnerPos;
+        if (!firstCrateDropped)
+        {
+            newY = transform.position.y;
+        }
+        else
+        {
+            // Find topmost crate
+            GameObject[] crates = GameObject.FindGameObjectsWithTag("Crate");
+            float topY = -Mathf.Infinity;
+
+            foreach (GameObject crate in crates)
+            {
+                if (crate.transform.position.y > topY)
+                    topY = crate.transform.position.y;
+            }
+
+            newY = topY + distanceAboveTopCrate;
+        }
+
+        // Update spawner position
+        transform.position = new Vector3(startX, newY, 0);
+
+        // Spawn crate
+        currentCrate = Instantiate(cratePrefab, transform.position, Quaternion.identity);
+        currentCrate.tag = "Crate";
+        currentCrate.GetComponent<Rigidbody2D>().isKinematic = true;
+
+        // Set current crate as camera target (but only if not first)
+        if (firstCrateDropped)
+        {
+          
+        }
     }
 }
