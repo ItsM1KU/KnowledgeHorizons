@@ -19,6 +19,37 @@ public class CTS_Lilypad : MonoBehaviour
     private void FixedUpdate()
     {
         Vector2 forward = new Vector2(transform.right.x, transform.right.y);
-        rb.MovePosition(rb.position + forward * Time.fixedDeltaTime * speed);
+        rb.velocity = forward * speed;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            collision.transform.SetParent(transform);
+            Rigidbody2D rb = collision.GetComponent<Rigidbody2D>();
+            collision.transform.position = transform.position;
+            CTS_Frog frog = collision.GetComponent<CTS_Frog>();
+            frog.isOnLilypad = true;
+            if (rb != null)
+            {
+                rb.isKinematic = true; 
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            collision.transform.SetParent(null);
+            Rigidbody2D rb = collision.GetComponent<Rigidbody2D>();
+            CTS_Frog frog = collision.GetComponent<CTS_Frog>();
+            frog.isOnLilypad = false;
+            if (rb != null)
+            {
+                rb.isKinematic = false; 
+            }
+        }
     }
 }
