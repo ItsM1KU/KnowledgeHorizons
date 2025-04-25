@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CTS_Frog : MonoBehaviour
 {
-
+    public bool isOnLilypad = false;
     private Rigidbody2D rb;
 
     private void Awake()
@@ -16,19 +16,19 @@ public class CTS_Frog : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
         {
-            rb.MovePosition(rb.position + new Vector2(0, 2));
+            rb.MovePosition(rb.position + Vector2.up);
         }
         else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
         {
-            rb.MovePosition(rb.position + new Vector2(0, -2));
+            rb.MovePosition(rb.position + Vector2.down);
         }
         else if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            rb.MovePosition(rb.position + new Vector2(-2, 0));
+            rb.MovePosition(rb.position + Vector2.left);
         }
         else if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
         {
-            rb.MovePosition(rb.position + new Vector2(2, 0));
+            rb.MovePosition(rb.position + Vector2.right);
         }
     }
 }
