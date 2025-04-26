@@ -1,33 +1,57 @@
 using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 
 public class TB_GameManager : MonoBehaviour
 {
+    [Header("Game References")]
     public GameObject blockPrefab;
     public Transform basePlatform;
+    public Camera mainCamera;
+
+    [Header("Block Settings")]
     public float blockHeight = 0.5f;
-    public float pivotHeight = 8f;
+    public float initialPivotHeight = 8f;
+    public float initialRopeLength = 5f;
+    public float spawnerCameraOffset = 4f; // Distance between camera and spawner
+
+    [Header("Camera Settings")]
+    public float cameraFollowSpeed = 3f;
+    public float cameraYOffset = 3f;
+    public float cameraMoveUpAmount = 0.5f; // Fixed upward movement per block
+    public float initialCameraSize = 6f;
+    public float zoomOutFactor = 0.03f;
+    public float maxZoomOut = 12f;
 
     private List<GameObject> placedBlocks = new List<GameObject>();
     private GameObject currentBlock;
-    private int currentBlockIndex = 0;
     private GameObject swingPivot;
+    private int currentBlockIndex = 0;
+    private Vector3 cameraVelocity = Vector3.zero;
+    private float currentPivotHeight;
+    private float highestBlockY;
+    private float currentCameraSize;
+    private float targetCameraY;
 
     void Start()
     {
-        CreateSwingPivot();
-        SpawnNewBlock();
-    }
+        currentCameraSize = initialCameraSize;
+        mainCamera.orthographicSize = currentCameraSize;
+        currentPivotHeight = initialPivotHeight;
+        targetCameraY = basePlatform.position.y + cameraYOffset;
 
-    void CreateSwingPivot()
-    {
+        // Create pivot point
         swingPivot = new GameObject("SwingPivot");
-        swingPivot.transform.position = new Vector3(0, pivotHeight, 0);
+        UpdateSpawnerPosition();
 
-        var pivotSprite = swingPivot.AddComponent<SpriteRenderer>();
-        // Uncomment if you have a sprite asset:
-        // pivotSprite.sprite = Resources.Load<Sprite>("CircleSprite");
-        pivotSprite.color = new Color(0, 0, 0, 0); // Fully transparent
+        // Set initial camera position
+        mainCamera.transform.position = new Vector3(
+            0,
+            targetCameraY,
+            mainCamera.transform.position.z
+        );
+
+        SpawnNewBlock();
     }
 
     void Update()
@@ -36,30 +60,89 @@ public class TB_GameManager : MonoBehaviour
         {
             PlaceCurrentBlock();
         }
+
+        UpdateCameraPosition();
+    }
+
+    void UpdateSpawnerPosition()
+    {
+        // Position spawner above current camera view
+        swingPivot.transform.position = new Vector3(
+            0,
+            targetCameraY + spawnerCameraOffset,
+            0
+        );
     }
 
     void SpawnNewBlock()
     {
-        Vector3 spawnPosition;
-
-        if (currentBlockIndex == 0)
-        {
-            spawnPosition = new Vector3(0, swingPivot.transform.position.y - 5f, 0);
-        }
-        else
-        {
-            float lastBlockHeight = placedBlocks[placedBlocks.Count - 1].transform.position.y;
-            spawnPosition = new Vector3(0, lastBlockHeight + blockHeight, 0);
-        }
-
+        // Calculate spawn position below pivot point
+        Vector3 spawnPosition = swingPivot.transform.position - new Vector3(0, initialRopeLength, 0);
         currentBlock = Instantiate(blockPrefab, spawnPosition, Quaternion.identity);
+
+        TB_MovingBlock movingBlock = currentBlock.GetComponent<TB_MovingBlock>();
+        if (movingBlock != null)
+        {
+            movingBlock.Initialize(initialRopeLength);
+        }
+
         currentBlockIndex++;
     }
 
     void PlaceCurrentBlock()
     {
-        currentBlock.GetComponent<TB_MovingBlock>().PlaceBlock();
+        if (currentBlock == null) return;
+
+        currentBlock.GetComponent<TB_MovingBlock>()?.PlaceBlock();
         placedBlocks.Add(currentBlock);
+
+        // Update highest block position
+        highestBlockY = currentBlock.transform.position.y;
+
+        // Move camera target up by fixed amount
+        targetCameraY += cameraMoveUpAmount;
+
+        // Update spawner position to stay at top
+        UpdateSpawnerPosition();
+
+        StartCoroutine(WaitAndSpawn());
+    }
+
+    IEnumerator WaitAndSpawn()
+    {
+        yield return new WaitForSeconds(0.3f);
         SpawnNewBlock();
+    }
+
+    void UpdateCameraPosition()
+    {
+        if (mainCamera == null) return;
+
+        // Calculate target zoom
+        float targetZoom = Mathf.Min(
+            initialCameraSize + (currentBlockIndex * zoomOutFactor),
+            maxZoomOut
+        );
+
+        // Smooth camera movement to target Y
+        Vector3 targetPosition = new Vector3(
+            0,
+            targetCameraY,
+            mainCamera.transform.position.z
+        );
+
+        mainCamera.transform.position = Vector3.SmoothDamp(
+            mainCamera.transform.position,
+            targetPosition,
+            ref cameraVelocity,
+            cameraFollowSpeed * Time.deltaTime
+        );
+
+        // Smooth zoom
+        mainCamera.orthographicSize = Mathf.Lerp(
+            mainCamera.orthographicSize,
+            targetZoom,
+            cameraFollowSpeed * Time.deltaTime
+        );
     }
 }
