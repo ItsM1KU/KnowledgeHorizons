@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CTS_Stream : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class CTS_Stream : MonoBehaviour
                 if (frog != null && !frog.isOnLilypad)
                 {
                     Debug.Log("Game Over: Frog fell in water!");
+                    CTS_Score.score = 0;
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
                 }
 
                 checkTimer = 0f; 

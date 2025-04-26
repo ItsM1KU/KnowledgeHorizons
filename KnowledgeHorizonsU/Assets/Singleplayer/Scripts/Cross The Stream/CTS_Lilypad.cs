@@ -22,6 +22,8 @@ public class CTS_Lilypad : MonoBehaviour
         rb.velocity = forward * speed;
     }
 
+
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))

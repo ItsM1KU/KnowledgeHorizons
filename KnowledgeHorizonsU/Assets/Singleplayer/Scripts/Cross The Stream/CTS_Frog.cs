@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CTS_Frog : MonoBehaviour
 {
@@ -29,6 +30,16 @@ public class CTS_Frog : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
         {
             rb.MovePosition(rb.position + Vector2.right);
+        }
+    }
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.CompareTag("FinishPoint"))
+        {
+            CTS_Score.score += 10;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 }
