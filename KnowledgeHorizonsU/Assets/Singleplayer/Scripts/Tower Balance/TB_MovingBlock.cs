@@ -2,44 +2,51 @@ using UnityEngine;
 
 public class TB_MovingBlock : MonoBehaviour
 {
-    public float swingAngle = 30f; // Maximum angle in degrees
+    public float swingAngle = 30f;
     public float swingSpeed = 1f;
     private float currentAngle = 0f;
     private bool isActive = true;
-    private Transform pivotPoint; // Reference to the top pivot
-    private float ropeLength; // Distance from pivot to block
+    private Transform pivotPoint;
+    private float ropeLength;
+    private Rigidbody2D rb;
+    private bool isInitialized = false;
 
-    void Start()
+    public void Initialize(float length)
     {
-        // Find the pivot point (we'll create this in GameManager)
+        ropeLength = length;
         pivotPoint = GameObject.Find("SwingPivot").transform;
-
-        // Calculate initial rope length based on spawn position
-        ropeLength = Vector3.Distance(pivotPoint.position, transform.position);
+        rb = GetComponent<Rigidbody2D>();
+        rb.isKinematic = true;
+        isInitialized = true;
     }
 
     void Update()
     {
-        if (!isActive) return;
+        if (!isActive || !isInitialized) return;
 
-        // Pendulum swing movement using sine wave
+        // Pendulum movement
         currentAngle = swingAngle * Mathf.Sin(Time.time * swingSpeed);
 
-        // Calculate new position based on pivot point
+        // Calculate position based on pivot point
         float xOffset = Mathf.Sin(currentAngle * Mathf.Deg2Rad) * ropeLength;
         float yOffset = -Mathf.Cos(currentAngle * Mathf.Deg2Rad) * ropeLength;
 
-        Vector3 newPosition = pivotPoint.position + new Vector3(xOffset, yOffset, 0);
-        transform.position = newPosition;
-
-        // Optional: Tilt the block slightly based on swing angle
+        transform.position = pivotPoint.position + new Vector3(xOffset, yOffset, 0);
         transform.rotation = Quaternion.Euler(0, 0, currentAngle * 0.3f);
     }
 
     public void PlaceBlock()
     {
+        if (!isInitialized) return;
+
         isActive = false;
-        // Snap to flat rotation when placed
+        rb.isKinematic = false;
         transform.rotation = Quaternion.identity;
+
+        // Apply slight downward force to ensure it falls
+        rb.velocity = new Vector2(
+            Mathf.Sin(currentAngle * Mathf.Deg2Rad) * swingSpeed * 2f, // Small horizontal momentum
+            -2f // Downward force
+        );
     }
 }
