@@ -1,4 +1,5 @@
 using UnityEngine;
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -7,49 +8,46 @@ public class TB_GameManager : MonoBehaviour
     [Header("Game References")]
     public GameObject blockPrefab;
     public Transform basePlatform;
-    public Camera mainCamera;
+    public CinemachineVirtualCamera virtualCamera; // Changed from Camera
 
     [Header("Block Settings")]
     public float blockHeight = 0.5f;
-    public float initialPivotHeight = 8f;
-    public float initialRopeLength = 5f;
-    public float spawnerCameraOffset = 4f; // Distance between camera and spawner
+    public float initialPivotHeight = 15f;
+    public float initialRopeLength = 6f;
 
     [Header("Camera Settings")]
     public float cameraFollowSpeed = 3f;
     public float cameraYOffset = 3f;
-    public float cameraMoveUpAmount = 0.5f; // Fixed upward movement per block
-    public float initialCameraSize = 6f;
-    public float zoomOutFactor = 0.03f;
-    public float maxZoomOut = 12f;
+    public float initialCameraSize = 8f;
+    public float zoomOutFactor = 0.02f;
+    public float maxZoomOut = 14f;
+    public float spawnerHeightAboveCamera = 8f;
 
     private List<GameObject> placedBlocks = new List<GameObject>();
     private GameObject currentBlock;
     private GameObject swingPivot;
     private int currentBlockIndex = 0;
-    private Vector3 cameraVelocity = Vector3.zero;
-    private float currentPivotHeight;
-    private float highestBlockY;
     private float currentCameraSize;
     private float targetCameraY;
+    private float highestBlockY;
+    private bool firstBlockPlaced = false;
+    private CinemachineFramingTransposer framingTransposer;
 
     void Start()
     {
         currentCameraSize = initialCameraSize;
-        mainCamera.orthographicSize = currentCameraSize;
-        currentPivotHeight = initialPivotHeight;
-        targetCameraY = basePlatform.position.y + cameraYOffset;
+        virtualCamera.m_Lens.OrthographicSize = currentCameraSize;
 
-        // Create pivot point
-        swingPivot = new GameObject("SwingPivot");
-        UpdateSpawnerPosition();
+        // Get the framing transposer component
+        framingTransposer = virtualCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
 
         // Set initial camera position
-        mainCamera.transform.position = new Vector3(
-            0,
-            targetCameraY,
-            mainCamera.transform.position.z
-        );
+        targetCameraY = (initialPivotHeight + basePlatform.position.y) / 2f;
+        virtualCamera.transform.position = new Vector3(0, targetCameraY, -10);
+
+        // Create pivot point at top
+        swingPivot = new GameObject("SwingPivot");
+        UpdateSpawnerPosition();
 
         SpawnNewBlock();
     }
@@ -66,17 +64,15 @@ public class TB_GameManager : MonoBehaviour
 
     void UpdateSpawnerPosition()
     {
-        // Position spawner above current camera view
         swingPivot.transform.position = new Vector3(
             0,
-            targetCameraY + spawnerCameraOffset,
+            virtualCamera.transform.position.y + spawnerHeightAboveCamera,
             0
         );
     }
 
     void SpawnNewBlock()
     {
-        // Calculate spawn position below pivot point
         Vector3 spawnPosition = swingPivot.transform.position - new Vector3(0, initialRopeLength, 0);
         currentBlock = Instantiate(blockPrefab, spawnPosition, Quaternion.identity);
 
@@ -85,6 +81,10 @@ public class TB_GameManager : MonoBehaviour
         {
             movingBlock.Initialize(initialRopeLength);
         }
+
+        // Set the virtual camera to follow the current block
+        virtualCamera.Follow = currentBlock.transform;
+        virtualCamera.LookAt = currentBlock.transform;
 
         currentBlockIndex++;
     }
@@ -96,15 +96,26 @@ public class TB_GameManager : MonoBehaviour
         currentBlock.GetComponent<TB_MovingBlock>()?.PlaceBlock();
         placedBlocks.Add(currentBlock);
 
-        // Update highest block position
-        highestBlockY = currentBlock.transform.position.y;
+        highestBlockY = Mathf.Max(highestBlockY, currentBlock.transform.position.y);
 
-        // Move camera target up by fixed amount
-        targetCameraY += cameraMoveUpAmount;
+        if (!firstBlockPlaced)
+        {
+            firstBlockPlaced = true;
+            targetCameraY = basePlatform.position.y + cameraYOffset;
 
-        // Update spawner position to stay at top
+            // Switch to follow the tower instead of individual blocks
+            var emptyGO = new GameObject("CameraTarget");
+            emptyGO.transform.position = new Vector3(0, targetCameraY, 0);
+            virtualCamera.Follow = emptyGO.transform;
+            virtualCamera.LookAt = null;
+        }
+        else
+        {
+            targetCameraY = highestBlockY + cameraYOffset;
+            virtualCamera.Follow.position = new Vector3(0, targetCameraY, 0);
+        }
+
         UpdateSpawnerPosition();
-
         StartCoroutine(WaitAndSpawn());
     }
 
@@ -116,33 +127,16 @@ public class TB_GameManager : MonoBehaviour
 
     void UpdateCameraPosition()
     {
-        if (mainCamera == null) return;
-
-        // Calculate target zoom
+        // Handle zooming
         float targetZoom = Mathf.Min(
             initialCameraSize + (currentBlockIndex * zoomOutFactor),
             maxZoomOut
         );
-
-        // Smooth camera movement to target Y
-        Vector3 targetPosition = new Vector3(
-            0,
-            targetCameraY,
-            mainCamera.transform.position.z
-        );
-
-        mainCamera.transform.position = Vector3.SmoothDamp(
-            mainCamera.transform.position,
-            targetPosition,
-            ref cameraVelocity,
-            cameraFollowSpeed * Time.deltaTime
-        );
-
-        // Smooth zoom
-        mainCamera.orthographicSize = Mathf.Lerp(
-            mainCamera.orthographicSize,
+        currentCameraSize = Mathf.Lerp(
+            currentCameraSize,
             targetZoom,
             cameraFollowSpeed * Time.deltaTime
         );
+        virtualCamera.m_Lens.OrthographicSize = currentCameraSize;
     }
 }
