@@ -21,7 +21,7 @@ public class CTS_Stream : MonoBehaviour
                 {
                     Debug.Log("Game Over: Frog fell in water!");
                     CTS_Score.score = 0;
-                    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                    frog.LoseLife();
                 }
 
                 checkTimer = 0f; 

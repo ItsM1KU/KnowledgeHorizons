@@ -13,4 +13,12 @@ public class CTS_Score : MonoBehaviour
     {
         scoreText.text = score.ToString();
     }
+
+    private void Update()
+    {
+        if (scoreText != null)
+        {
+            scoreText.text = score.ToString();
+        }
+    }
 }
