@@ -8,46 +8,54 @@ public class TB_GameManager : MonoBehaviour
     [Header("Game References")]
     public GameObject blockPrefab;
     public Transform basePlatform;
-    public CinemachineVirtualCamera virtualCamera; // Changed from Camera
+    public CinemachineVirtualCamera virtualCamera;
 
     [Header("Block Settings")]
     public float blockHeight = 0.5f;
-    public float initialPivotHeight = 15f;
-    public float initialRopeLength = 6f;
+    public float initialPivotHeight = 12f;
+    public float initialRopeLength = 5f;
+    public float spawnerHeightAboveHighestBlock = 8f;
 
     [Header("Camera Settings")]
-    public float cameraFollowSpeed = 3f;
-    public float cameraYOffset = 3f;
-    public float initialCameraSize = 8f;
+    public float initialCameraSize = 7f;
     public float zoomOutFactor = 0.02f;
     public float maxZoomOut = 14f;
-    public float spawnerHeightAboveCamera = 8f;
+    [Range(0.1f, 2f)] public float cameraFollowDamping = 0.7f;
+    public float cameraYOffset = 3f;
 
     private List<GameObject> placedBlocks = new List<GameObject>();
     private GameObject currentBlock;
     private GameObject swingPivot;
+    private Transform cameraTarget;
     private int currentBlockIndex = 0;
-    private float currentCameraSize;
-    private float targetCameraY;
     private float highestBlockY;
-    private bool firstBlockPlaced = false;
     private CinemachineFramingTransposer framingTransposer;
+    private bool firstBlockPlaced = false;
 
     void Start()
     {
-        currentCameraSize = initialCameraSize;
-        virtualCamera.m_Lens.OrthographicSize = currentCameraSize;
+        // Force main camera to start at Y=0
+        Camera.main.transform.position = new Vector3(0, 0, -10);
 
-        // Get the framing transposer component
+        // Initialize virtual camera at Y=0
+        virtualCamera.transform.position = new Vector3(0, 0, -10);
+        virtualCamera.m_Lens.OrthographicSize = initialCameraSize;
+
+        // Configure framing transposer
         framingTransposer = virtualCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
+        framingTransposer.m_XDamping = cameraFollowDamping;
+        framingTransposer.m_YDamping = cameraFollowDamping;
+        framingTransposer.m_ZDamping = cameraFollowDamping;
+        framingTransposer.m_DeadZoneHeight = 0.4f;
 
-        // Set initial camera position
-        targetCameraY = (initialPivotHeight + basePlatform.position.y) / 2f;
-        virtualCamera.transform.position = new Vector3(0, targetCameraY, -10);
+        // Create camera target at Y=0 initially
+        cameraTarget = new GameObject("CameraTarget").transform;
+        cameraTarget.position = new Vector3(0, 0, 0);
+        virtualCamera.Follow = cameraTarget;
 
-        // Create pivot point at top
+        // Create initial pivot point
         swingPivot = new GameObject("SwingPivot");
-        UpdateSpawnerPosition();
+        swingPivot.transform.position = new Vector3(0, initialPivotHeight, 0);
 
         SpawnNewBlock();
     }
@@ -58,17 +66,16 @@ public class TB_GameManager : MonoBehaviour
         {
             PlaceCurrentBlock();
         }
-
-        UpdateCameraPosition();
     }
 
     void UpdateSpawnerPosition()
     {
-        swingPivot.transform.position = new Vector3(
-            0,
-            virtualCamera.transform.position.y + spawnerHeightAboveCamera,
-            0
-        );
+        // Position spawner above highest block (or at initial height if no blocks placed)
+        float spawnerY = firstBlockPlaced ?
+            highestBlockY + spawnerHeightAboveHighestBlock :
+            initialPivotHeight;
+
+        swingPivot.transform.position = new Vector3(0, spawnerY, 0);
     }
 
     void SpawnNewBlock()
@@ -82,10 +89,6 @@ public class TB_GameManager : MonoBehaviour
             movingBlock.Initialize(initialRopeLength);
         }
 
-        // Set the virtual camera to follow the current block
-        virtualCamera.Follow = currentBlock.transform;
-        virtualCamera.LookAt = currentBlock.transform;
-
         currentBlockIndex++;
     }
 
@@ -96,47 +99,43 @@ public class TB_GameManager : MonoBehaviour
         currentBlock.GetComponent<TB_MovingBlock>()?.PlaceBlock();
         placedBlocks.Add(currentBlock);
 
+        // Update highest block position
         highestBlockY = Mathf.Max(highestBlockY, currentBlock.transform.position.y);
 
         if (!firstBlockPlaced)
         {
             firstBlockPlaced = true;
-            targetCameraY = basePlatform.position.y + cameraYOffset;
-
-            // Switch to follow the tower instead of individual blocks
-            var emptyGO = new GameObject("CameraTarget");
-            emptyGO.transform.position = new Vector3(0, targetCameraY, 0);
-            virtualCamera.Follow = emptyGO.transform;
-            virtualCamera.LookAt = null;
+            // After first block, start camera follow at ground level
+            cameraTarget.position = new Vector3(0, basePlatform.position.y + cameraYOffset, 0);
         }
         else
         {
-            targetCameraY = highestBlockY + cameraYOffset;
-            virtualCamera.Follow.position = new Vector3(0, targetCameraY, 0);
+            // Move camera target upward by fixed amount per block
+            cameraTarget.position += new Vector3(0, blockHeight, 0);
         }
 
+        UpdateCameraZoom();
         UpdateSpawnerPosition();
         StartCoroutine(WaitAndSpawn());
+    }
+
+    void UpdateCameraZoom()
+    {
+        float targetZoom = Mathf.Min(
+            initialCameraSize + (currentBlockIndex * zoomOutFactor),
+            maxZoomOut
+        );
+
+        virtualCamera.m_Lens.OrthographicSize = Mathf.Lerp(
+            virtualCamera.m_Lens.OrthographicSize,
+            targetZoom,
+            Time.deltaTime * 2f
+        );
     }
 
     IEnumerator WaitAndSpawn()
     {
         yield return new WaitForSeconds(0.3f);
         SpawnNewBlock();
-    }
-
-    void UpdateCameraPosition()
-    {
-        // Handle zooming
-        float targetZoom = Mathf.Min(
-            initialCameraSize + (currentBlockIndex * zoomOutFactor),
-            maxZoomOut
-        );
-        currentCameraSize = Mathf.Lerp(
-            currentCameraSize,
-            targetZoom,
-            cameraFollowSpeed * Time.deltaTime
-        );
-        virtualCamera.m_Lens.OrthographicSize = currentCameraSize;
     }
 }
