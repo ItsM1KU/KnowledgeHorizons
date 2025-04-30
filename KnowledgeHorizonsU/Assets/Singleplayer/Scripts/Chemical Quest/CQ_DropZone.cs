@@ -11,17 +11,17 @@ public class DropZone : MonoBehaviour, IDropHandler
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI questionText;
     public TextMeshProUGUI feedbackText;
-    public Button hintButton;  // Reference for the Hint Button
-    public GameObject reactionTrackerEntryPrefab;  // Prefab for reaction entry
-    public Transform reactionTrackerPanel;  // Panel to hold reaction entries
+    public TextMeshProUGUI element1Text; // <-- New
+    public TextMeshProUGUI element2Text; // <-- New
+    public TextMeshProUGUI productText;  // <-- New
     public float reactionTime = 10f;
-    
+
     private List<string> droppedElements = new List<string>();
     private Dictionary<(string, string), Color> reactions = new Dictionary<(string, string), Color>();
     private float timer;
     private int score = 0;
     private bool isReacting = false;
-    
+
     private List<(string, string, string)> allQuestions = new List<(string, string, string)>();
     private List<(string, string, string)> questions = new List<(string, string, string)>();
     private int currentQuestionIndex = 0;
@@ -56,9 +56,6 @@ public class DropZone : MonoBehaviour, IDropHandler
         DisplayQuestion();
         StartNewReaction();
         feedbackText.text = "";
-
-        // Setup hint button
-        hintButton.onClick.AddListener(ShowHint);
     }
 
     void Update() {
@@ -67,6 +64,7 @@ public class DropZone : MonoBehaviour, IDropHandler
             timerText.text = "Time: " + Mathf.Ceil(timer).ToString();
             if (timer <= 0f) {
                 ShowFeedback("Wrong!");
+                productText.text = "Timed out!";
                 Invoke(nameof(NextQuestion), 1.5f);
             }
         }
@@ -78,6 +76,13 @@ public class DropZone : MonoBehaviour, IDropHandler
             string elementName = dropped.name.Replace("Element_", "");
             droppedElements.Add(elementName);
             dropped.GetComponent<ElementDrag>().ReturnToOriginal();
+
+            // Update reaction panel
+            if (droppedElements.Count == 1) {
+                element1Text.text = elementName;
+            } else if (droppedElements.Count == 2) {
+                element2Text.text = elementName;
+            }
 
             if (droppedElements.Count == 2) {
                 React();
@@ -92,36 +97,25 @@ public class DropZone : MonoBehaviour, IDropHandler
 
         var expected = questions[currentQuestionIndex];
 
-        // Check if the reaction is correct
         if ((e1 == expected.Item2 && e2 == expected.Item3) || (e1 == expected.Item3 && e2 == expected.Item2)) {
             if (reactions.ContainsKey((e1, e2))) {
                 beakerImage.color = reactions[(e1, e2)];
+                productText.text = GetProductName(e1, e2);
             } else if (reactions.ContainsKey((e2, e1))) {
                 beakerImage.color = reactions[(e2, e1)];
+                productText.text = GetProductName(e2, e1);
             }
 
             score += 10;
             scoreText.text = "Score: " + score;
             ShowFeedback("Correct!");
-
-            // Log this reaction in the tracker
-            LogReaction(e1, e2, true);
         } else {
             beakerImage.color = Color.black;
+            productText.text = "Invalid!";
             ShowFeedback("Wrong!");
-            
-            // Log this reaction in the tracker
-            LogReaction(e1, e2, false);
         }
 
         Invoke(nameof(NextQuestion), 1.5f);
-    }
-
-    void LogReaction(string element1, string element2, bool correct) {
-        // Instantiate a new reaction entry
-        GameObject entry = Instantiate(reactionTrackerEntryPrefab, reactionTrackerPanel);
-        TextMeshProUGUI entryText = entry.GetComponentInChildren<TextMeshProUGUI>();
-        entryText.text = $"{element1} + {element2} → {(correct ? "Correct" : "Wrong")}";
     }
 
     void NextQuestion() {
@@ -141,6 +135,11 @@ public class DropZone : MonoBehaviour, IDropHandler
         droppedElements.Clear();
         beakerImage.color = Color.white;
         isReacting = false;
+
+        // Reset reaction panel
+        element1Text.text = "____";
+        element2Text.text = "____";
+        productText.text = "???";
     }
 
     void DisplayQuestion() {
@@ -167,10 +166,10 @@ public class DropZone : MonoBehaviour, IDropHandler
         }
     }
 
-    void ShowHint() {
-        // Display a hint for the current question
-        var expected = questions[currentQuestionIndex];
-        feedbackText.text = $"Hint: Try mixing {expected.Item2} and {expected.Item3}.";
-        Invoke(nameof(HideFeedback), 3f);
+    string GetProductName(string e1, string e2) {
+        if ((e1 == "Hydrogen" && e2 == "Oxygen") || (e1 == "Oxygen" && e2 == "Hydrogen")) return "Water (H2O)";
+        if ((e1 == "Sodium" && e2 == "Chlorine") || (e1 == "Chlorine" && e2 == "Sodium")) return "Salt (NaCl)";
+        if ((e1 == "HCl" && e2 == "NaOH") || (e1 == "NaOH" && e2 == "HCl")) return "Salt + Water";
+        return "???";
     }
 }
