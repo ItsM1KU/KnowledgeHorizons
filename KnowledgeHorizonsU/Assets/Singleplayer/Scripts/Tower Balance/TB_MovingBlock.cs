@@ -2,51 +2,46 @@ using UnityEngine;
 
 public class TB_MovingBlock : MonoBehaviour
 {
-    public float swingAngle = 30f;
-    public float swingSpeed = 1f;
-    private float currentAngle = 0f;
-    private bool isActive = true;
-    private Transform pivotPoint;
-    private float ropeLength;
-    private Rigidbody2D rb;
-    private bool isInitialized = false;
+    public float swingSpeed = 3f;
+    public float maxAngle = 30f;
 
-    public void Initialize(float length)
+    private Transform pivot;
+    private float radius;
+    private bool isPlaced;
+    private float angle;
+    private Rigidbody2D rb;
+
+    public void Initialize(Transform swingPivot, float swingRadius)
     {
-        ropeLength = length;
-        pivotPoint = GameObject.Find("SwingPivot").transform;
+        pivot = swingPivot;
+        radius = swingRadius;
         rb = GetComponent<Rigidbody2D>();
         rb.isKinematic = true;
-        isInitialized = true;
     }
 
     void Update()
     {
-        if (!isActive || !isInitialized) return;
-
-        // Pendulum movement
-        currentAngle = swingAngle * Mathf.Sin(Time.time * swingSpeed);
-
-        // Calculate position based on pivot point
-        float xOffset = Mathf.Sin(currentAngle * Mathf.Deg2Rad) * ropeLength;
-        float yOffset = -Mathf.Cos(currentAngle * Mathf.Deg2Rad) * ropeLength;
-
-        transform.position = pivotPoint.position + new Vector3(xOffset, yOffset, 0);
-        transform.rotation = Quaternion.Euler(0, 0, currentAngle * 0.3f);
+        if (!isPlaced)
+        {
+            // Smooth pendulum motion
+            angle = maxAngle * Mathf.Sin(Time.time * swingSpeed);
+            Vector2 offset = new Vector2(
+                Mathf.Sin(angle * Mathf.Deg2Rad) * radius,
+                -Mathf.Cos(angle * Mathf.Deg2Rad) * radius
+            );
+            transform.position = (Vector2)pivot.position + offset;
+        }
     }
 
-    public void PlaceBlock()
+    public void Place()
     {
-        if (!isInitialized) return;
+        if (isPlaced) return;
 
-        isActive = false;
+        isPlaced = true;
         rb.isKinematic = false;
-        transform.rotation = Quaternion.identity;
+        rb.velocity = Vector2.zero;
 
-        // Apply slight downward force to ensure it falls
-        rb.velocity = new Vector2(
-            Mathf.Sin(currentAngle * Mathf.Deg2Rad) * swingSpeed * 2f, // Small horizontal momentum
-            -2f // Downward force
-        );
+        // Freeze rotation for stable stacking
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 }
