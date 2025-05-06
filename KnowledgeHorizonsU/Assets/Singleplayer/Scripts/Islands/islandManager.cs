@@ -54,6 +54,10 @@ public class islandManager : MonoBehaviour
         socialPanel.SetActive(false);
     }
 
+    public void MainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
 
     public void playMM()
     {
