@@ -1,0 +1,1592 @@
+fileFormatVersion: 2
+guid: d3a4a075ef762f44497119ea94afd94d
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: "PACK BOT\xC3O FINAL_0"
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 964
+        width: 36
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4fc48cd6a4f9fa7409cb1f81285b75f7
+      internalID: 999671436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PACK BOT\xC3O FINAL_1"
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 964
+        width: 36
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e5dccc46bc544d44a457f57c0accb15
+      internalID: 1011711626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PACK BOT\xC3O FINAL_2"
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 964
+        width: 36
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 235e597a20ffe4b46ad3d467e5c789fe
+      internalID: -1771004248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PACK BOT\xC3O FINAL_3"
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 936
+        width: 52
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f9ec2ee75f9a454f96f783f861d4fcc
+      internalID: 682334140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PACK BOT\xC3O FINAL_4"
+      rect:
+        serializedVersion: 2
+        x: 372
+        y: 900
+        width: 52
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf22e72f05351b64fa5e0011e23d4f7d
+      internalID: -1282469582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PACK BOT\xC3O FINAL_5"
+      rect:
+        serializedVersion: 2
+        x: 552
+        y: 964
+        width: 36
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6016604b27f01934ea10b16c3a8664a9
+      internalID: -813315431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PACK BOT\xC3O FINAL_6"
+      rect:
+        serializedVersion: 2
+        x: 596
+        y: 964
+        width: 36
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7106907252510ed448e0f65cd23b3540
+      internalID: -1564882137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PACK BOT\xC3O FINAL_7"
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 964
+        width: 36
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85db72a0e48a7a7439a81acdcd880c8c
+      internalID: 504731413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PACK BOT\xC3O FINAL_8"
+      rect:
+        serializedVersion: 2
+        x: 816
+        y: 936
+        width: 52
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98848a3f31a5c4d489482e7b1b5d87ff
+      internalID: -1067559025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PACK BOT\xC3O FINAL_9"
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 892
+        width: 52
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dcb1a8c94c44c7040b5a1fbe0d82e4a2
+      internalID: 900193141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PACK BOT\xC3O FINAL_10"
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 892
+        width: 52
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e1c53086e179ab4fa78b2e75c2d6d5b
+      internalID: 636803040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PACK BOT\xC3O FINAL_11"
+      rect:
+        serializedVersion: 2
+        x: 236
+        y: 892
+        width: 52
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 154605a208289dd409d72037a1ed840c
+      internalID: 674313935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PACK BOT\xC3O FINAL_12"
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 848
+        width: 52
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 702c6ac7fe3654d47971f87ca46983de
+      internalID: -1125495459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PACK BOT\xC3O FINAL_13"
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 896
+        width: 52
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d576ee3f94a4500499e57fb4a2135fd2
+      internalID: 1153721023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PACK BOT\xC3O FINAL_14"
+      rect:
+        serializedVersion: 2
+        x: 636
+        y: 896
+        width: 52
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c50fd95511c8fc4ab840e9e66687d2b
+      internalID: -963183583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PACK BOT\xC3O FINAL_15"
+      rect:
+        serializedVersion: 2
+        x: 748
+        y: 892
+        width: 52
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79eedd86a4b116944bf2195b16680f3f
+      internalID: 2140497124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PACK BOT\xC3O FINAL_16"
+      rect:
+        serializedVersion: 2
+        x: 816
+        y: 848
+        width: 52
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4f4242db9ff1584ab618063aea09d3a
+      internalID: -1250180902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PACK BOT\xC3O FINAL_17"
+      rect:
+        serializedVersion: 2
+        x: 884
+        y: 900
+        width: 52
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 024779ddf22c2da43a079c707673916f
+      internalID: -639345785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PACK BOT\xC3O FINAL_18"
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 836
+        width: 36
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57a5bae9d9fa5d14484792f720ca89f7
+      internalID: -304403686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PACK BOT\xC3O FINAL_19"
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 836
+        width: 36
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34181d2d93201d4489c53ccd277677f8
+      internalID: 1456782644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PACK BOT\xC3O FINAL_20"
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 836
+        width: 36
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45d38a379e7c8344bab2baa7bca70214
+      internalID: -1936150607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PACK BOT\xC3O FINAL_21"
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 836
+        width: 36
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dbe51b575c7fc1e4b9dbc04ea4c50e9a
+      internalID: -1497089151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PACK BOT\xC3O FINAL_22"
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 836
+        width: 36
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25fba95ee976fdf4aa9f9f58e62f128a
+      internalID: 1150503768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PACK BOT\xC3O FINAL_23"
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 836
+        width: 36
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 222814d8a263b1742a64b7b20d20d5b4
+      internalID: 616003226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PACK BOT\xC3O FINAL_24"
+      rect:
+        serializedVersion: 2
+        x: 552
+        y: 836
+        width: 36
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76e2821d3e980384d8aca5bb0c0d993d
+      internalID: 387764529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PACK BOT\xC3O FINAL_25"
+      rect:
+        serializedVersion: 2
+        x: 596
+        y: 836
+        width: 36
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 478b2315a0035db4fa6ac7aef7ab5420
+      internalID: -604060006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PACK BOT\xC3O FINAL_26"
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 836
+        width: 36
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5ffb2b0a7986bf4f81b6969e1c7143f
+      internalID: 1961223510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PACK BOT\xC3O FINAL_27"
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 836
+        width: 36
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e78066dd07a72a4c81a0dd5c1638803
+      internalID: -744597024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PACK BOT\xC3O FINAL_28"
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 736
+        width: 36
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73c9a241466154342b8b652280c33f68
+      internalID: 743518357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PACK BOT\xC3O FINAL_29"
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 740
+        width: 36
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32093356d45577844a00151241a25861
+      internalID: 514384634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PACK BOT\xC3O FINAL_30"
+      rect:
+        serializedVersion: 2
+        x: 612
+        y: 736
+        width: 36
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14f660698f170b445ab0657cdf9fc00c
+      internalID: -265978503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PACK BOT\xC3O FINAL_31"
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 740
+        width: 36
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39615e693158a9f4e90013bb146f921e
+      internalID: 2091407043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PACK BOT\xC3O FINAL_32"
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 688
+        width: 36
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69a1ef5b256be3a438e70add9c34ef22
+      internalID: -566688742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PACK BOT\xC3O FINAL_33"
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 688
+        width: 36
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a863487d909452489e34a3c031d8fd8
+      internalID: 853908914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PACK BOT\xC3O FINAL_34"
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 688
+        width: 36
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 198019f954426b945a487d7268e2bcd4
+      internalID: 2001476991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PACK BOT\xC3O FINAL_35"
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 692
+        width: 36
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40fe09a45f8cc304daa774260de3af25
+      internalID: -609490000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PACK BOT\xC3O FINAL_36"
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 692
+        width: 36
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc1b65e3df45e1b408e09746a628a751
+      internalID: -1889419964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PACK BOT\xC3O FINAL_37"
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 692
+        width: 36
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc5735820a959574f9961b65b6aeaf88
+      internalID: 1993951251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PACK BOT\xC3O FINAL_38"
+      rect:
+        serializedVersion: 2
+        x: 568
+        y: 688
+        width: 36
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74c74f3963dda8f488fa25dfaeffec4a
+      internalID: 1848457255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PACK BOT\xC3O FINAL_39"
+      rect:
+        serializedVersion: 2
+        x: 612
+        y: 688
+        width: 36
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6298671fcc300ca4d820c75fe9f71f16
+      internalID: -22093611
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PACK BOT\xC3O FINAL_40"
+      rect:
+        serializedVersion: 2
+        x: 656
+        y: 688
+        width: 36
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47e2701782ca32c47a9b32797dbff2dd
+      internalID: -1298783512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PACK BOT\xC3O FINAL_41"
+      rect:
+        serializedVersion: 2
+        x: 756
+        y: 692
+        width: 36
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f16990847719fa2419fc59768b00fb83
+      internalID: 954530809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PACK BOT\xC3O FINAL_42"
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 692
+        width: 36
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: abbd1a088b910704888ed6b24f19b749
+      internalID: 668872118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PACK BOT\xC3O FINAL_43"
+      rect:
+        serializedVersion: 2
+        x: 844
+        y: 692
+        width: 36
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34c7ab7de413e344f823dfad8211c935
+      internalID: -1914811910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PACK BOT\xC3O FINAL_44"
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 452
+        width: 36
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03b6eb46653e7c2439bb8563b5134328
+      internalID: -313459326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PACK BOT\xC3O FINAL_45"
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 452
+        width: 36
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ba9637653997254ca0974f199dc7d8b
+      internalID: 2006657886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PACK BOT\xC3O FINAL_46"
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 452
+        width: 36
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6cc9f0d29e34864399a3ec2a5c8447a
+      internalID: 149854796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PACK BOT\xC3O FINAL_47"
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 424
+        width: 52
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35d70fae344d8954696c2b4f5d9529fa
+      internalID: 219333023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PACK BOT\xC3O FINAL_48"
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 388
+        width: 52
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81c33bd3e6bda1a4596b06e9a9cd4fd2
+      internalID: 1002867541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PACK BOT\xC3O FINAL_49"
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 388
+        width: 52
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0975419ad0ce0541abf63e53c431aa9
+      internalID: 1716659322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PACK BOT\xC3O FINAL_50"
+      rect:
+        serializedVersion: 2
+        x: 236
+        y: 380
+        width: 52
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86f7a6b0fad62d949a06c8ddbfa9105e
+      internalID: 1946471313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PACK BOT\xC3O FINAL_51"
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 336
+        width: 52
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37944ef87c260624091e393e9e65e236
+      internalID: 52240425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PACK BOT\xC3O FINAL_52"
+      rect:
+        serializedVersion: 2
+        x: 372
+        y: 388
+        width: 52
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: faa34f6240b08d04a90e73db3b98cae0
+      internalID: -681899618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PACK BOT\xC3O FINAL_53"
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 324
+        width: 36
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46ff0023498d2354fa5a9932ee5f9f08
+      internalID: -888594419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PACK BOT\xC3O FINAL_54"
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 324
+        width: 36
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cae1183b30c1801449375a546b7534ca
+      internalID: 297146957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PACK BOT\xC3O FINAL_55"
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 324
+        width: 36
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: edb4a07f0aa56914c81f8379e41d7327
+      internalID: 517718516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PACK BOT\xC3O FINAL_56"
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 324
+        width: 36
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ad0a8f85586aa643a91af6dbe08a50e
+      internalID: -946976848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PACK BOT\xC3O FINAL_57"
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 324
+        width: 36
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af18332845e84894b99ecc5d225148be
+      internalID: -1740379117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PACK BOT\xC3O FINAL_58"
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 224
+        width: 36
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4f03dc2a53f01c43bef77647b376087
+      internalID: -177285111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PACK BOT\xC3O FINAL_59"
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 228
+        width: 36
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e779e843600def419f51d643f7bf0ec
+      internalID: -336928329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PACK BOT\xC3O FINAL_60"
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 176
+        width: 36
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26b107f1f5693d642a9585a077b3192a
+      internalID: -630223216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PACK BOT\xC3O FINAL_61"
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 176
+        width: 36
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 040d72594239bcd4ead6403b3505c087
+      internalID: 188902945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PACK BOT\xC3O FINAL_62"
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 176
+        width: 36
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a055a1f9666104458f1e7067a4e1d37
+      internalID: -847795113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PACK BOT\xC3O FINAL_63"
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 180
+        width: 36
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a3279f1ef018744b80cee52fe489122
+      internalID: 403040739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PACK BOT\xC3O FINAL_64"
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 180
+        width: 36
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 555b784d03cb5154e8c1a8296611d5d8
+      internalID: 1778712801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PACK BOT\xC3O FINAL_65"
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 180
+        width: 36
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f61c1d0fe617dbd4aab7836f482c5d13
+      internalID: -254754589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      "PACK BOT\xC3O FINAL_0": 999671436
+      "PACK BOT\xC3O FINAL_1": 1011711626
+      "PACK BOT\xC3O FINAL_10": 636803040
+      "PACK BOT\xC3O FINAL_11": 674313935
+      "PACK BOT\xC3O FINAL_12": -1125495459
+      "PACK BOT\xC3O FINAL_13": 1153721023
+      "PACK BOT\xC3O FINAL_14": -963183583
+      "PACK BOT\xC3O FINAL_15": 2140497124
+      "PACK BOT\xC3O FINAL_16": -1250180902
+      "PACK BOT\xC3O FINAL_17": -639345785
+      "PACK BOT\xC3O FINAL_18": -304403686
+      "PACK BOT\xC3O FINAL_19": 1456782644
+      "PACK BOT\xC3O FINAL_2": -1771004248
+      "PACK BOT\xC3O FINAL_20": -1936150607
+      "PACK BOT\xC3O FINAL_21": -1497089151
+      "PACK BOT\xC3O FINAL_22": 1150503768
+      "PACK BOT\xC3O FINAL_23": 616003226
+      "PACK BOT\xC3O FINAL_24": 387764529
+      "PACK BOT\xC3O FINAL_25": -604060006
+      "PACK BOT\xC3O FINAL_26": 1961223510
+      "PACK BOT\xC3O FINAL_27": -744597024
+      "PACK BOT\xC3O FINAL_28": 743518357
+      "PACK BOT\xC3O FINAL_29": 514384634
+      "PACK BOT\xC3O FINAL_3": 682334140
+      "PACK BOT\xC3O FINAL_30": -265978503
+      "PACK BOT\xC3O FINAL_31": 2091407043
+      "PACK BOT\xC3O FINAL_32": -566688742
+      "PACK BOT\xC3O FINAL_33": 853908914
+      "PACK BOT\xC3O FINAL_34": 2001476991
+      "PACK BOT\xC3O FINAL_35": -609490000
+      "PACK BOT\xC3O FINAL_36": -1889419964
+      "PACK BOT\xC3O FINAL_37": 1993951251
+      "PACK BOT\xC3O FINAL_38": 1848457255
+      "PACK BOT\xC3O FINAL_39": -22093611
+      "PACK BOT\xC3O FINAL_4": -1282469582
+      "PACK BOT\xC3O FINAL_40": -1298783512
+      "PACK BOT\xC3O FINAL_41": 954530809
+      "PACK BOT\xC3O FINAL_42": 668872118
+      "PACK BOT\xC3O FINAL_43": -1914811910
+      "PACK BOT\xC3O FINAL_44": -313459326
+      "PACK BOT\xC3O FINAL_45": 2006657886
+      "PACK BOT\xC3O FINAL_46": 149854796
+      "PACK BOT\xC3O FINAL_47": 219333023
+      "PACK BOT\xC3O FINAL_48": 1002867541
+      "PACK BOT\xC3O FINAL_49": 1716659322
+      "PACK BOT\xC3O FINAL_5": -813315431
+      "PACK BOT\xC3O FINAL_50": 1946471313
+      "PACK BOT\xC3O FINAL_51": 52240425
+      "PACK BOT\xC3O FINAL_52": -681899618
+      "PACK BOT\xC3O FINAL_53": -888594419
+      "PACK BOT\xC3O FINAL_54": 297146957
+      "PACK BOT\xC3O FINAL_55": 517718516
+      "PACK BOT\xC3O FINAL_56": -946976848
+      "PACK BOT\xC3O FINAL_57": -1740379117
+      "PACK BOT\xC3O FINAL_58": -177285111
+      "PACK BOT\xC3O FINAL_59": -336928329
+      "PACK BOT\xC3O FINAL_6": -1564882137
+      "PACK BOT\xC3O FINAL_60": -630223216
+      "PACK BOT\xC3O FINAL_61": 188902945
+      "PACK BOT\xC3O FINAL_62": -847795113
+      "PACK BOT\xC3O FINAL_63": 403040739
+      "PACK BOT\xC3O FINAL_64": 1778712801
+      "PACK BOT\xC3O FINAL_65": -254754589
+      "PACK BOT\xC3O FINAL_7": 504731413
+      "PACK BOT\xC3O FINAL_8": -1067559025
+      "PACK BOT\xC3O FINAL_9": 900193141
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
