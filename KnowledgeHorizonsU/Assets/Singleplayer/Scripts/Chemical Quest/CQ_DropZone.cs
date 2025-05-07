@@ -26,6 +26,8 @@ public class DropZone : MonoBehaviour, IDropHandler
     private List<(string, string, string)> questions = new List<(string, string, string)>();
     private int currentQuestionIndex = 0;
 
+    [SerializeField] private PauseMenuManager pauseMenuManager;
+
     void Start() {
         // Define valid reactions and their colors
         reactions.Add(("Hydrogen", "Oxygen"), Color.cyan);
@@ -122,6 +124,7 @@ public class DropZone : MonoBehaviour, IDropHandler
         currentQuestionIndex++;
         if (currentQuestionIndex >= questions.Count) {
             questionText.text = "Quiz complete!";
+            pauseMenuManager.EndGame(score);
             timerText.text = "Time: 0";
             feedbackText.text = "";
             return;
