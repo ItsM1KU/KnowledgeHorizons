@@ -5,9 +5,11 @@ public class TB_MovingBlock : MonoBehaviour
     public float swingSpeed = 3f;
     public float maxAngle = 30f;
 
+    // Add public property for placement status
+    public bool IsPlaced { get; private set; }
+
     private Transform pivot;
     private float radius;
-    private bool isPlaced;
     private float angle;
     private Rigidbody2D rb;
 
@@ -17,13 +19,13 @@ public class TB_MovingBlock : MonoBehaviour
         radius = swingRadius;
         rb = GetComponent<Rigidbody2D>();
         rb.isKinematic = true;
+        IsPlaced = false; // Initialize placement status
     }
 
     void Update()
     {
-        if (!isPlaced)
+        if (!IsPlaced)
         {
-            // Smooth pendulum motion
             angle = maxAngle * Mathf.Sin(Time.time * swingSpeed);
             Vector2 offset = new Vector2(
                 Mathf.Sin(angle * Mathf.Deg2Rad) * radius,
@@ -35,13 +37,11 @@ public class TB_MovingBlock : MonoBehaviour
 
     public void Place()
     {
-        if (isPlaced) return;
+        if (IsPlaced) return;
 
-        isPlaced = true;
+        IsPlaced = true;
         rb.isKinematic = false;
         rb.velocity = Vector2.zero;
-
-        // Freeze rotation for stable stacking
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 }

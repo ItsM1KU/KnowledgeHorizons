@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c4cd72a1-17b6-423b-871b-62af121209c6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/KnowledgeHorizonsU/Assets/Singleplayer/Scripts/Time Vault/TV_Artifact.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KnowledgeHorizonsU/Assets/Singleplayer/Scripts/Time Vault/TV_Artifact.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KnowledgeHorizonsU/Assets/Singleplayer/Scripts/Time Vault/TV_GameManager.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KnowledgeHorizonsU/Assets/Singleplayer/Scripts/Time Vault/TV_GameManager.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KnowledgeHorizonsU/Assets/Singleplayer/Scenes/Social/TV_gamescene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/KnowledgeHorizonsU/Assets/Singleplayer/Scenes/Social/TV_gamescene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KnowledgeHorizonsU/Assets/Singleplayer/Scripts/Time Vault/TV_InputManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KnowledgeHorizonsU/Assets/Singleplayer/Scripts/Time Vault/TV_InputManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KnowledgeHorizonsU/Assets/Singleplayer/Scripts/Time Vault/TV_PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KnowledgeHorizonsU/Assets/Singleplayer/Scripts/Time Vault/TV_PlayerController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KnowledgeHorizonsU/Assets/Singleplayer/Scripts/Time Vault/TV_PlayerInputs.inputactions" beforeDir="false" afterPath="$PROJECT_DIR$/KnowledgeHorizonsU/Assets/Singleplayer/Scripts/Time Vault/TV_PlayerInputs.inputactions" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KnowledgeHorizonsU/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/KnowledgeHorizonsU/ProjectSettings/TagManager.asset" afterDir="false" />
-    </list>
+    <list default="true" id="c4cd72a1-17b6-423b-871b-62af121209c6" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,9 +10,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 3
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
   <component name="ProjectId" id="2tAZTkKJSutZq9kQpK8v7Ux9t9J" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -33,7 +23,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "Merging main",
+    "git-widget-placeholder": "main",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -46,6 +36,7 @@
       <option name="presentableId" value="Default" />
       <updated>1739796849627</updated>
       <workItem from="1739796855680" duration="3000" />
+      <workItem from="1746120060651" duration="10000" />
     </task>
     <servers />
   </component>

@@ -649,8 +649,11 @@ MonoBehaviour:
   ropeRenderer: {fileID: 2131074942}
   blockHeight: 1
   swingRadius: 3
-  cameraFollowSpeed: 2
-  safeDistance: 1.5
+  cameraMoveSpeed: 2
+  safeDistance: 2.5
+  spawnDelay: 0.5
+  blocksBeforeMovement: 2
+  cameraMoveDuration: 0.5
 --- !u!4 &1873297895
 Transform:
   m_ObjectHideFlags: 0
