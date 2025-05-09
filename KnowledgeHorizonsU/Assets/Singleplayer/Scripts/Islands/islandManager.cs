@@ -96,6 +96,24 @@ public class islandManager : MonoBehaviour
         SceneManager.LoadScene("TV_gamescene");
     }
 
+    public void playTB()
+    {
+        SceneManager.LoadScene("TB_gamescene");
+    }
+    public void playCQ()
+    {
+        SceneManager.LoadScene("CQ_gamescene");
+    }
+
+    public void playERT()
+    {
+        SceneManager.LoadScene("ERT_gamescene");
+    }
+
+    public void playCTS()
+    {
+        SceneManager.LoadScene("CTS_gamescene");
+    }
 
 
 
