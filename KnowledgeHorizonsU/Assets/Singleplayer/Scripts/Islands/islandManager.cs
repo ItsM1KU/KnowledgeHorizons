@@ -16,6 +16,8 @@ public class islandManager : MonoBehaviour
     [SerializeField] GameObject sciencePanel;
     [SerializeField] GameObject socialPanel;
 
+    [SerializeField] AudioSource bgAudio;
+
     private void Awake()
     {
         if (instance == null) 
@@ -23,7 +25,12 @@ public class islandManager : MonoBehaviour
             instance = this;
         }
     }
-    
+
+    private void Update()
+    {
+        bgAudio.volume = PlayerPrefs.GetFloat("Volume", 0.250f);
+    }
+
     public void openMathPanel()
     {
         mathPanel.SetActive(true);
