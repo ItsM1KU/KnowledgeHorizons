@@ -4,8 +4,6 @@ public class TB_MovingBlock : MonoBehaviour
 {
     public float swingSpeed = 3f;
     public float maxAngle = 30f;
-
-    // Add public property for placement status
     public bool IsPlaced { get; private set; }
 
     private Transform pivot;
@@ -19,7 +17,7 @@ public class TB_MovingBlock : MonoBehaviour
         radius = swingRadius;
         rb = GetComponent<Rigidbody2D>();
         rb.isKinematic = true;
-        IsPlaced = false; // Initialize placement status
+        IsPlaced = false;
     }
 
     void Update()
@@ -43,5 +41,13 @@ public class TB_MovingBlock : MonoBehaviour
         rb.isKinematic = false;
         rb.velocity = Vector2.zero;
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (IsPlaced && collision.gameObject.CompareTag("Ground"))
+        {
+            TB_GameManager.Instance.HandleFallingBlock(transform.position);
+        }
     }
 }

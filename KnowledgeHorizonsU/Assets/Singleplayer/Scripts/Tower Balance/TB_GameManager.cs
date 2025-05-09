@@ -1,9 +1,14 @@
 using UnityEngine;
 using Cinemachine;
 using System.Collections;
+using TMPro;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class TB_GameManager : MonoBehaviour
 {
+    public static TB_GameManager Instance;
+
     [Header("References")]
     public GameObject blockPrefab;
     public Transform basePlatform;
@@ -14,10 +19,30 @@ public class TB_GameManager : MonoBehaviour
     public float blockHeight = 1f;
     public float swingRadius = 3f;
     public float cameraMoveSpeed = 3f;
-    public float safeDistance = 4f; // Increased from 4 to match camera movement
+    public float safeDistance = 4f;
     public float spawnDelay = 0.5f;
     public int blocksBeforeMovement = 3;
-    public float cameraMoveDuration = 0.5f; // Added for smooth movement
+    public float cameraMoveDuration = 0.5f;
+
+    [Header("Scoreboard UI")]
+    public TMP_Text currentScoreText;
+    public TMP_Text highScoreText;
+    public GameObject scoreboardPanel;
+
+    [Header("Game Over")]
+    public GameObject gameOverPanel;
+    public GameObject landingMarkerPrefab;
+    public float gameOverDelay = 1.5f;
+
+    [Header("Scoring")]
+    public int scorePerBlock = 1;
+
+    private int currentScore = 0;
+    private int highScore = 0;
+    private int sessionHighScore = 0;
+    private const string HIGH_SCORE_KEY = "BlockStacker_HighScore";
+    private bool isFirstRound = true;
+    private bool isGameOver = false;
 
     private GameObject currentBlock;
     private Transform spawnPivot;
@@ -27,14 +52,24 @@ public class TB_GameManager : MonoBehaviour
     private int blocksPlaced = 0;
     private float baseY;
     private CinemachineFramingTransposer transposer;
+    private Vector3? fallingBlockPosition = null;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     void Start()
     {
         baseY = basePlatform.position.y;
         InitializeCameraSystem();
         CreateSpawnPivot();
+        LoadHighScore();
+        sessionHighScore = highScore;
+        UpdateScoreUI();
         SpawnNewBlock();
     }
+
     void InitializeCameraSystem()
     {
         Camera.main.transform.position = new Vector3(0, baseY + 7.5f, -10);
@@ -44,7 +79,6 @@ public class TB_GameManager : MonoBehaviour
         cameraTarget.position = new Vector3(0, baseY + 7.5f, 0);
         virtualCamera.Follow = cameraTarget;
 
-        // Remove damping for direct control
         transposer = virtualCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
         transposer.m_YDamping = 0;
     }
@@ -55,15 +89,34 @@ public class TB_GameManager : MonoBehaviour
         UpdateSpawnPosition();
     }
 
+    void LoadHighScore()
+    {
+        highScore = PlayerPrefs.GetInt(HIGH_SCORE_KEY, 0);
+    }
+
+    void SaveHighScore()
+    {
+        PlayerPrefs.SetInt(HIGH_SCORE_KEY, highScore);
+        PlayerPrefs.Save();
+    }
+
+    void UpdateScoreUI()
+    {
+        currentScoreText.text = "Blocks: " + currentScore;
+        highScoreText.text = "Best: " + (isFirstRound ? currentScore : sessionHighScore);
+        scoreboardPanel.SetActive(true);
+    }
+
     void UpdateSpawnPosition()
     {
-        // Always keep spawner at top of camera view with safe distance
         float cameraTop = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 1f, 0)).y;
         spawnPivot.position = new Vector3(0, cameraTop - (blockHeight / 2f), 0);
     }
 
     void Update()
     {
+        if (isGameOver) return;
+
         if (Input.GetKeyDown(KeyCode.Space) && canPlaceBlock)
         {
             StartCoroutine(BlockPlacementRoutine());
@@ -75,23 +128,19 @@ public class TB_GameManager : MonoBehaviour
     {
         canPlaceBlock = false;
 
-        Vector3 placedPosition = currentBlock.transform.position;
-        currentBlock.GetComponent<TB_MovingBlock>().Place();
+        TB_MovingBlock movingBlock = currentBlock.GetComponent<TB_MovingBlock>();
+        movingBlock.Place();
         blocksPlaced++;
 
+        AddScore(scorePerBlock);
         yield return new WaitForSeconds(0.3f);
 
-        currentTowerHeight = Mathf.Max(
-            currentTowerHeight,
-            placedPosition.y - baseY
-        );
+        currentTowerHeight = Mathf.Max(currentTowerHeight,
+            currentBlock.transform.position.y - baseY);
 
         if (blocksPlaced >= blocksBeforeMovement)
         {
-            // Calculate target position based on safe distance
             float targetY = cameraTarget.position.y + safeDistance;
-
-            // Smooth camera movement
             yield return StartCoroutine(SmoothCameraMove(cameraTarget.position.y, targetY));
         }
 
@@ -102,33 +151,87 @@ public class TB_GameManager : MonoBehaviour
         canPlaceBlock = true;
     }
 
+    public void HandleFallingBlock(Vector3 landingPosition)
+    {
+        if (isGameOver) return;
+
+        isGameOver = true;
+        fallingBlockPosition = landingPosition;
+        StartCoroutine(GameOverSequence());
+    }
+
+    private IEnumerator GameOverSequence()
+    {
+        if (landingMarkerPrefab && fallingBlockPosition.HasValue)
+        {
+            Instantiate(landingMarkerPrefab, fallingBlockPosition.Value, Quaternion.identity);
+        }
+
+        yield return new WaitForSeconds(gameOverDelay);
+
+        gameOverPanel.SetActive(true);
+        Time.timeScale = 0f;
+    }
+
+    public void RetryGame()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void GoToMainMenu()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    void AddScore(int points)
+    {
+        currentScore += points;
+
+        if (currentScore > sessionHighScore)
+        {
+            sessionHighScore = currentScore;
+            if (sessionHighScore > highScore)
+            {
+                highScore = sessionHighScore;
+                SaveHighScore();
+            }
+        }
+        UpdateScoreUI();
+    }
+
+    public void StartNewGame()
+    {
+        isFirstRound = false;
+        currentScore = 0;
+        blocksPlaced = 0;
+        currentTowerHeight = 0;
+        isGameOver = false;
+        UpdateScoreUI();
+
+        cameraTarget.position = new Vector3(0, baseY + 7.5f, 0);
+        UpdateSpawnPosition();
+        SpawnNewBlock();
+    }
+
     IEnumerator SmoothCameraMove(float startY, float targetY)
     {
         float elapsed = 0f;
-
         while (elapsed < cameraMoveDuration)
         {
             float newY = Mathf.Lerp(startY, targetY, elapsed / cameraMoveDuration);
             cameraTarget.position = new Vector3(0, newY, 0);
             elapsed += Time.deltaTime;
-
-            // Update spawn position during movement
             UpdateSpawnPosition();
             yield return null;
         }
-
         cameraTarget.position = new Vector3(0, targetY, 0);
     }
 
-
     void SpawnNewBlock()
     {
-        Vector3 spawnPos = new Vector3(
-            0,
-            spawnPivot.position.y - swingRadius,
-            0
-        );
-
+        Vector3 spawnPos = new Vector3(0, spawnPivot.position.y - swingRadius, 0);
         currentBlock = Instantiate(blockPrefab, spawnPos, Quaternion.identity);
         currentBlock.GetComponent<TB_MovingBlock>().Initialize(spawnPivot, swingRadius);
     }
