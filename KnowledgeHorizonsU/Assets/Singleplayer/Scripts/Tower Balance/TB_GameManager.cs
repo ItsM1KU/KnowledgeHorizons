@@ -43,13 +43,14 @@ public class TB_GameManager : MonoBehaviour
     private const string HIGH_SCORE_KEY = "BlockStacker_HighScore";
     private bool isFirstRound = true;
     private bool isGameOver = false;
+    private int totalBlocksPlaced = 0; // Tracks ALL blocks placed (including first block)
 
     private GameObject currentBlock;
     private Transform spawnPivot;
     private Transform cameraTarget;
     private float currentTowerHeight;
     private bool canPlaceBlock = true;
-    private int blocksPlaced = 0;
+    private int blocksPlaced = 0; // Tracks blocks in current round
     private float baseY;
     private CinemachineFramingTransposer transposer;
     private Vector3? fallingBlockPosition = null;
@@ -131,12 +132,12 @@ public class TB_GameManager : MonoBehaviour
         TB_MovingBlock movingBlock = currentBlock.GetComponent<TB_MovingBlock>();
         movingBlock.Place();
         blocksPlaced++;
+        totalBlocksPlaced++; // Track total blocks placed
 
         AddScore(scorePerBlock);
         yield return new WaitForSeconds(0.3f);
 
-        currentTowerHeight = Mathf.Max(currentTowerHeight,
-            currentBlock.transform.position.y - baseY);
+        currentTowerHeight = Mathf.Max(currentTowerHeight, currentBlock.transform.position.y - baseY);
 
         if (blocksPlaced >= blocksBeforeMovement)
         {
@@ -153,6 +154,9 @@ public class TB_GameManager : MonoBehaviour
 
     public void HandleFallingBlock(Vector3 landingPosition)
     {
+        // Skip game over if it's the first block (totalBlocksPlaced = 1)
+        if (totalBlocksPlaced <= 1) return;
+
         if (isGameOver) return;
 
         isGameOver = true;
@@ -162,6 +166,7 @@ public class TB_GameManager : MonoBehaviour
 
     private IEnumerator GameOverSequence()
     {
+        // Show landing marker
         if (landingMarkerPrefab && fallingBlockPosition.HasValue)
         {
             Instantiate(landingMarkerPrefab, fallingBlockPosition.Value, Quaternion.identity);
@@ -169,8 +174,9 @@ public class TB_GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(gameOverDelay);
 
+        // Show game over UI
         gameOverPanel.SetActive(true);
-        Time.timeScale = 0f;
+        Time.timeScale = 0f; // Pause game
     }
 
     public void RetryGame()
@@ -206,10 +212,12 @@ public class TB_GameManager : MonoBehaviour
         isFirstRound = false;
         currentScore = 0;
         blocksPlaced = 0;
+        totalBlocksPlaced = 0; // Reset counter for new game
         currentTowerHeight = 0;
         isGameOver = false;
         UpdateScoreUI();
 
+        // Reset camera position
         cameraTarget.position = new Vector3(0, baseY + 7.5f, 0);
         UpdateSpawnPosition();
         SpawnNewBlock();

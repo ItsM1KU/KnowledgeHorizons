@@ -45,6 +45,10 @@ public class TB_MovingBlock : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        // Only trigger game over if:
+        // 1. This block was placed (not swinging)
+        // 2. It hits the ground
+        // 3. It's not the first block (handled in GameManager)
         if (IsPlaced && collision.gameObject.CompareTag("Ground"))
         {
             TB_GameManager.Instance.HandleFallingBlock(transform.position);
