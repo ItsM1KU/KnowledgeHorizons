@@ -137,6 +137,13 @@ public class TB_GameManager : MonoBehaviour
 
     void Update()
     {
+
+        // SANJAY added this change for quick transitions ( DONT REMOVE)
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene("Islands");
+        }
+
         if (isGameOver) return;
 
         if (Input.GetKeyDown(KeyCode.Space) && canPlaceBlock)

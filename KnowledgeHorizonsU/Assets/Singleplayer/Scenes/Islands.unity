@@ -295,7 +295,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 810.0001, y: -440}
+  m_AnchoredPosition: {x: 1150, y: -440}
   m_SizeDelta: {x: 530, y: 850}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &7109327
@@ -499,7 +499,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Chem Reacts
+  m_text: Chemistry Quest
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 47640c85980e2aa4fa3d1afd57b5ea71, type: 2}
   m_sharedMaterial: {fileID: -7227645342720748403, guid: 47640c85980e2aa4fa3d1afd57b5ea71, type: 2}
@@ -526,8 +526,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 48.54
+  m_fontSizeBase: 48.54
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -633,9 +633,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Player must catch the correct country flag corresponding to a geography-based
-    question. This game strenghtens the geographical knowledge and reinforces the
-    visual recognition of flags.
+  m_text: A fast-paced 2D trail game where players navigate through winding paths,
+    dodging obstacles and collecting echoes to boost their score.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1d824243f65f9a94587f0f80863d307c, type: 2}
   m_sharedMaterial: {fileID: -67025123034298696, guid: 1d824243f65f9a94587f0f80863d307c, type: 2}
@@ -662,8 +661,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 23.6
+  m_fontSizeBase: 23.6
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1259,7 +1258,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c029f85ccef241044b2ce171f3165bea, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1cc7d5e1b5235fc45b82b5ece7e4474a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1885,7 +1884,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 80566800}
         m_TargetAssemblyTypeName: islandManager, Assembly-CSharp
-        m_MethodName: playFB
+        m_MethodName: playERT
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1990,7 +1989,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ---Work in Progress---
+  m_text: A fun chemistry game where players combine two elements to trigger reactions,
+    with the game describing the outcome and teaching real-world chemical concepts.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1d824243f65f9a94587f0f80863d307c, type: 2}
   m_sharedMaterial: {fileID: -67025123034298696, guid: 1d824243f65f9a94587f0f80863d307c, type: 2}
@@ -2017,14 +2017,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 29
-  m_fontSizeBase: 29
+  m_fontSize: 23.6
+  m_fontSizeBase: 23.6
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -2424,7 +2424,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1141, y: -440}
+  m_AnchoredPosition: {x: 814, y: -440}
   m_SizeDelta: {x: 530, y: 850}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &457621085
@@ -2774,7 +2774,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 275.00006, y: -440}
+  m_AnchoredPosition: {x: 477, y: -440}
   m_SizeDelta: {x: 530, y: 850}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &531268935
@@ -3433,10 +3433,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 80566800}
-        m_TargetAssemblyTypeName: islandManager, Assembly-CSharp
-        m_MethodName: closeSocialPanel
-        m_Mode: 1
+      - m_Target: {fileID: 320586453}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3498,7 +3498,7 @@ GameObject:
   - component: {fileID: 724066977}
   - component: {fileID: 724066981}
   m_Layer: 5
-  m_Name: island1
+  m_Name: mathIsland
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3709,7 +3709,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Bridge Builder
+  m_text: Tower Builder
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 47640c85980e2aa4fa3d1afd57b5ea71, type: 2}
   m_sharedMaterial: {fileID: -7227645342720748403, guid: 47640c85980e2aa4fa3d1afd57b5ea71, type: 2}
@@ -4040,7 +4040,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 468, y: -440}
+  m_AnchoredPosition: {x: 285, y: -440}
   m_SizeDelta: {x: 530, y: 850}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &785058041
@@ -4598,7 +4598,7 @@ GameObject:
   - component: {fileID: 915051714}
   - component: {fileID: 915051716}
   m_Layer: 5
-  m_Name: island1 (1)
+  m_Name: ScienceIsland
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4845,7 +4845,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 8
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -5133,8 +5133,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 23.6
+  m_fontSizeBase: 23.6
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -5240,11 +5240,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Players explore a mysterious house where they encounter historical artifacts.
-    They must analyze these artifacts and deduce the time period and location associated
-    with them. For instance, finding an old typewriter may indicate the early 20th
-    century. The game strengthens historical reasoning and enhances players ability
-    to connect historical events with tangible objects.
+  m_text: "An endless jumping game where a frog leaps across various lily pads \u2014
+    some stable, some rotating, and some that break \u2014 to safely cross a flowing
+    stream."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1d824243f65f9a94587f0f80863d307c, type: 2}
   m_sharedMaterial: {fileID: -67025123034298696, guid: 1d824243f65f9a94587f0f80863d307c, type: 2}
@@ -5271,14 +5269,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 23.3
-  m_fontSizeBase: 23.3
+  m_fontSize: 23.6
+  m_fontSizeBase: 23.6
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 8
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -5533,14 +5531,14 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 976904675}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 80566800}
         m_TargetAssemblyTypeName: islandManager, Assembly-CSharp
-        m_MethodName: playBP
+        m_MethodName: playCQ
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6333,7 +6331,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ---Work in Progress---
+  m_text: A physics-based timing game where barrels swing in the air, and players
+    must release them at just the right moment to stack them steadily. Each drop
+    tests your precision and understanding of balance as the tower grows taller and
+    more unstable with every swing.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1d824243f65f9a94587f0f80863d307c, type: 2}
   m_sharedMaterial: {fileID: -67025123034298696, guid: 1d824243f65f9a94587f0f80863d307c, type: 2}
@@ -6360,14 +6361,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 23.6
+  m_fontSizeBase: 23.6
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -6495,7 +6496,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 80566800}
         m_TargetAssemblyTypeName: islandManager, Assembly-CSharp
-        m_MethodName: playTV
+        m_MethodName: playCTS
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6556,8 +6557,9 @@ GameObject:
   - component: {fileID: 1100618820}
   - component: {fileID: 1100618822}
   - component: {fileID: 1100618823}
+  - component: {fileID: 1100618824}
   m_Layer: 5
-  m_Name: island1 (3)
+  m_Name: FunIsland
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6655,6 +6657,62 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1100618824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1100618818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1100618820}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 320586453}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!1 &1133462386
 GameObject:
   m_ObjectHideFlags: 0
@@ -7195,8 +7253,7 @@ MonoBehaviour:
   m_text: Players explore a mysterious house where they encounter historical artifacts.
     They must analyze these artifacts and deduce the time period and location associated
     with them. For instance, finding an old typewriter may indicate the early 20th
-    century. The game strengthens historical reasoning and enhances players ability
-    to connect historical events with tangible objects.
+    century.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1d824243f65f9a94587f0f80863d307c, type: 2}
   m_sharedMaterial: {fileID: -67025123034298696, guid: 1d824243f65f9a94587f0f80863d307c, type: 2}
@@ -7223,14 +7280,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 23.3
-  m_fontSizeBase: 23.3
+  m_fontSize: 23.6
+  m_fontSizeBase: 23.6
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 8
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -7290,7 +7347,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1219969877
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7914,14 +7971,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 29
-  m_fontSizeBase: 29
+  m_fontSize: 23.6
+  m_fontSizeBase: 23.6
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 8
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -8457,7 +8514,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Time Vault
+  m_text: Cross The Stream
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 47640c85980e2aa4fa3d1afd57b5ea71, type: 2}
   m_sharedMaterial: {fileID: -7227645342720748403, guid: 47640c85980e2aa4fa3d1afd57b5ea71, type: 2}
@@ -8484,8 +8541,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 46
+  m_fontSizeBase: 46
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -8549,7 +8606,7 @@ GameObject:
   - component: {fileID: 1401713276}
   - component: {fileID: 1401713278}
   m_Layer: 5
-  m_Name: island1 (2)
+  m_Name: SocialIsland
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9474,7 +9531,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f17f1ad61f19f384b9c4547225115f0a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7a2f453214e20f74ebf415d661e2a161, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -9519,7 +9576,7 @@ RectTransform:
   m_GameObject: {fileID: 1616456143}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.43240488, y: 0.43240488, z: 0.43240488}
+  m_LocalScale: {x: 0.28869945, y: 0.28869945, z: 0.28869945}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1784920799}
@@ -9527,7 +9584,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.000053406, y: 172}
-  m_SizeDelta: {x: 499, y: 499}
+  m_SizeDelta: {x: 1622, y: 897}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1616456145
 MonoBehaviour:
@@ -9549,7 +9606,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 395a854e0c902324c8dd6238c7916734, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b91e8428cfe2dcf44bd5e2ba8ce19817, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -10077,7 +10134,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Flag Basket
+  m_text: Echo Rush Trail
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 47640c85980e2aa4fa3d1afd57b5ea71, type: 2}
   m_sharedMaterial: {fileID: -7227645342720748403, guid: 47640c85980e2aa4fa3d1afd57b5ea71, type: 2}
@@ -10455,7 +10512,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1784920799
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10628,7 +10685,7 @@ RectTransform:
   m_GameObject: {fileID: 1872250954}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.43240488, y: 0.43240488, z: 0.43240488}
+  m_LocalScale: {x: 0.5063547, y: 0.5063547, z: 0.5063547}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 785058040}
@@ -10636,7 +10693,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.000053406, y: 172}
-  m_SizeDelta: {x: 499, y: 499}
+  m_SizeDelta: {x: 891, y: 508}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1872250956
 MonoBehaviour:
@@ -10658,7 +10715,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 395a854e0c902324c8dd6238c7916734, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7d035c81592ede340a2f9a078eaae8ff, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -11030,14 +11087,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 23.6
+  m_fontSizeBase: 23.6
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 8
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -11785,14 +11842,14 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 2075119520}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 80566800}
         m_TargetAssemblyTypeName: islandManager, Assembly-CSharp
-        m_MethodName: playMM
+        m_MethodName: playTB
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12144,14 +12201,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 23.6
+  m_fontSizeBase: 23.6
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 8
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
