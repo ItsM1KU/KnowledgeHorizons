@@ -34,8 +34,16 @@ public class TB_GameManager : MonoBehaviour
     public GameObject landingMarkerPrefab;
     public float gameOverDelay = 1.5f;
 
+    [Header("Pause Menu")]
+    public GameObject pauseMenuPanel;
+    private bool isPaused = false;
+
     [Header("Scoring")]
     public int scorePerBlock = 1;
+
+    [Header("Audio")]
+    public AudioSource backgroundMusic;
+    public Slider volumeSlider;
 
     private int currentScore = 0;
     private int highScore = 0;
@@ -67,6 +75,19 @@ public class TB_GameManager : MonoBehaviour
         CreateSpawnPivot();
         LoadHighScore();
         sessionHighScore = highScore;
+
+        // Initialize audio
+        float savedVolume = PlayerPrefs.GetFloat("MasterVolume", 0.7f);
+        backgroundMusic.volume = savedVolume;
+        backgroundMusic.loop = true; // Enable looping
+        backgroundMusic.Play(); // Start playing immediately
+
+        if (volumeSlider != null)
+        {
+            volumeSlider.value = savedVolume;
+            volumeSlider.onValueChanged.AddListener(OnVolumeChanged);
+        }
+
         UpdateScoreUI();
         SpawnNewBlock();
     }
@@ -122,7 +143,38 @@ public class TB_GameManager : MonoBehaviour
         {
             StartCoroutine(BlockPlacementRoutine());
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape) && !isGameOver)
+        {
+            TogglePause();
+        }
+
         UpdateRopeVisual();
+    }
+    public void TogglePause()
+    {
+        isPaused = !isPaused;
+        pauseMenuPanel.SetActive(isPaused);
+        Time.timeScale = isPaused ? 0f : 1f;
+
+        // Don't modify volume when pausing - let it play normally
+        // backgroundMusic.volume = isPaused ? volumeSlider.value * 0.5f : volumeSlider.value;
+    }
+    public void OnVolumeChanged(float value)
+    {
+        backgroundMusic.volume = value;
+        PlayerPrefs.SetFloat("MasterVolume", value);
+    }
+
+    public void ResumeGame()
+    {
+        TogglePause();
+    }
+
+    public void QuitToMainMenu()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("Islands");
     }
 
     IEnumerator BlockPlacementRoutine()
