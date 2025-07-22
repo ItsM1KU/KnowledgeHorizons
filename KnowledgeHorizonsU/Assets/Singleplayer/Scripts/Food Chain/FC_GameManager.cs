@@ -7,7 +7,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
 using UnityEngine.UI;
-using UnityEditorInternal.VR;
 
 public class FC_GameManager : MonoBehaviour
 {
